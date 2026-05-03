@@ -1,0 +1,40 @@
+<svg width="1631" height="1181" viewBox="0 0 1631 1181" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_220_232" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="-2" width="1631" height="1184">
+<path d="M653.333 0L18.2238 468.53C7.71872 784.822 -6.28385 798.13 4.22118 815.089C14.7262 832.049 455.16 1064.38 610.984 1090.7L653.333 0Z" fill="#D9D9D9"/>
+<path d="M1431.97 653.831C1410.46 724.003 1185.2 864.177 1208 1117.5L1407.96 1181L1629.5 954.065L1609.5 564.112L1431.97 653.831Z" fill="#D9D9D9"/>
+<path d="M653.333 0L18.2238 468.53C7.71872 784.822 -6.28385 798.13 4.22118 815.089C14.7262 832.049 455.16 1064.38 610.984 1090.7L653.333 0Z" stroke="black"/>
+<path d="M1431.97 653.831C1410.46 724.003 1185.2 864.177 1208 1117.5L1407.96 1181L1629.5 954.065L1609.5 564.112L1431.97 653.831Z" stroke="black"/>
+</mask>
+<g mask="url(#mask0_220_232)">
+<g filter="url(#filter0_iig_220_232)">
+<path d="M462.9 317.775C521.745 255.602 594.211 206.034 679.238 217.716C720.19 223.342 754.121 251.605 780.921 282.245C808.54 313.82 834.822 355.168 859.893 400.1C909.58 489.147 961.659 605.863 1012.92 710.933C1065.78 819.267 1118.3 916.541 1172.21 979.545C1226.46 1042.96 1267.91 1056.51 1305.95 1040.03C1423.05 989.299 1463.77 910.826 1501.23 833.188C1519.57 795.185 1540.53 749.107 1571.48 713.443C1605.31 674.456 1649.43 648.965 1710.95 643.321L1719.5 759.12C1682.44 762.519 1662.15 776.078 1646.4 794.226C1627.76 815.699 1613.97 844.842 1593.03 888.227C1551.95 973.364 1496.05 1082.33 1343.71 1148.33C1245.61 1190.84 1160.96 1134.75 1096.77 1059.73C1032.24 984.299 973.989 874.334 921.351 766.443C867.121 655.29 818.993 546.796 771.38 461.465C747.802 419.209 726.162 386.078 706.288 363.358C685.597 339.702 672.466 333.855 666.487 333.033C627.857 327.726 585.393 348.446 534.608 402.103C484.283 455.275 434.949 531.089 383.417 614.166C333.297 694.968 280.805 783.184 227.31 851.82C175.319 918.526 112.027 980.908 36.4706 990.245C-26.7618 998.059 -84.795 965.975 -132.979 922.844C-181.764 879.174 -227.192 818.304 -267.535 753.076C-348.401 622.33 -415.329 463.37 -452.5 356.694L-355.335 314.628C-320.065 415.851 -256.6 566.055 -181.717 687.127C-144.187 747.807 -105.402 798.51 -67.711 832.249C-29.4184 866.527 1.28864 877.691 24.9852 874.763C58.0903 870.672 98.4811 839.951 148.622 775.619C197.258 713.216 245.345 632.457 297.679 548.086C348.602 465.99 403.596 380.434 462.9 317.775Z" fill="url(#paint0_linear_220_232)"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_iig_220_232" x="-456.5" y="212" width="2180" height="955" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="39.5"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.55 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_220_232"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="7.6"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+<feBlend mode="normal" in2="effect1_innerShadow_220_232" result="effect2_innerShadow_220_232"/>
+<feTurbulence type="fractalNoise" baseFrequency="0.99900001287460327 0.99900001287460327" numOctaves="3" seed="4806" />
+<feDisplacementMap in="effect2_innerShadow_220_232" scale="8" xChannelSelector="R" yChannelSelector="G" result="displacedImage" width="100%" height="100%" />
+<feMerge result="effect3_texture_220_232">
+<feMergeNode in="displacedImage"/>
+</feMerge>
+</filter>
+<linearGradient id="paint0_linear_220_232" x1="-454.069" y1="452.399" x2="1255.09" y2="960.66" gradientUnits="userSpaceOnUse">
+<stop stop-color="#CF590A"/>
+<stop offset="1" stop-color="#FFAC59"/>
+</linearGradient>
+</defs>
+</svg>
