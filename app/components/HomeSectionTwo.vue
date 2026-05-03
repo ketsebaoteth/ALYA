@@ -33,6 +33,7 @@
         <div class="absolute flex h-full w-full items-center justify-center">
           <img
             src="/spiral_full.png"
+	    loading="eager"
             class="absolute h-max w-max scale-110 bg-black/0 min-[2180px]:-translate-x-10 min-[2180px]:scale-120"
           />
         </div>
@@ -57,6 +58,7 @@
         <div class="absolute flex h-full w-full items-center justify-center">
           <img
             src="/spiral_partial.png"
+	    loading="eager"
             class="absolute h-max w-max scale-110 bg-black/0 min-[2180px]:-translate-x-10 min-[2180px]:scale-120"
           />
         </div>

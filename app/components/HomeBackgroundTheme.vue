@@ -23,7 +23,7 @@
     <img
       src="/grid.png"
       class="absolute -top-30 -right-40 z-10 h-full opacity-70 max-md:translate-x-50"
-      loading="lazy"
+      loading="eager"
     />
   </div>
 </template>
