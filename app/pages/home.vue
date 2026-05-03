@@ -142,14 +142,12 @@ useHead({
 
       <div class="flex w-full max-w-270 items-baseline-last gap-2 pt-14">
         <div
-          class="h-150 max-w-1/3 w-full -skew-y-8 rounded-4xl bg-black"
+          class="h-150 w-full max-w-1/3 -skew-y-8 rounded-4xl bg-black"
         ></div>
         <div
-          class="h-150 max-w-1/3 w-full -translate-y-5 rounded-4xl bg-black"
+          class="h-150 w-full max-w-1/3 -translate-y-5 rounded-4xl bg-black"
         ></div>
-        <div
-          class="h-150 max-w-1/3 w-full skew-y-8 rounded-4xl bg-black"
-        ></div>
+        <div class="h-150 w-full max-w-1/3 skew-y-8 rounded-4xl bg-black"></div>
       </div>
     </div>
   </div>
