@@ -7,12 +7,13 @@ useHead({
 <template>
   <!-- INFO: No interactivity no animations no nothing just statics -->
   <div
-    class="flex min-h-max w-full flex-col items-center justify-center overflow-x-clip"
+    class="flex max-h-max h-max min-h-full w-full flex-col items-center justify-center overflow-x-clip"
   >
     <HomeBackgroundTheme />
     <HomeLandingPageComponent />
     <HomeSectionTwo />
     <HomeSectionThree />
+    <HomeFooter />
   </div>
 </template>
 
