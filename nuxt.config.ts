@@ -5,6 +5,9 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true,
   },
+  security: {
+    enabled: false,
+  },
   compatibilityDate: "2025-07-15",
   modules: [
     "@nuxt/eslint",
@@ -37,8 +40,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: "Welcome",
-      titleTemplate: "%s - Nuxt 4 Starter Template",
+      titleTemplate: "%s - ALYA Co.",
       link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
     },
     rootAttrs: {
