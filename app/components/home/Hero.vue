@@ -39,7 +39,7 @@
       >
         <ModelViewer
           url="/ToyCar.glb"
-          class="size-250 min-w-0 translate-x-10 overflow-x-clip max-[1600px]:translate-x-20 lg:size-110 xl:size-130 2xl:size-160"
+          class="size-250 min-w-0 translate-x-15 overflow-x-clip max-2xl:translate-x-20 lg:size-110 xl:size-130 2xl:size-160"
         />
       </div>
     </div>
