@@ -1,0 +1,61 @@
+<script setup lang="tsx">
+  import gsap from "gsap";
+  const expanded = ref(false);
+
+  let timeLine: gsap.core.Timeline;
+
+  onMounted(() => {
+    timeLine = gsap.timeline({ paused: true });
+
+    timeLine
+      .to(".overlay", {
+        duration: 0.4,
+        autoAlpha: 1,
+        visibility: 1,
+        zIndex: 50,
+        ease: "power3.inOut",
+        backgroundColor: "#0005",
+      })
+      .to(".top-sheet", {
+        duration: 0.5,
+        ease: "power2.out",
+        height: "100vh",
+      });
+  });
+
+  watch(expanded, (isExpanded) => {
+    if (isExpanded) timeLine.play();
+    else timeLine.reverse();
+  });
+</script>
+
+<template>
+  <div class="flex items-center justify-end">
+    <div
+      class="overlay fixed top-0 left-0 -z-50 h-svh w-svw bg-transparent opacity-0 backdrop-blur-md transition-all"
+      @click="() => (expanded = false)"
+    >
+      <div
+        class="top-sheet absolute top-0 left-0 z-50 flex h-0 w-svw justify-center overflow-hidden bg-transparent"
+      >
+        <div
+          class="flex h-1/2 w-full flex-col items-center justify-center gap-4 bg-white"
+          @click="(e) => e.stopPropagation()"
+        >
+          <div class="flex flex-col items-center gap-0">
+            <NavLinks />
+          </div>
+          <ActionBtnWithIcon
+            :call-back="() => (expanded = false)"
+            icon="i-lucide-x"
+          />
+        </div>
+      </div>
+    </div>
+
+    <ActionBtnWithIcon
+      :call-back="() => (expanded = true)"
+      icon="i-lucide-menu"
+    />
+  </div>
+</template>
