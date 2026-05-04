@@ -41,4 +41,11 @@
   --color-brand-800: oklch(23.54% 0.059 245.1deg);
   --color-brand-900: oklch(15.54% 0.034 237.76deg);
   --color-brand-950: oklch(13.04% 0.025 227.1deg);
+
+/* Brand Gradients */
+  --background-image-hero-grad: linear-gradient(to top, black 70%, #dcdcdc 100%);
+  --background-image-accent-grad: linear-gradient(to bottom right, #FFC290, #FFA250, #DF7210);
+  
+  /* Shared Hero Spacing */
+  --spacing-hero-max: 117rem; /* 467.5 equivalent */
 }
