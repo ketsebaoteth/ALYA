@@ -41,7 +41,7 @@
     enableMouseParallax: { type: Boolean, default: true },
     enableManualRotation: { type: Boolean, default: true },
     enableHoverRotation: { type: Boolean, default: true },
-    enableManualZoom: { type: Boolean, default: true },
+    enableManualZoom: { type: Boolean, default: false },
 
     autoRotate: { type: Boolean, default: true },
     autoRotateSpeed: { type: Number, default: 0.04 },
