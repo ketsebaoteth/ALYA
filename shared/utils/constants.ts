@@ -4,3 +4,10 @@ export const DAY_IN_SECONDS = 24 * HOUR_IN_SECONDS;
 export const WEEK_IN_SECONDS = 7 * DAY_IN_SECONDS;
 export const MONTH_IN_SECONDS = 30 * DAY_IN_SECONDS;
 export const YEAR_IN_SECONDS = 365 * DAY_IN_SECONDS;
+
+export const NAV_ROUTES = [
+  { name: "Home", path: "/home" },
+  { name: "Gallery", path: "/gallery" },
+  { name: "About", path: "/about" },
+  { name: "Contact Us", path: "/contact" },
+];

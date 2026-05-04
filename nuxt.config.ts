@@ -5,6 +5,10 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true,
   },
+  // INFO: For CORS
+  security: {
+    enabled: false,
+  },
   compatibilityDate: "2025-07-15",
   modules: [
     "@nuxt/eslint",

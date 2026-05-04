@@ -1,11 +1,13 @@
 <script setup lang="tsx">
-useHead({
-  title: "Home",
-});
+  useHead({
+    title: "Home",
+  });
 </script>
 
 <template>
-  <div class="min-h-max w-full flex flex-col gap-20 items-center justify-center overflow-x-clip">
+  <div
+    class="flex min-h-max w-full flex-col items-center justify-center gap-20 overflow-x-clip"
+  >
     <VeilBackground />
     <HomeHero />
     <HomeVision />
