@@ -67,7 +67,7 @@
   const PARALLAX_MAG = 0.05;
   const PARALLAX_EASE = 0.12;
   const HOVER_MAG = (Math.PI / 180) * 6;
-  const HOVER_EASE = 0.15;
+  const HOVER_EASE = 0.55;
 
   let needsRender = true;
   function invalidate() {
