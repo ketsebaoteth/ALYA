@@ -3,7 +3,7 @@
 
 
 <template>
-  <div class="flex h-svh max-h-350 min-h-200 w-full max-w-415 flex-col items-center gap-5 p-12 text-black xl:p-14">
+  <div class="flex max-h-350 min-h-200 w-full max-w-415 flex-col items-center gap-5 p-12 text-black xl:p-14">
     <div
       class="flex w-2/3 max-w-150 justify-center text-center leading-tight font-semibold text-shadow-lg max-xl:text-4xl xl:text-[68px] 2xl:w-1/2">
       What we offer to your business

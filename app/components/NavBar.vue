@@ -11,7 +11,7 @@ const NAV_ROUTES = [
 
 <template>
   <div class="absolute top-0 flex w-full items-center justify-center">
-    <div class="flex h-full w-full max-w-467.5 items-center justify-between p-3 md:p-5 md:px-6">
+    <div class="flex h-full w-full max-w-467.5 items-center justify-between p-3 md:p-5 md:px-8">
       <div class="flex items-center gap-2 md:gap-3">
 
         <div class="flex flex-col justify-center text-xs/tight md:text-base/tight font-extrabold">
