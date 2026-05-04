@@ -5,9 +5,9 @@
   <div
     class="absolute top-0 -z-10 flex h-full w-full items-center justify-center overflow-x-clip"
   >
-      <div
-        class="nax-md:w-full hidd/en absolute h-[200vh] w-1/2 -translate-x-30 rotate-z-40 rounded-full bg-[#FF8811]/50 blur-[700px]"
-      />
+    <div
+      class="nax-md:w-full absolute h-[200vh] w-1/2 -translate-x-30 rotate-z-40 rounded-full bg-[#FF8811]/50 blur-[700px]"
+    />
     <div class="relative flex h-3/4 w-full flex-col items-end pb-10">
       <div
         class="translate-x-25 rounded-full bg-[#FF8811] p-30 py-35 blur-3xl"
