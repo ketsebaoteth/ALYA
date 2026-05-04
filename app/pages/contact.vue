@@ -4,4 +4,4 @@ useHead({
 });
 </script>
 
-<template><div></div></template>
+<template><div class="min-h-svh w-full bg-white"></div></template>

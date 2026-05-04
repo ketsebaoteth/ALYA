@@ -1,4 +1,5 @@
 <template>
+  <!-- INFO: The 3D Model Viewer no human is advised to know/see what's inside -->
   <div
     ref="container"
     :style="{

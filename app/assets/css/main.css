@@ -42,3 +42,11 @@
   --color-brand-900: oklch(15.54% 0.034 237.76deg);
   --color-brand-950: oklch(13.04% 0.025 227.1deg);
 }
+
+/* INFO: Font definition for Switzer-Variable */
+@font-face {
+  font-family: 'Switzer';
+  src: url('/fonts/switzer/Switzer-Variable.woff2') format("woff2");
+  font-weight: 350;
+  font-style: normal;
+}
