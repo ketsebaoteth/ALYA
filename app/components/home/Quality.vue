@@ -11,7 +11,7 @@
       fontWeight: 900,
       scrollTrigger: {
         trigger: ".parent",
-        start: "25% center",
+        start: "20% center",
         end: "+=500",
         scrub: 1,
       },
