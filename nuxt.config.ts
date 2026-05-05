@@ -41,9 +41,19 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: "Welcome",
-      titleTemplate: "%s - Nuxt 4 Starter Template",
-      link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
+      title: "Home",
+      titleTemplate: "%s - ALYA",
+      link: [
+        { rel: "icon", type: "image/png", href: "/favicon.png" },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap",
+        },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap",
+        },
+      ],
     },
     rootAttrs: {
       "data-vaul-drawer-wrapper": "",
