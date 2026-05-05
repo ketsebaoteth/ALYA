@@ -1,41 +1,107 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const followerRef = ref<HTMLElement | null>(null)
+
+onMounted(async () => {
+  await nextTick();
+  window.addEventListener('mousemove', (e) => {
+    const follower = followerRef.value
+    // const follower = document.getElementById("follower")
+    // 1. Get the center position of the element
+    const rect = follower.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    // 2. Calculate the distance between mouse and center
+    const deltaX = e.clientX - centerX;
+    const deltaY = e.clientY - centerY;
+
+    // 3. Calculate angle in radians, then convert to degrees
+    const radians = Math.atan2(deltaY, deltaX);
+    const degrees = radians * (180 / Math.PI);
+    const distance = Math.sqrt(deltaX ** 2 + deltaY ** 2);
+
+    // --- SMOOTH MATH START ---
+    // This scales distance (0 to 500px) to a multiplier (1.0 down to 0.1)
+    // Formula: 1 - (percent of max distance) * range
+    const maxDist = 500; 
+    const rawInfluence = 1 - (distance / maxDist);
+    const MAX = 0.4;
+    const MIN = 0.1;
+    const influence = Math.max(MIN, Math.min(MAX, rawInfluence));
+    // --- SMOOTH MATH END ---
+
+
+    // Apply the rotation multiplied by our smooth influence
+    follower.style.transform = `rotate(${degrees * influence}deg)`;
+    // 4. Apply the rotation
+    // follower.style.transform = `rotate(${degrees}deg)`;
+  });
+})
+</script>
 
 <template>
-  <!-- FIX: Padded also here instead of layout -->
   <div
-    class="relative flex h-svh min-h-200 w-full max-w-467.5 items-center justify-center p-6"
+    class="relative flex h-svh min-h-300 w-full max-w-467.5 items-center justify-center overflow-visible p-6"
   >
+    <HomeBackgroundHero />
     <div
-      class="flex h-full max-w-260 flex-col items-start justify-center gap-4 p-8 max-lg:items-center md:w-2/3 xl:p-6"
+      class="z-0 flex h-full max-w-260 flex-col items-start justify-center gap-8.5 p-8 max-lg:items-center md:w-2/3 xl:p-6"
     >
-      <div class="w-full max-w-170 py-2 max-lg:text-center">
+      <div
+        class="flex cursor-pointer items-center group gap-2.75 transition-all hover:scale-101 rounded-full border border-[#B0B0B0] bg-linear-to-r from-white/0 via-[#D7D7D7]/50 to-[#D7D7D7]/85 px-3.75 py-2"
+        @click="() => {}"
+      >
+        <img src="/hammer.png" class="size-6 group-hover:-rotate-z-45 transition-all" />
+        <div class="light font-[Switzer] md:text-[22px] text-lg font-extralight">
+          contact us to build with us
+        </div>
+        <img src="/arrow.svg" class="w-4 group-hover:ml-3.5 transition-all shrink-0" />
+      </div>
+
+      <div class="w-full max-w-200 font-[Haas] max-lg:text-center">
         <span
-          class="hero-text-background inline max-h-1/4 bg-clip-text leading-none font-black text-transparent max-xl:text-4xl lg:text-[70px] xl:text-7xl 2xl:text-[70px]"
+          class="hero-text-background inline bg-clip-text leading-[105%] font-black text-black max-xl:text-4xl md:max-h-1/4/ lg:text-[70px] xl:text-7xl 2xl:text-[90px]"
         >
           We Build For A
-          <span
-            class="bg-linear-to-br from-[#FFC290] via-[#FFA250] to-[#DF7210] bg-clip-text"
-          >
-            Better
-          </span>
-          Future Not Just For The Sake Of Building
+          <span class="text-[#CF6210]">Better</span>
+          Future
+          <img ref="followerRef" src="/arrow-big.svg" class="inline transition-all duration-200/ /ease-in-out px-3 max-md:size-12" />
+          Not Just For The Sake Of Building
         </span>
       </div>
 
       <div
-        class="max-w-150 text-xl leading-[1.15] font-bold text-gray-800 max-xl:text-xl max-lg:text-center"
+        class="max-w-170 text-xl leading-[1.15] font-bold text-gray-800 max-xl:text-xl max-lg:text-center"
       >
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum ha
       </div>
-      <ActionBtn class="mt-3">Get Started</ActionBtn>
+      <ActionBtn class="flex font-[Switzer] font-semibold group text-white">
+        <div
+          class="rounded-full bg-linear-to-b from-[#CF6210] via-[#CF6210] to-[#F2934A] px-8.25 py-2.75"
+        >
+          Get Started
+        </div>
+        <div
+          class="flex -translate-x-2 group-hover:translate-x-1 transition-all items-center justify-center rounded-full bg-linear-to-b from-[#CF6210] via-[#CF6210] to-[#F2934A] p-3.75"
+        >
+          <img src="/arrow-medium.svg" class="w-3.75 group-hover:rotate-z-45 transition-all" />
+        </div>
+      </ActionBtn>
     </div>
 
     <div
       class="flex h-full w-1/3 items-center justify-center overflow-x-clip max-lg:hidden"
     >
       <div
-        class="absolute right-0 z-20 flex h-full max-h-1/4 max-w-full items-center overflow-x-clip"
+        class="absolute top-[56%] -rotate-z-87 rounded-full bg-[#FF8811] px-30 py-40 blur-3xl"
+      >
+        <div
+          class="absolute top-[75%] right-[20%] -rotate-z-50 rounded-full bg-[#FF8811] px-15 py-30"
+        />
+      </div>
+      <div
+        class="flex absolute right-0 z-20 h-full max-h-1/4 max-w-full items-center overflow-x-clip"
       >
         <ModelViewer
           url="/ToyCar.glb"

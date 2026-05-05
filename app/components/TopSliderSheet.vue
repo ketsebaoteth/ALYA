@@ -1,13 +1,20 @@
 <script setup lang="tsx">
   import gsap from "gsap";
-  const expanded = ref(false);
+  const expanded = ref(true);
 
   let timeLine: gsap.core.Timeline;
 
-  onMounted(() => {
+  onMounted(async () => {
+    await nextTick();
+    expanded.value = false;
     timeLine = gsap.timeline({ paused: true });
 
     timeLine
+      .from(".overlay", {
+        autoAlpha: 0,
+        visibility: 0,
+        zIndex: -50,
+      })
       .to(".overlay", {
         duration: 0.4,
         autoAlpha: 1,
@@ -20,6 +27,7 @@
         duration: 0.5,
         ease: "power2.out",
         height: "100vh",
+        zIndex: 50,
       });
   });
 
@@ -27,6 +35,8 @@
     if (isExpanded) timeLine.play();
     else timeLine.reverse();
   });
+
+  onBeforeUnmount(() => expanded.value = false)
 </script>
 
 <template>
@@ -36,7 +46,7 @@
       @click="() => (expanded = false)"
     >
       <div
-        class="top-sheet absolute top-0 left-0 z-50 flex h-0 w-svw justify-center overflow-hidden bg-transparent"
+        class="top-sheet absolute top-0 left-0 -z-50 flex h-0 w-svw justify-center overflow-hidden bg-transparent"
       >
         <div
           class="flex h-1/2 w-full flex-col items-center justify-center gap-4 bg-white"
