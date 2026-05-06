@@ -11,8 +11,8 @@
       fontWeight: 900,
       scrollTrigger: {
         trigger: ".parent",
-        start: "20% center",
-        end: "+=500",
+        start: "20% 65%",
+        end: "+=700",
         scrub: 1,
       },
     });
@@ -24,10 +24,12 @@
     class="h-[40vh] z-10 flex max-h-350 min-h-80 w-full items-center justify-center xl:min-h-300 xl:px-30"
   >
     <div
-      class="focus w-6/7 max-w-200 text-center font-[Inter] font-[100] text-4xl leading-[125%] md:max-w-400 xl:text-7xl 2xl:text-8xl"
+      class="focus w-6/7 max-w-200 text-nowrap text-center font-[Inter] font-thin text-4xl leading-[125%] md:max-w-400 xl:text-7xl 2xl:text-[110px]"
     >
-      our company provides safe working conditions and provide quality work
-      within reasonable timeframe
+      our company provides safe
+      <div class="text-center flex items-center justify-center">working conditions and provide</div>
+      <div class="text-center flex items-center justify-center">quality work within reasonable</div>
+      <div class="text-center flex items-center justify-center">timeframe</div>
     </div>
   </div>
 </template>

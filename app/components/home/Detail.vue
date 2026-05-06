@@ -25,33 +25,61 @@
      const tl = gsap.timeline({
        scrollTrigger: {
          trigger: ".image",
-         start: "center center",
+         start: "top center",
          end: "+=500",
          scrub: 1,
-         pin: true,
+         //pin: true,
+         //pinSpacing: true,
          invalidateOnRefresh: true,
        },
-     });
+     })
+    // .eventCallback("onStart", () => document.body.style.overflow = "hidden").eventCallback("onComplete", document.body.style.overflow = "auto");
 
-     tl
-       // .from(".image", {
-       //   // width: '100%',
-       //   // top: "50%",
-       //   // left: "50%",
-       //   // height: '100%',
-       //   scale: 1,
-       //   duration: 1,
-       // })
-       .to(".image", {
-       duration: 1,
-        // BUG: I am trying scaling it cuz width and height are not responding to the animation at all, I need to rewrite the layout for the whole component
-       scale: 3.8,
-       "border-radius": '0px',
-       //   maxWidth: "none",
-       // opacity: 1,
-       // width: "100vw",
-       // height: "100vh",
-     });
+      tl
+        .to(".image", {
+        //duration: 1,
+         // BUG: I am trying scaling it cuz width and height are not responding to the animation at all, I need to rewrite the layout for the whole component
+        scale: 3.5,
+        "border-radius": '0px',
+          //top: "50%",
+          //left: "50%",
+        //maxWidth: "none",
+         //maxHeight: "none",
+         //position: "absolute",
+        // opacity: 1,
+        //width: "100vw",
+        //height: "100vh",
+      });
+// tl.fromTo(".image",
+//   {
+//     // INITIAL STATE: Centered and small
+//     position: "relative",
+//     top: "50%",
+//     left: "50%",
+//     xPercent: -50, // This is the secret to perfect centering
+//     yPercent: -50,
+//     //width: "300px",  // Give it a real starting pixel value
+//     //height: "200px",
+//     borderRadius: "81px",
+//     objectFit: "cover"
+//   },
+//   {
+//     // FINAL STATE: Fill the screen
+// position: "absolute",
+//     duration: 1,
+//     width: "100vw",
+//     height: "100vh",
+//     borderRadius: "0px",
+// maxWidth: "none",
+// maxHeight: "none",
+//     ease: "none",
+//     // Keep it centered on the viewport
+//     //top: "50%",
+//     left: "50%",
+//     xPercent: -50,
+//     yPercent: -50
+//   }
+// );
   });
 </script>
 
@@ -69,8 +97,8 @@
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
       </div>
 
-      <div class="image scale-100 /absolute  rounded-[81px] overflow-hidden flex items-center justify-center 2xl:max-w-1/3">
-        <img src="/construction.png" class="" />
+      <div class="image relative /scale-100 absolute/ /fixed top-0/ /w-[3000px] /min-w-vw /h-vh /min-h-vh bg-gray-900 /left-30  rounded-[81px] /overflow-hidden flex items-center justify-center 2xl:max-w-1/3">
+        <img src="/construction.png" class="w-screen/ image/ absolute/ /top-1/2 /left-1/2 h-screen/" />
       </div>
 
       <div class="flex max-w-300 items-center px-3 font-[Switzer] justify-between gap-13 pt-5">
