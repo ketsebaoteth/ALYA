@@ -39,11 +39,11 @@
 </script>
 
 <template>
-  <div class="transition-all w-svw h-svh gap-6 flex bg-white/90 text-black items-center justify-center">
+  <div class="transition-all ease-in-out w-svw h-svh gap-6 flex bg-white/90 text-black items-center justify-center">
   <div :class="animate ? 'scale-100 opacity-100' : 'scale-200 opacity-0'" class="duration-1500 transition-all flex gap-6 items-center justify-center">
     <img src="/logo.png" class="size-30" />
-    <div :class="animate ? 'max-w-100' : 'max-w-0'" class="overflow-hidden delay-1300 duration-1000 transition-all whole-text text-black text-8xl font-bold font-[Inter]">
-      <span :class="animate ? 'text-[#CF6210]' : 'text-black'" class="transition-all delay-2700 duration-1000">ALYA</span>
+    <div :class="animate ? 'max-w-100 opacity-100 blur-0' : 'max-w-0 blur-xl opacity-0'" class="overflow-hidden delay-1300 duration-1000 transition-all whole-text text-black text-8xl font-bold font-[Inter]">
+      <span :class="animate ? 'text-[#CF6210] text-shadow-lg text-shadow-black/30' : 'text-black'" class="transition-all delay-2700 duration-1000">ALYA</span>
       <span :class="animate ? 'text-black/75 text-4xl' : 'text-black text-[80px]'" class="pt-3 delay-2700 duration-700 span-text transition-all">Co.</span></div>
     </div>
   </div>
