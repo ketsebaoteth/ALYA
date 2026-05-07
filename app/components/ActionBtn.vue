@@ -1,8 +1,23 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+  import type { PropType } from "vue";
+
+  const props = defineProps({
+    callBack: {
+      type: Function as PropType<() => void>,
+      default: () => {},
+    },
+    class: {
+      type: String,
+      default: "",
+    },
+  });
+</script>
 
 <template>
   <button
-    class="z-10 cursor-pointer rounded-full border-black bg-black p-2 px-3 text-xs text-white shadow-xl shadow-black/25 transition-all md:px-4.5 md:text-sm"
+    class="z-10 cursor-pointer rounded-full transition-all"
+    :class="props.class"
+    @click="props.callBack"
   >
     <slot />
   </button>

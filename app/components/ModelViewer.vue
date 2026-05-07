@@ -41,7 +41,7 @@
     enableMouseParallax: { type: Boolean, default: true },
     enableManualRotation: { type: Boolean, default: true },
     enableHoverRotation: { type: Boolean, default: true },
-    enableManualZoom: { type: Boolean, default: true },
+    enableManualZoom: { type: Boolean, default: false },
 
     autoRotate: { type: Boolean, default: true },
     autoRotateSpeed: { type: Number, default: 0.04 },
@@ -67,7 +67,7 @@
   const PARALLAX_MAG = 0.05;
   const PARALLAX_EASE = 0.12;
   const HOVER_MAG = (Math.PI / 180) * 6;
-  const HOVER_EASE = 0.15;
+  const HOVER_EASE = 0.55;
 
   let needsRender = true;
   function invalidate() {

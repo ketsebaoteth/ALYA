@@ -1,5 +1,5 @@
 export default defineNuxtRouteMiddleware((to) => {
-  if (to.fullPath.indexOf("/user/") > -1) {
-    setPageLayout("user");
-  }
+  if (to.path !== "/") {
+    setPageLayout("default");
+  } else setPageLayout(false);
 });
