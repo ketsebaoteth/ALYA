@@ -32,7 +32,7 @@
       // Formula: 1 - (percent of max distance) * range
       const maxDist = 500;
       const rawInfluence = 1 - distance / maxDist;
-      const MAX = 0.4;
+      const MAX = 0.2;
       const MIN = 0.1;
       const influence = Math.max(MIN, Math.min(MAX, rawInfluence));
       // --- SMOOTH MATH END ---
@@ -50,7 +50,7 @@
 
 <template>
   <div
-    class="relative flex h-svh min-h-300 w-full max-w-467.5 delay-500 duration-1000 items-center transition-all justify-center overflow-visible p-6"
+    class="relative flex h-svh /min-h-300 w-full max-w-467.5 delay-500 duration-1000 items-center transition-all justify-center overflow-visible p-6"
   >
     <HomeBackgroundHero />
     <div
@@ -61,7 +61,6 @@
         :class="animate ? 'translate-x-0 opacity-100' : 'opacity-0 translate-x-10'"
         :call-back="() => {}"
       >
-        <img src="/hammer.png" class="size-6 group-hover:-rotate-z-45 transition-all" />
         <div class="light font-[Switzer] md:text-[22px] text-lg font-extralight">
           contact us to build with us
         </div>
@@ -78,7 +77,8 @@
           We Build For A
           <span class="text-[#CF6210]/ bg-[#CF6210] text-transparent bg-clip-text">Better<span ref="textOverlayFollowerRef" class="absolute hidden transition-all bg-black rounded-full p-1" /></span>
           Future
-          <img ref="followerRef" src="/arrow-big.svg" class="inline transition-all duration-100 /ease-in-out px-3 max-md:size-12" />
+          <img 
+	   src="/arrow-big.svg" class="inline transition-all duration-300 /ease-in-out px-3 max-md:size-12" />
           Not Just For The Sake Of Building
         </span>
       </div>
@@ -118,14 +118,14 @@
           class="absolute top-[75%] right-[20%] -rotate-z-50 rounded-full bg-[#FF8811] px-15 py-30"
         />
       </div>
-      <!-- <div -->
-      <!--   class="flex absolute right-0 z-20 h-full max-h-1/4 max-w-full items-center overflow-x-clip" -->
-      <!-- > -->
-      <!--   <ModelViewer -->
-      <!--     url="/ToyCar.glb" -->
-      <!--     class="size-250 min-w-0 translate-x-15 overflow-x-clip max-2xl:translate-x-20 lg:size-110 xl:size-130 2xl:size-160" -->
-      <!--   /> -->
-      <!-- </div> -->
+       <div 
+         class="flex absolute right-0 z-20 h-full max-h-1/4 max-w-full items-center overflow-x-clip" >
+       > 
+         <ModelViewer 
+           url="/ToyCar.glb" 
+           class="size-250 min-w-0 translate-x-15 overflow-x-clip max-2xl:translate-x-20 lg:size-110 xl:size-130 2xl:size-160" 
+         /> 
+       </div> 
     </div>
   </div>
 </template>
