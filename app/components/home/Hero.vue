@@ -50,6 +50,87 @@
 
 <template>
   <div
+    class="relative flex h-svh /min-h-300 w-full /max-w-467.5 delay-500 duration-1000 items-center transition-all justify-center overflow-visible"
+  >
+    <div class="absolute flex/ relative/ bg/-gray-500 max-w-1/4 max-lg:hidden p-9 -left-30 /top-1/3">
+      <img
+        src="/exca-hand2.png"
+        class=""
+      />
+      </div>
+      <!-- <img -->
+      <!--   src="/exca-bucket.png" -->
+      <!--   class="" -->
+      <!-- /> -->
+      <!---->
+
+    <div class="absolute max-w-1/4 max-lg:hidden bg/-gray-500 p-9 -right-30 /top-1/3">
+      <img
+        src="/exca-hand1.png"
+        class=""
+      />
+
+    </div>
+    <!-- PERF: Space for some absolute children -->
+    <div class="z-0 flex h-full w-full items-center justify-center">
+
+      <!-- PERF: Put the hands here -->
+
+      <div class="pt-10/ text-black flex flex-col gap-6.5 items-center justify-center p-6">
+        <ActionBtn
+          class="flex cursor-pointer items-center group gap-2.75 duration-700 delay-700 transition-all hover:scale-101 rounded-full border border-[#B0B0B0] bg-linear-to-r from-white/0 via-white to-[#D7D7D7]/85 px-3.75 py-1"
+          :class="animate ? 'translate-x-0 opacity-100' : 'opacity-0 translate-x-10'"
+          :call-back="() => {}"
+        >
+          <div class="light font-[Switzer] md:text-[22px] text-lg font-light">
+            contact us to build with us
+          </div>
+          <img src="/arrow.svg" class="w-4 group-hover:ml-3.5 transition-all shrink-0" />
+        </ActionBtn>
+
+        <div
+          class="w-full max-w-200 font-[Haas] flex items-center justify-center text-center font-black transition-all duration-1000 delay-300 max-lg:text-center"
+          :class="animate ? 'translate-y-0 opacity-100' : 'opacity-0 translate-y-10'"
+        >
+          <span
+            class="inline bg-clip-text leading-[105%] font-black text-black text-center max-xl:text-4xl md:max-h-1/4/ lg:text-[70px] xl:text-7xl 2xl:text-[90px]"
+          >
+            We Build For A Better
+            Future
+            <img
+              ref="followerRef"
+              src="/arrow-play2.svg"
+              class="inline transition-all duration-300 /ease-in-out px-3 max-md:size-12"
+            />
+            Not Just For The Sake Of Building
+          </span>
+        </div>
+
+        <div class="font-[Haas] lg:text-[32px] text-lg font-[100] lg:max-w-160 max-md:60 text-center text-[#696969]">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum ha</div>
+
+        <ActionBtn
+          class="flex font-[Switzer] transition-all delay-1500 duration-500 font-semibold group text-white hover:scale-101"
+          :class="animate ? 'translate-x-0 opacity-100' : 'opacity-0 -translate-x-10'"
+        >
+          <div
+            class="rounded-full shadow-[0px_15px_35.6px_0px] transition-all shadow-black/5 bg-black px-8.25 py-2.75"
+          >
+            Get Started
+          </div>
+          <div
+            class="flex -translate-x-2 shadow-[0px_15px_35.6px_0px] transition-all shadow-black/5 group-hover:translate-x-1 transition-all items-center justify-center rounded-full bg-black p-3.75"
+          >
+            <img src="/arrow-medium.svg" class="w-3.75 group-hover:rotate-z-45 transition-all" />
+          </div>
+        </ActionBtn>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!-- INFO: Previous design -->
+<!--
+  <div
     class="relative flex h-svh /min-h-300 w-full max-w-467.5 delay-500 duration-1000 items-center transition-all justify-center overflow-visible p-6"
   >
     <HomeBackgroundHero />
@@ -77,8 +158,11 @@
           We Build For A
           <span class="text-[#CF6210]/ bg-[#CF6210] text-transparent bg-clip-text">Better<span ref="textOverlayFollowerRef" class="absolute hidden transition-all bg-black rounded-full p-1" /></span>
           Future
-          <img 
-	   src="/arrow-big.svg" class="inline transition-all duration-300 /ease-in-out px-3 max-md:size-12" />
+          <img
+            ref="followerRef"
+            src="/arrow-big.svg"
+            class="inline transition-all duration-300 /ease-in-out px-3 max-md:size-12"
+          />
           Not Just For The Sake Of Building
         </span>
       </div>
@@ -118,20 +202,15 @@
           class="absolute top-[75%] right-[20%] -rotate-z-50 rounded-full bg-[#FF8811] px-15 py-30"
         />
       </div>
-       <div 
-         class="flex absolute right-0 z-20 h-full max-h-1/4 max-w-full items-center overflow-x-clip" >
-       > 
-         <ModelViewer 
-           url="/ToyCar.glb" 
-           class="size-250 min-w-0 translate-x-15 overflow-x-clip max-2xl:translate-x-20 lg:size-110 xl:size-130 2xl:size-160" 
-         /> 
-       </div> 
+       <div
+          class="flex absolute right-0 z-20 h-full max-h-1/4 max-w-full items-center overflow-x-clip" > 
+       >
+         <ModelViewer
+           url="/ToyCar.glb"
+           class="size-250 min-w-0 translate-x-15 overflow-x-clip max-2xl:translate-x-20 lg:size-110 xl:size-130 2xl:size-160"
+         />
+       </div>
     </div>
   </div>
-</template>
-
-<style scoped>
-  .hero-text-background {
-    background-image: linear-gradient(to top, black 70%, #dcdcdc 100%);
-  }
-</style>
+-->
+<!-- INFO: Previous design -->

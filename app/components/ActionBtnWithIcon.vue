@@ -7,7 +7,7 @@
 
 <template>
   <div
-    class="z-30 flex cursor-pointer items-center justify-center rounded-2xl p-1 transition-all hover:bg-gray-500/70"
+    class="z-30 flex cursor-pointer items-center justify-center rounded-2xl p-2 transition-all hover:bg-gray-500/70"
     @click="props.callBack"
   >
     <Icon :name="props.icon" />

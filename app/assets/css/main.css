@@ -70,6 +70,11 @@
 }
 
 @font-face {
+  font-family: "FontSpring";
+  src: url("/fonts/fontspring/FontSpring.otf");
+}
+
+@font-face {
   font-family: "InterVar";
   src: url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
   font-weight: 900;
