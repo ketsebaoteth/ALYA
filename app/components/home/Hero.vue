@@ -1,11 +1,20 @@
 <script lang="ts" setup>
   const followerRef = ref<HTMLElement | null>(null);
   const animate = ref(false);
+  const leftHandParent = ref<HTMLElement | null>(null);
   const textOverlayFollowerRef = ref<HTMLElement | null>(null);
+  const parent = reactive({ left: "" });
+
+  const call = () => {
+    const leftHandParentElm = leftHandParent.value;
+    console.log("something ", leftHandParentElm.style);
+    parent.left = leftHandParentElm?.style.width;
+  };
 
   onMounted(async () => {
     await nextTick();
 
+    call();
     animate.value = true;
 
     window.addEventListener("mousemove", (e) => {
@@ -32,7 +41,7 @@
       // Formula: 1 - (percent of max distance) * range
       const maxDist = 500;
       const rawInfluence = 1 - distance / maxDist;
-      const MAX = 0.4;
+      const MAX = 0.2;
       const MIN = 0.1;
       const influence = Math.max(MIN, Math.min(MAX, rawInfluence));
       // --- SMOOTH MATH END ---
@@ -50,7 +59,162 @@
 
 <template>
   <div
-    class="relative flex h-svh min-h-300 w-full max-w-467.5 delay-500 duration-1000 items-center transition-all justify-center overflow-visible p-6"
+    class="/min-h-300 /max-w-467.5 relative flex h-svh w-full items-center justify-center overflow-visible transition-all delay-500 duration-1000"
+  >
+    <div>
+    <div
+      ref="leftHandParent"
+      class="anim-left-support transition-all absolute duration-1700 -translate-y-40 -left-30 flex w-160 max-xl:hidden"
+      :class="animate ? '2xl:translate-x-0 xl:-translate-x-50' : '-translate-x-150'"
+    >
+      <img src="/exca-layer1.png" class="w-160" />
+      <div class="anim-hand transition-all absolute -right-2 bottom-3 w-134.5">
+        <img
+          :style="{
+            width: `${parent.left}`,
+          }"
+          src="/exca-layer2.png"
+          class="w-134.5"
+        />
+        <img
+          src="/exca-layer3.png"
+          class="anim-bucket w-52.5 transition-all absolute right-2 bottom-17 "
+        />
+      </div>
+    </div>
+
+    <div
+      ref="rightHandParent"
+      class="anim-left-support rotate-y-180 transition-all -translate-y-40 absolute duration-1700 -right-30 flex w-160 max-xl:hidden"
+      :class="animate ? '2xl:translate-x-0 xl:translate-x-50' : 'translate-x-150'"
+    >
+      <img src="/exca-layer1.png" class="w-160" />
+      <div class="anim-hand transition-all absolute -right-2 bottom-3 w-134.5">
+        <img
+          :style="{
+            width: `${parent.left}`,
+          }"
+          src="/exca-layer2.png"
+          class="w-134.5"
+        />
+      <img
+        src="/exca-layer3.png"
+        class="anim-bucket transition-all absolute right-2 bottom-17 w-52.5"
+      />
+      </div>
+    </div>
+    </div>
+
+    <div class="z-0 flex h-full w-full items-center justify-center">
+      <div
+        class="pt-10/ flex flex-col items-center justify-center gap-6.5 p-6 text-black"
+      >
+        <ActionBtn
+          class="group flex cursor-pointer items-center gap-2.75 rounded-full border border-[#B0B0B0] bg-linear-to-r from-white/0 via-white to-[#D7D7D7]/85 px-3.75 py-1 transition-all delay-700 duration-700 hover:scale-101"
+          :class="
+            animate ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
+          "
+          :call-back="() => {}"
+        >
+          <div class="light font-[Switzer] text-lg font-light md:text-[22px]">
+            contact us to build with us
+          </div>
+          <img
+            src="/arrow.svg"
+            class="w-4 shrink-0 transition-all group-hover:ml-3.5"
+          />
+        </ActionBtn>
+
+        <div
+          class="flex w-full max-w-200 items-center justify-center text-center font-[Haas] font-black transition-all delay-300 duration-1000 max-lg:text-center"
+          :class="
+            animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          "
+        >
+          <span
+            class="inline bg-clip-text text-center leading-[105%] font-black text-black max-xl:text-4xl md:max-h-1/4/ lg:text-[70px] xl:text-7xl 2xl:text-[90px]"
+          >
+            We Build For A Better Future
+            <img
+              ref="followerRef"
+              src="/arrow-play2.svg"
+              class="/ease-in-out inline px-3 transition-all duration-300 max-md:size-12"
+            />
+            Not Just For The Sake Of Building
+          </span>
+        </div>
+
+        <div
+          class="max-md:60 text-center font-[Haas] transition-all delay-200 duration-700 text-lg font-[100] text-[#696969] lg:max-w-160 lg:text-[32px]"
+          :class="animate ? 'translate-y-0 opacity-100' : 'opacity-0 -translate-y-10'"
+        >
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum ha
+        </div>
+
+        <ActionBtn
+          class="group flex font-[Switzer] font-semibold text-white transition-all delay-1500 duration-500 hover:scale-101"
+          :class="
+            animate ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
+          "
+        >
+          <div
+            class="rounded-full bg-black px-8.25 py-2.75 shadow-[0px_15px_35.6px_0px] shadow-black/5 transition-all"
+          >
+            Get Started
+          </div>
+          <div
+            class="flex -translate-x-2 items-center justify-center rounded-full bg-black p-3.75 shadow-[0px_15px_35.6px_0px] shadow-black/5 transition-all group-hover:translate-x-1"
+          >
+            <img
+              src="/arrow-medium.svg"
+              class="w-3.75 transition-all group-hover:rotate-z-45"
+            />
+          </div>
+        </ActionBtn>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style>
+  .anim-bucket {
+    animation: left-bucket forwards 2.5s 2s;
+  }
+
+  @keyframes left-bucket {
+    from {
+      transform: rotate(0px);
+    }
+    50% {
+      transform: rotate(-35deg);
+    }
+    to {
+      transform: rotate(35deg);
+    }
+  }
+
+  .anim-hand {
+    animation: hand forwards 2s 2s;
+  }
+
+  @keyframes hand {
+    from {
+      transform: rotate(0deg);
+    }
+    30% {
+      transform: rotate(-6deg);
+    }
+    to {
+      transform: rotate(20deg);
+    }
+  }
+</style>
+
+<!-- INFO: Previous design -->
+<!--
+  <div
+    class="relative flex h-svh /min-h-300 w-full max-w-467.5 delay-500 duration-1000 items-center transition-all justify-center overflow-visible p-6"
   >
     <HomeBackgroundHero />
     <div
@@ -61,7 +225,6 @@
         :class="animate ? 'translate-x-0 opacity-100' : 'opacity-0 translate-x-10'"
         :call-back="() => {}"
       >
-        <img src="/hammer.png" class="size-6 group-hover:-rotate-z-45 transition-all" />
         <div class="light font-[Switzer] md:text-[22px] text-lg font-extralight">
           contact us to build with us
         </div>
@@ -78,7 +241,11 @@
           We Build For A
           <span class="text-[#CF6210]/ bg-[#CF6210] text-transparent bg-clip-text">Better<span ref="textOverlayFollowerRef" class="absolute hidden transition-all bg-black rounded-full p-1" /></span>
           Future
-          <img ref="followerRef" src="/arrow-big.svg" class="inline transition-all duration-100 /ease-in-out px-3 max-md:size-12" />
+          <img
+            ref="followerRef"
+            src="/arrow-big.svg"
+            class="inline transition-all duration-300 /ease-in-out px-3 max-md:size-12"
+          />
           Not Just For The Sake Of Building
         </span>
       </div>
@@ -118,20 +285,15 @@
           class="absolute top-[75%] right-[20%] -rotate-z-50 rounded-full bg-[#FF8811] px-15 py-30"
         />
       </div>
-      <!-- <div -->
-      <!--   class="flex absolute right-0 z-20 h-full max-h-1/4 max-w-full items-center overflow-x-clip" -->
-      <!-- > -->
-      <!--   <ModelViewer -->
-      <!--     url="/ToyCar.glb" -->
-      <!--     class="size-250 min-w-0 translate-x-15 overflow-x-clip max-2xl:translate-x-20 lg:size-110 xl:size-130 2xl:size-160" -->
-      <!--   /> -->
-      <!-- </div> -->
+       <div
+          class="flex absolute right-0 z-20 h-full max-h-1/4 max-w-full items-center overflow-x-clip" > 
+       >
+         <ModelViewer
+           url="/ToyCar.glb"
+           class="size-250 min-w-0 translate-x-15 overflow-x-clip max-2xl:translate-x-20 lg:size-110 xl:size-130 2xl:size-160"
+         />
+       </div>
     </div>
   </div>
-</template>
-
-<style scoped>
-  .hero-text-background {
-    background-image: linear-gradient(to top, black 70%, #dcdcdc 100%);
-  }
-</style>
+-->
+<!-- INFO: Previous design -->

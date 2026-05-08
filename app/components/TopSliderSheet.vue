@@ -1,5 +1,7 @@
 <script setup lang="tsx">
   import gsap from "gsap";
+  import { NAV_ROUTES } from "~~/shared/utils/constants";
+  const route = useRoute();
   const expanded = ref(true);
 
   let timeLine: gsap.core.Timeline;
@@ -36,7 +38,7 @@
     else timeLine.reverse();
   });
 
-  onBeforeUnmount(() => expanded.value = false)
+  onBeforeUnmount(() => (expanded.value = false));
 </script>
 
 <template>
@@ -49,11 +51,19 @@
         class="top-sheet absolute top-0 left-0 -z-50 flex h-0 w-svw justify-center overflow-hidden bg-transparent"
       >
         <div
-          class="flex h-1/2 w-full flex-col items-center justify-center gap-4 bg-white"
+          class="flex h-1/2 w-full flex-col items-center justify-center gap-12 bg-white"
           @click="(e) => e.stopPropagation()"
         >
-          <div class="flex flex-col items-center gap-0">
-            <NavLinks />
+          <div class="flex flex-col items-center gap-4">
+            <NuxtLink
+              v-for="r in NAV_ROUTES"
+              :key="r.name"
+              :to="r.path"
+              :class="{ 'text-black bg-black/5': route.path.includes(r.path) }"
+              class="z-30 px-12 py-2.5 transition-all text-center hover:text-black hover:bg-black/5 rounded-xl w-full text-sm"
+            >
+              {{ r.name }}
+            </NuxtLink>
           </div>
           <ActionBtnWithIcon
             :call-back="() => (expanded = false)"

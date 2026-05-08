@@ -22,7 +22,7 @@
 
 <style>
   .anim {
-    animation: scroll 5s linear infinite;
+    animation: scroll 10s linear infinite;
   }
 
   @keyframes scroll {
