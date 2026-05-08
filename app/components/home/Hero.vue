@@ -1,11 +1,20 @@
 <script lang="ts" setup>
   const followerRef = ref<HTMLElement | null>(null);
   const animate = ref(false);
+  const leftHandParent = ref<HTMLElement | null>(null);
   const textOverlayFollowerRef = ref<HTMLElement | null>(null);
+  const parent = reactive({ left: "" });
+
+  const call = () => {
+    const leftHandParentElm = leftHandParent.value;
+    console.log("something ", leftHandParentElm.style);
+    parent.left = leftHandParentElm?.style.width;
+  };
 
   onMounted(async () => {
     await nextTick();
 
+    call();
     animate.value = true;
 
     window.addEventListener("mousemove", (e) => {
@@ -50,83 +59,157 @@
 
 <template>
   <div
-    class="relative flex h-svh /min-h-300 w-full /max-w-467.5 delay-500 duration-1000 items-center transition-all justify-center overflow-visible"
+    class="/min-h-300 /max-w-467.5 relative flex h-svh w-full items-center justify-center overflow-visible transition-all delay-500 duration-1000"
   >
-    <div class="absolute flex/ relative/ bg/-gray-500 max-w-1/4 max-lg:hidden p-9 -left-30 /top-1/3">
+    <div>
+    <div
+      ref="leftHandParent"
+      class="anim-left-support transition-all absolute duration-1700 -translate-y-40 -left-30 flex w-160 max-xl:hidden"
+      :class="animate ? '2xl:translate-x-0 xl:-translate-x-50' : '-translate-x-150'"
+    >
+      <img src="/exca-layer1.png" class="w-160" />
+      <div class="anim-hand transition-all absolute -right-2 bottom-3 w-134.5">
+        <img
+          :style="{
+            width: `${parent.left}`,
+          }"
+          src="/exca-layer2.png"
+          class="w-134.5"
+        />
+        <img
+          src="/exca-layer3.png"
+          class="anim-bucket w-52.5 transition-all absolute right-2 bottom-17 "
+        />
+      </div>
+    </div>
+
+    <div
+      ref="rightHandParent"
+      class="anim-left-support rotate-y-180 transition-all -translate-y-40 absolute duration-1700 -right-30 flex w-160 max-xl:hidden"
+      :class="animate ? '2xl:translate-x-0 xl:translate-x-50' : 'translate-x-150'"
+    >
+      <img src="/exca-layer1.png" class="w-160" />
+      <div class="anim-hand transition-all absolute -right-2 bottom-3 w-134.5">
+        <img
+          :style="{
+            width: `${parent.left}`,
+          }"
+          src="/exca-layer2.png"
+          class="w-134.5"
+        />
       <img
-        src="/exca-hand2.png"
-        class=""
+        src="/exca-layer3.png"
+        class="anim-bucket transition-all absolute right-2 bottom-17 w-52.5"
       />
       </div>
-      <!-- <img -->
-      <!--   src="/exca-bucket.png" -->
-      <!--   class="" -->
-      <!-- /> -->
-      <!---->
-
-    <div class="absolute max-w-1/4 max-lg:hidden bg/-gray-500 p-9 -right-30 /top-1/3">
-      <img
-        src="/exca-hand1.png"
-        class=""
-      />
-
     </div>
-    <!-- PERF: Space for some absolute children -->
+    </div>
+
     <div class="z-0 flex h-full w-full items-center justify-center">
-
-      <!-- PERF: Put the hands here -->
-
-      <div class="pt-10/ text-black flex flex-col gap-6.5 items-center justify-center p-6">
+      <div
+        class="pt-10/ flex flex-col items-center justify-center gap-6.5 p-6 text-black"
+      >
         <ActionBtn
-          class="flex cursor-pointer items-center group gap-2.75 duration-700 delay-700 transition-all hover:scale-101 rounded-full border border-[#B0B0B0] bg-linear-to-r from-white/0 via-white to-[#D7D7D7]/85 px-3.75 py-1"
-          :class="animate ? 'translate-x-0 opacity-100' : 'opacity-0 translate-x-10'"
+          class="group flex cursor-pointer items-center gap-2.75 rounded-full border border-[#B0B0B0] bg-linear-to-r from-white/0 via-white to-[#D7D7D7]/85 px-3.75 py-1 transition-all delay-700 duration-700 hover:scale-101"
+          :class="
+            animate ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
+          "
           :call-back="() => {}"
         >
-          <div class="light font-[Switzer] md:text-[22px] text-lg font-light">
+          <div class="light font-[Switzer] text-lg font-light md:text-[22px]">
             contact us to build with us
           </div>
-          <img src="/arrow.svg" class="w-4 group-hover:ml-3.5 transition-all shrink-0" />
+          <img
+            src="/arrow.svg"
+            class="w-4 shrink-0 transition-all group-hover:ml-3.5"
+          />
         </ActionBtn>
 
         <div
-          class="w-full max-w-200 font-[Haas] flex items-center justify-center text-center font-black transition-all duration-1000 delay-300 max-lg:text-center"
-          :class="animate ? 'translate-y-0 opacity-100' : 'opacity-0 translate-y-10'"
+          class="flex w-full max-w-200 items-center justify-center text-center font-[Haas] font-black transition-all delay-300 duration-1000 max-lg:text-center"
+          :class="
+            animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          "
         >
           <span
-            class="inline bg-clip-text leading-[105%] font-black text-black text-center max-xl:text-4xl md:max-h-1/4/ lg:text-[70px] xl:text-7xl 2xl:text-[90px]"
+            class="inline bg-clip-text text-center leading-[105%] font-black text-black max-xl:text-4xl md:max-h-1/4/ lg:text-[70px] xl:text-7xl 2xl:text-[90px]"
           >
-            We Build For A Better
-            Future
+            We Build For A Better Future
             <img
               ref="followerRef"
               src="/arrow-play2.svg"
-              class="inline transition-all duration-300 /ease-in-out px-3 max-md:size-12"
+              class="/ease-in-out inline px-3 transition-all duration-300 max-md:size-12"
             />
             Not Just For The Sake Of Building
           </span>
         </div>
 
-        <div class="font-[Haas] lg:text-[32px] text-lg font-[100] lg:max-w-160 max-md:60 text-center text-[#696969]">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum ha</div>
+        <div
+          class="max-md:60 text-center font-[Haas] transition-all delay-200 duration-700 text-lg font-[100] text-[#696969] lg:max-w-160 lg:text-[32px]"
+          :class="animate ? 'translate-y-0 opacity-100' : 'opacity-0 -translate-y-10'"
+        >
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum ha
+        </div>
 
         <ActionBtn
-          class="flex font-[Switzer] transition-all delay-1500 duration-500 font-semibold group text-white hover:scale-101"
-          :class="animate ? 'translate-x-0 opacity-100' : 'opacity-0 -translate-x-10'"
+          class="group flex font-[Switzer] font-semibold text-white transition-all delay-1500 duration-500 hover:scale-101"
+          :class="
+            animate ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
+          "
         >
           <div
-            class="rounded-full shadow-[0px_15px_35.6px_0px] transition-all shadow-black/5 bg-black px-8.25 py-2.75"
+            class="rounded-full bg-black px-8.25 py-2.75 shadow-[0px_15px_35.6px_0px] shadow-black/5 transition-all"
           >
             Get Started
           </div>
           <div
-            class="flex -translate-x-2 shadow-[0px_15px_35.6px_0px] transition-all shadow-black/5 group-hover:translate-x-1 transition-all items-center justify-center rounded-full bg-black p-3.75"
+            class="flex -translate-x-2 items-center justify-center rounded-full bg-black p-3.75 shadow-[0px_15px_35.6px_0px] shadow-black/5 transition-all group-hover:translate-x-1"
           >
-            <img src="/arrow-medium.svg" class="w-3.75 group-hover:rotate-z-45 transition-all" />
+            <img
+              src="/arrow-medium.svg"
+              class="w-3.75 transition-all group-hover:rotate-z-45"
+            />
           </div>
         </ActionBtn>
       </div>
     </div>
   </div>
 </template>
+
+<style>
+  .anim-bucket {
+    animation: left-bucket forwards 2.5s 2s;
+  }
+
+  @keyframes left-bucket {
+    from {
+      transform: rotate(0px);
+    }
+    50% {
+      transform: rotate(-35deg);
+    }
+    to {
+      transform: rotate(35deg);
+    }
+  }
+
+  .anim-hand {
+    animation: hand forwards 2s 2s;
+  }
+
+  @keyframes hand {
+    from {
+      transform: rotate(0deg);
+    }
+    30% {
+      transform: rotate(-6deg);
+    }
+    to {
+      transform: rotate(20deg);
+    }
+  }
+</style>
 
 <!-- INFO: Previous design -->
 <!--
