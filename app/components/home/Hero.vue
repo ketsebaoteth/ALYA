@@ -1,299 +1,166 @@
 <script lang="ts" setup>
-  const followerRef = ref<HTMLElement | null>(null);
-  const animate = ref(false);
-  const leftHandParent = ref<HTMLElement | null>(null);
-  const textOverlayFollowerRef = ref<HTMLElement | null>(null);
-  const parent = reactive({ left: "" });
+import gsap from "gsap"
+import { SplitText } from "gsap/all";
+const parent = reactive({ left: "" });
 
-  const call = () => {
-    const leftHandParentElm = leftHandParent.value;
-    console.log("something ", leftHandParentElm.style);
-    parent.left = leftHandParentElm?.style.width;
-  };
 
-  onMounted(async () => {
-    await nextTick();
+onMounted(async () => {
 
-    call();
-    animate.value = true;
+  gsap.registerPlugin(SplitText);
 
-    window.addEventListener("mousemove", (e) => {
-      const follower = followerRef.value;
-      const textOverlayFollower = textOverlayFollowerRef.value;
-      if (!follower || !textOverlayFollower) return;
+  let splitedText1 = new SplitText(".spt", { type: "lines" });
+  let charssplit = new SplitText(".cpt", { type: "words,chars" });
+  gsap.fromTo(charssplit.words,
+    { opacity: 0, y: 20 },
+    { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: "back.out" }
+  );
 
-      // 1. Get the center position of the element
-      const rect = follower.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
+  gsap.fromTo(charssplit.chars,
+    { filter: "blur(20px)" },
+    { filter: "blur(0px)", duration: 0.1, stagger: 0.01, ease: "power2.inOut" }
+  );
+  gsap.fromTo(
+    splitedText1.lines, {
+    opacity: 0,
+    y: 40,
+  }, {
+    opacity: 1,
+    y: 0,
+    duration: 1.3,
+    stagger: 0.15,
+    ease: "back"
+  })
+  let handsDuration = 3.3
+  gsap.to("#rightHandParent", {
+    x: 70,
+    duration: handsDuration,
+    ease: "back"
+  })
 
-      // 2. Calculate the distance between mouse and center
-      const deltaX = e.clientX - centerX;
-      const deltaY = e.clientY - centerY;
+  gsap.to("#leftHandParent", {
+    x: -70,
+    duration: handsDuration,
+    ease: "back"
+  })
 
-      // 3. Calculate angle in radians, then convert to degrees
-      const radians = Math.atan2(deltaY, deltaX);
-      const degrees = radians * (180 / Math.PI);
-      const distance = Math.sqrt(deltaX ** 2 + deltaY ** 2);
+  gsap.fromTo(".cutbwu", {
+    scaleX: 0.8
+  }, {
+    scaleX: 1,
+    duration: 0.6,
+    ease: "back"
+  })
 
-      // --- SMOOTH MATH START ---
-      // This scales distance (0 to 500px) to a multiplier (1.0 down to 0.1)
-      // Formula: 1 - (percent of max distance) * range
-      const maxDist = 500;
-      const rawInfluence = 1 - distance / maxDist;
-      const MAX = 0.2;
-      const MIN = 0.1;
-      const influence = Math.max(MIN, Math.min(MAX, rawInfluence));
-      // --- SMOOTH MATH END ---
-
-      // Apply the rotation multiplied by our smooth influence
-      follower.style.transform = `rotate(${degrees * influence}deg)`;
-      // textOverlayFollower.style.x = e.clientX - textOverlayFollower.parentElement?.style.left + 'px';
-      // textOverlayFollower.style.y = e.clientY - textOverlayFollower.parentElement?.style.top + 'px';
-      // textOverlayFollower.style.transform = `translate(${e.x}px, ${e.y}px)`;
-      // 4. Apply the rotation
-      // follower.style.transform = `rotate(${degrees}deg)`;
-    });
-  });
+});
 </script>
 
 <template>
   <div
-    class="/min-h-300 /max-w-467.5 relative flex h-svh w-full items-center justify-center overflow-visible transition-all delay-500 duration-1000"
-  >
-    <div>
-    <div
-      ref="leftHandParent"
-      class="anim-left-support transition-all absolute duration-1700 -translate-y-40 -left-30 flex w-160 max-xl:hidden"
-      :class="animate ? '2xl:translate-x-0 xl:-translate-x-50' : '-translate-x-150'"
-    >
+    class="/min-h-300 /max-w-467.5 relative flex h-svh w-full items-center justify-center overflow-visible transition-all delay-500 duration-1000">
+    <div id="leftHandParent" class="absolute -translate-y-40 -translate-x-150 -left-30 flex w-160 max-xl:hidden">
       <img src="/exca-layer1.png" class="w-160" />
       <div class="anim-hand transition-all absolute -right-2 bottom-3 w-134.5">
-        <img
-          :style="{
-            width: `${parent.left}`,
-          }"
-          src="/exca-layer2.png"
-          class="w-134.5"
-        />
-        <img
-          src="/exca-layer3.png"
-          class="anim-bucket w-52.5 transition-all absolute right-2 bottom-17 "
-        />
+        <img :style="{
+          width: `${parent.left}`,
+        }" src="/exca-layer2.png" class="w-134.5" />
+        <img src="/exca-layer3.png" class="anim-bucket w-52.5 transition-all absolute right-2 bottom-17 " />
       </div>
     </div>
 
-    <div
-      ref="rightHandParent"
-      class="anim-left-support rotate-y-180 transition-all -translate-y-40 absolute duration-1700 -right-30 flex w-160 max-xl:hidden"
-      :class="animate ? '2xl:translate-x-0 xl:translate-x-50' : 'translate-x-150'"
-    >
+    <div id="rightHandParent"
+      class="rotate-y-180 -translate-y-40 translate-x-120 absolute -right-30 flex w-160 max-xl:hidden">
       <img src="/exca-layer1.png" class="w-160" />
       <div class="anim-hand transition-all absolute -right-2 bottom-3 w-134.5">
-        <img
-          :style="{
-            width: `${parent.left}`,
-          }"
-          src="/exca-layer2.png"
-          class="w-134.5"
-        />
-      <img
-        src="/exca-layer3.png"
-        class="anim-bucket transition-all absolute right-2 bottom-17 w-52.5"
-      />
+        <img :style="{
+          width: `${parent.left}`,
+        }" src="/exca-layer2.png" class="w-134.5" />
+        <img src="/exca-layer3.png" class="anim-bucket transition-all absolute right-2 bottom-17 w-52.5" />
       </div>
-    </div>
     </div>
 
     <div class="z-0 flex h-full w-full items-center justify-center">
-      <div
-        class="pt-10/ flex flex-col items-center justify-center gap-6.5 p-6 text-black"
-      >
-        <ActionBtn
-          class="group flex cursor-pointer items-center gap-2.75 rounded-full border border-[#B0B0B0] bg-linear-to-r from-white/0 via-white to-[#D7D7D7]/85 px-3.75 py-1 transition-all delay-700 duration-700 hover:scale-101"
-          :class="
-            animate ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
-          "
-          :call-back="() => {}"
-        >
-          <div class="light font-[Switzer] text-lg font-light md:text-[22px]">
-            contact us to build with us
-          </div>
-          <img
-            src="/arrow.svg"
-            class="w-4 shrink-0 transition-all group-hover:ml-3.5"
-          />
-        </ActionBtn>
-
+      <div class="pt-10/ flex flex-col items-center justify-center gap-6.5 p-6 text-black">
+        <div class="cutbwu">
+          <ActionBtn
+            class="group  flex cursor-pointer items-center gap-2.75 rounded-full border border-[#B0B0B0] bg-linear-to-r from-white/0 via-white to-[#D7D7D7]/85 px-3.75 py-1 hover:scale-101">
+            <div class="light font-[Switzer] text-lg font-light md:text-[22px]">
+              contact us to build with us
+            </div>
+            <img src="/arrow.svg" class="w-4 shrink-0 transition-all  bounce-back group-hover:ml-3.5" />
+          </ActionBtn>
+        </div>
         <div
-          class="flex w-full max-w-200 items-center justify-center text-center font-[Haas] font-black transition-all delay-300 duration-1000 max-lg:text-center"
-          :class="
-            animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-          "
-        >
+          class="spt w-full max-w-200 items-center justify-center text-center font-[Haas] font-black transition-all delay-300 duration-1000 max-lg:text-center" ">
           <span
-            class="inline bg-clip-text text-center leading-[105%] font-black text-black max-xl:text-4xl md:max-h-1/4/ lg:text-[70px] xl:text-7xl 2xl:text-[90px]"
-          >
-            We Build For A Better Future
-            <img
-              ref="followerRef"
-              src="/arrow-play2.svg"
-              class="/ease-in-out inline px-3 transition-all duration-300 max-md:size-12"
-            />
-            Not Just For The Sake Of Building
+            class=" inline bg-clip-text text-center leading-[105%] font-black text-black max-xl:text-4xl md:max-h-1/4/
+          lg:text-[70px] xl:text-7xl 2xl:text-[90px]">
+          We Build For A Better Future
+          <img ref="followerRef" src="/arrow-play2.svg"
+            class="/ease-in-out inline px-3 transition-all duration-300 max-md:size-12" />
+          Not Just For The Sake Of Building
           </span>
         </div>
 
         <div
-          class="max-md:60 text-center font-[Haas] transition-all delay-200 duration-700 text-lg font-[100] text-[#696969] lg:max-w-160 lg:text-[32px]"
-          :class="animate ? 'translate-y-0 opacity-100' : 'opacity-0 -translate-y-10'"
-        >
+          class="cpt max-md:60 text-center font-[Haas] transition-all delay-200 duration-700 text-lg font-[100] text-[#696969] lg:max-w-160 lg:text-[32px]">
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum ha
         </div>
 
         <ActionBtn
-          class="group flex font-[Switzer] font-semibold text-white transition-all delay-1500 duration-500 hover:scale-101"
-          :class="
-            animate ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
-          "
-        >
-          <div
-            class="rounded-full bg-black px-8.25 py-2.75 shadow-[0px_15px_35.6px_0px] shadow-black/5 transition-all"
-          >
-            Get Started
-          </div>
-          <div
-            class="flex -translate-x-2 items-center justify-center rounded-full bg-black p-3.75 shadow-[0px_15px_35.6px_0px] shadow-black/5 transition-all group-hover:translate-x-1"
-          >
-            <img
-              src="/arrow-medium.svg"
-              class="w-3.75 transition-all group-hover:rotate-z-45"
-            />
-          </div>
-        </ActionBtn>
+          class="group flex font-[Switzer] font-semibold text-white transition-all delay-1500 duration-500 hover:scale-101" ">
+          <div class=" rounded-full bg-black px-8.25 py-2.75 shadow-[0px_15px_35.6px_0px] shadow-black/5
+          transition-all">
+          Get Started
       </div>
+      <div
+        class="flex -translate-x-2 items-center justify-center rounded-full bg-black p-3.75 shadow-[0px_15px_35.6px_0px] shadow-black/5 transition-all group-hover:translate-x-1">
+        <img src="/arrow-medium.svg" class="w-3.75 transition-all group-hover:rotate-z-45" />
+      </div>
+      </ActionBtn>
     </div>
+  </div>
   </div>
 </template>
 
 <style>
-  .anim-bucket {
-    animation: left-bucket forwards 2.5s 2s;
+.anim-bucket {
+  animation: left-bucket forwards 2.5s 2s;
+}
+
+@keyframes left-bucket {
+  from {
+    transform: rotate(0px);
   }
 
-  @keyframes left-bucket {
-    from {
-      transform: rotate(0px);
-    }
-    50% {
-      transform: rotate(-35deg);
-    }
-    to {
-      transform: rotate(35deg);
-    }
+  50% {
+    transform: rotate(-35deg);
   }
 
-  .anim-hand {
-    animation: hand forwards 2s 2s;
+  to {
+    transform: rotate(35deg);
+  }
+}
+
+.anim-hand {
+  animation: hand forwards 2s 2s;
+}
+
+@keyframes hand {
+  from {
+    transform: rotate(0deg);
   }
 
-  @keyframes hand {
-    from {
-      transform: rotate(0deg);
-    }
-    30% {
-      transform: rotate(-6deg);
-    }
-    to {
-      transform: rotate(20deg);
-    }
+  30% {
+    transform: rotate(-6deg);
   }
+
+  to {
+    transform: rotate(20deg);
+  }
+}
+
+.bounce-back {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
 </style>
-
-<!-- INFO: Previous design -->
-<!--
-  <div
-    class="relative flex h-svh /min-h-300 w-full max-w-467.5 delay-500 duration-1000 items-center transition-all justify-center overflow-visible p-6"
-  >
-    <HomeBackgroundHero />
-    <div
-      class="z-0 flex h-full max-w-260 flex-col items-start justify-center gap-8.5 p-8 max-lg:items-center md:w-2/3 xl:p-6"
-    >
-      <ActionBtn
-        class="flex cursor-pointer items-center group gap-2.75 duration-700 delay-700 transition-all hover:scale-101 rounded-full border border-[#B0B0B0] bg-linear-to-r from-white/0 via-[#D7D7D7]/50 to-[#D7D7D7]/85 px-3.75 py-2"
-        :class="animate ? 'translate-x-0 opacity-100' : 'opacity-0 translate-x-10'"
-        :call-back="() => {}"
-      >
-        <div class="light font-[Switzer] md:text-[22px] text-lg font-extralight">
-          contact us to build with us
-        </div>
-        <img src="/arrow.svg" class="w-4 group-hover:ml-3.5 transition-all shrink-0" />
-      </ActionBtn>
-
-      <div
-        class="w-full max-w-200 font-[Haas] transition-all duration-1000 delay-300 max-lg:text-center"
-        :class="animate ? 'translate-y-0 opacity-100' : 'opacity-0 translate-y-10'"
-      >
-        <span
-          class="hero-text-background inline bg-clip-text leading-[105%] font-black text-black max-xl:text-4xl md:max-h-1/4/ lg:text-[70px] xl:text-7xl 2xl:text-[90px]"
-        >
-          We Build For A
-          <span class="text-[#CF6210]/ bg-[#CF6210] text-transparent bg-clip-text">Better<span ref="textOverlayFollowerRef" class="absolute hidden transition-all bg-black rounded-full p-1" /></span>
-          Future
-          <img
-            ref="followerRef"
-            src="/arrow-big.svg"
-            class="inline transition-all duration-300 /ease-in-out px-3 max-md:size-12"
-          />
-          Not Just For The Sake Of Building
-        </span>
-      </div>
-
-      <div
-        class="max-w-170 text-xl leading-[1.15] font-semibold transition-all duration-500 delay-500 text-gray-800 max-xl:text-xl max-lg:text-center"
-        :class="animate ? 'translate-y-0 opacity-100' : 'opacity-0 -translate-y-10'"
-      >
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum ha
-      </div>
-      <ActionBtn
-        class="flex font-[Switzer] transition-all delay-1500 duration-500 font-semibold group text-white hover:scale-101"
-        :class="animate ? 'translate-x-0 opacity-100' : 'opacity-0 -translate-x-10'"
-      >
-        <div
-          class="rounded-full shadow-[0px_15px_35.6px_0px] transition-all shadow-black/25 bg-linear-to-b from-[#CF6210] via-[#CF6210] to-[#F2934A] px-8.25 py-2.75"
-        >
-          Get Started
-        </div>
-        <div
-          class="flex -translate-x-2 shadow-[0px_15px_35.6px_0px] transition-all shadow-black/25 group-hover:translate-x-1 transition-all items-center justify-center rounded-full bg-linear-to-b from-[#CF6210] via-[#CF6210] to-[#F2934A] p-3.75"
-        >
-          <img src="/arrow-medium.svg" class="w-3.75 group-hover:rotate-z-45 transition-all" />
-        </div>
-      </ActionBtn>
-    </div>
-
-    <div
-      class="flex h-full w-1/3 items-center justify-center overflow-x-clip max-lg:hidden"
-    >
-      <div
-        :class="animate ? 'scale-100 opacity-100' : 'opacity-0 scale-200'"
-        class="absolute top-[56%] transition-all duration-1000 -rotate-z-87 rounded-full bg-[#FF8811] px-30 py-40 blur-3xl"
-      >
-        <div
-          class="absolute top-[75%] right-[20%] -rotate-z-50 rounded-full bg-[#FF8811] px-15 py-30"
-        />
-      </div>
-       <div
-          class="flex absolute right-0 z-20 h-full max-h-1/4 max-w-full items-center overflow-x-clip" > 
-       >
-         <ModelViewer
-           url="/ToyCar.glb"
-           class="size-250 min-w-0 translate-x-15 overflow-x-clip max-2xl:translate-x-20 lg:size-110 xl:size-130 2xl:size-160"
-         />
-       </div>
-    </div>
-  </div>
--->
-<!-- INFO: Previous design -->
