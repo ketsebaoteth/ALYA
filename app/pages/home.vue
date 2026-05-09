@@ -10,9 +10,9 @@
   >
     <HomeHero />
     <HomeQuality />
-    <HomeDetail />
-    <HomeReviews />
-    <HomeOffer />
-    <HomeFooter />
+    <!-- <HomeDetail /> -->
+    <!-- <HomeReviews /> -->
+    <!-- <HomeOffer /> -->
+    <!-- <HomeFooter /> -->
   </div>
 </template>
