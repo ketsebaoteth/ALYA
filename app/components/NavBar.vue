@@ -17,7 +17,7 @@
         :class="animate ? 'translate-x-0 opacity-100' : 'opacity-0 -translate-x-10'"
       >
         <div
-          class="flex flex-col justify-center font-[FontSpring] hover:scale-106 transition-all font-bold text-lg md:text-2xl"
+          class="flex flex-col justify-center font-[FontSpring] text-white hover:scale-106 transition-all font-bold text-lg md:text-2xl"
         >
           <div>ALYA</div>
           <!-- <div>Construction</div> -->
@@ -37,7 +37,7 @@
 
       <ActionBtn
         :class="animate ? 'translate-x-0 opacity-100' : 'opacity-0 translate-x-10'"
-        class="transition-all text-nowrap duration-500 hover:scale-101 p-2 px-2 text-xs md:px-4 md:text-sm bg-black text-white"
+        class="transition-all text-nowrap duration-500 hover:scale-101 p-2 px-2 text-xs md:px-4 md:text-sm bg-white text-black"
         :call-back="() => {}"
       >
         Book A Call

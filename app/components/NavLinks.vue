@@ -72,11 +72,13 @@ const selectElm = async (e?: Event) => {
       left: `${selectedFollowerData.left}px`,
       right: `${selectedFollowerData.right}px`,
     }"
-      class="absolute max-md:hidden bottom-0 h-1 ease-out rounded-full bg-black transition-all duration-500 ease-[cubic-bezier(0.16, 1, 0.3, 1)]" />
+      class="absolute max-md:hidden bottom-0 h-1 ease-out rounded-full bg-white/60 transition-all duration-500 ease-[cubic-bezier(0.16, 1, 0.3, 1)]" />
 
     <NuxtLink v-for="r in NAV_ROUTES" :key="r.name" :ref="(e) => setRefElms(r.path, e)" :to="r.path"
-      :class="{ 'text-black': route.path.includes(r.path) }"
-      class="z-30 px-2 py-2.5 text-xs transition-all hover:text-black md:px-7 md:text-sm" @click="selectElm">
+      class="z-30 px-2 py-2.5 text-xs transition-all hover:text-white md:px-7 md:text-sm"
+      :class="(route.path.includes(r.path)) ? 'text-white' : 'text-white/70'"
+      @click="selectElm"
+    >
       {{ r.name }}
     </NuxtLink>
   </div>
