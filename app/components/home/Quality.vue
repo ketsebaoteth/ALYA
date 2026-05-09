@@ -28,21 +28,8 @@
 
 <template>
   <div
-    class="parent /min-h-80 /xl:min-h-300 z-10 flex h-screen max-h-350 w-full items-center justify-center xl:px-30"
+    class="parent/ z-10 flex h-svh max-h-350 w-full items-center justify-center"
   >
-    <div
-      class="focus flex w-[80%] max-w-200 flex-col items-center text-center font-[Inter] text-4xl leading-[125%] font-thin text-nowrap md:max-w-400 xl:text-7xl 2xl:text-[110px]"
-    >
-      <div class="items-center justify-center text-center">
-        our company provides safe
-      </div>
-      <div class="items-center justify-center text-center">
-        working conditions and provide
-      </div>
-      <div class="items-center justify-center text-center">
-        quality work within reasonable
-      </div>
-      <div class="items-center justify-center text-center">timeframe</div>
-    </div>
+    <div class="h-full w-full bg-linear-to-b from-[#3E5CE1] to-[#22327B] flex "></div>
   </div>
 </template>
