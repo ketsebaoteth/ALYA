@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import gsap from "gsap"
 import { SplitText } from "gsap/all";
-const parent = reactive({ left: "" });
-
 
 onMounted(async () => {
 
@@ -62,7 +60,6 @@ onMounted(async () => {
       <img src="/exca-layer1.png" class="w-160" />
       <div class="anim-hand transition-all absolute -right-2 bottom-3 w-134.5">
         <img :style="{
-          width: `${parent.left}`,
         }" src="/exca-layer2.png" class="w-134.5" />
         <img src="/exca-layer3.png" class="anim-bucket w-52.5 transition-all absolute right-2 bottom-17 " />
       </div>
@@ -73,7 +70,6 @@ onMounted(async () => {
       <img src="/exca-layer1.png" class="w-160" />
       <div class="anim-hand transition-all absolute -right-2 bottom-3 w-134.5">
         <img :style="{
-          width: `${parent.left}`,
         }" src="/exca-layer2.png" class="w-134.5" />
         <img src="/exca-layer3.png" class="anim-bucket transition-all absolute right-2 bottom-17 w-52.5" />
       </div>
