@@ -1,38 +1,48 @@
 <script setup lang="tsx">
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/all";
-onMounted(async () => {
-  await nextTick();
+  import gsap from "gsap";
+  import ScrollTrigger from "gsap/ScrollTrigger";
+  import { SplitText } from "gsap/all";
 
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.registerPlugin(SplitText);
+  onMounted(async () => {
+    await nextTick();
 
-  let sptext = new SplitText(".focus", { type: "words,chars" });
-  gsap.to(sptext.words, {
-    fontWeight: 900,
-    stagger: 0.3,
-    scrollTrigger: {
-      trigger: ".parent", // The wrapper that determines the scroll duration
-      start: "top top",   // Pin starts when the top of .parent hits the top of viewport
-      end: "+=8200",      // How long the "hijack" lasts (pixels scrolled)
-      scrub: 1,           // Links animation progress to scrollbar
-      pin: true,          // This is the "hijack" magic
-      pinSpacing: true,
-      anticipatePin: 1,   // Smooths out the transition to pinned state
-    },
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(SplitText);
+    const sptext = new SplitText(".focus", { type: "words,chars" });
+
+    gsap.to(sptext.chars, {
+      fontWeight: 900,
+      stagger: 0.3,
+      scrollTrigger: {
+        trigger: ".parent",
+        start: "top top",
+        end: "+=1200",
+        scrub: 1,
+        pin: true,
+        pinSpacing: true,
+        anticipatePin: 1,
+      },
+    });
   });
-});
 </script>
 
 <template>
-  <div class="h-[40vh] parent z-10 flex max-h-350 min-h-80 w-full items-center justify-center xl:min-h-300 xl:px-30">
+  <div
+    class="parent /min-h-80 /xl:min-h-300 z-10 flex h-screen max-h-350 w-full items-center justify-center xl:px-30"
+  >
     <div
-      class="focus w-6/7 max-w-200 text-nowrap text-center font-[Inter] font-thin text-4xl leading-[125%] md:max-w-400 xl:text-7xl 2xl:text-[110px]">
-      our company provides safe
-      <div class="text-center flex items-center justify-center">working conditions and provide</div>
-      <div class="text-center flex items-center justify-center">quality work within reasonable</div>
-      <div class="text-center flex items-center justify-center">timeframe</div>
+      class="focus flex w-[80%] max-w-200 flex-col items-center text-center font-[Inter] text-4xl leading-[125%] font-thin text-nowrap md:max-w-400 xl:text-7xl 2xl:text-[110px]"
+    >
+      <div class="items-center justify-center text-center">
+        our company provides safe
+      </div>
+      <div class="items-center justify-center text-center">
+        working conditions and provide
+      </div>
+      <div class="items-center justify-center text-center">
+        quality work within reasonable
+      </div>
+      <div class="items-center justify-center text-center">timeframe</div>
     </div>
   </div>
 </template>
