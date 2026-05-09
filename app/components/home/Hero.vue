@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import gsap from "gsap";
   import { SplitText } from "gsap/all";
-  import ExcavatorArms from "./ExcavatorArms.vue";
+import ExcavatorArms from "./ExcavatorArms.vue";
 
   onMounted(async () => {
     gsap.registerPlugin(SplitText);
@@ -40,6 +40,20 @@
         ease: "back",
       }
     );
+
+    const handsDuration = 3.3;
+
+    gsap.to("#rightHandParent", {
+      x: 70,
+      duration: handsDuration,
+      ease: "back",
+    });
+
+    gsap.to("#leftHandParent", {
+      x: -70,
+      duration: handsDuration,
+      ease: "back",
+    });
 
     gsap.fromTo(
       ".cutbwu",
@@ -123,6 +137,42 @@
 </template>
 
 <style>
+  .anim-bucket {
+    animation: bucket forwards 2.5s 0.3s;
+  }
+
+  @keyframes bucket {
+    from {
+      transform: rotate(0px);
+    }
+
+    50% {
+      transform: rotate(-40deg);
+    }
+
+    to {
+      transform: rotate(40deg);
+    }
+  }
+
+  .anim-hand {
+    animation: hand forwards 2s 0.7s;
+  }
+
+  @keyframes hand {
+    from {
+      transform: rotate(0deg);
+    }
+
+    30% {
+      transform: rotate(-10deg);
+    }
+
+    to {
+      transform: rotate(20deg);
+    }
+  }
+
   .bounce-back {
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
