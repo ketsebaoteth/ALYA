@@ -1,6 +1,7 @@
 <script lang="ts" setup>
   import gsap from "gsap";
   import { SplitText } from "gsap/all";
+  import ExcavatorArms from "./ExcavatorArms.vue";
 
   onMounted(async () => {
     gsap.registerPlugin(SplitText);
@@ -40,20 +41,6 @@
       }
     );
 
-    const handsDuration = 3.3;
-
-    gsap.to("#rightHandParent", {
-      x: 70,
-      duration: handsDuration,
-      ease: "back",
-    });
-
-    gsap.to("#leftHandParent", {
-      x: -70,
-      duration: handsDuration,
-      ease: "back",
-    });
-
     gsap.fromTo(
       ".cutbwu",
       {
@@ -72,34 +59,7 @@
   <div
     class="/min-h-300 /max-w-467.5 relative flex h-svh w-full items-center justify-center overflow-visible transition-all delay-500 duration-1000"
   >
-    <div
-      id="leftHandParent"
-      class="absolute -left-30 flex w-160 -translate-x-150 -translate-y-40 max-xl:hidden"
-    >
-      <img src="/exca-layer1.png" class="w-160" />
-      <div class="anim-hand absolute -right-2 bottom-3 w-134.5 transition-all">
-        <img src="/exca-layer2.png" class="w-134.5" />
-        <img
-          src="/exca-layer3.png"
-          class="anim-bucket absolute right-2 bottom-17 w-52.5 transition-all"
-        />
-      </div>
-    </div>
-
-    <div
-      id="rightHandParent"
-      class="absolute -right-30 flex w-160 translate-x-150 -translate-y-40 rotate-y-180 max-xl:hidden"
-    >
-      <img src="/exca-layer1.png" class="w-160" />
-      <div class="anim-hand absolute -right-2 bottom-3 w-134.5 transition-all">
-        <img src="/exca-layer2.png" class="w-134.5" />
-        <img
-          src="/exca-layer3.png"
-          class="anim-bucket absolute right-2 bottom-17 w-52.5 transition-all"
-        />
-      </div>
-    </div>
-
+    <ExcavatorArms />
     <div class="z-0 flex h-full w-full items-center justify-center">
       <div
         class="heroheader pt-10/ flex flex-col items-center justify-center gap-6.5 p-6 text-black opacity-0"
@@ -163,42 +123,6 @@
 </template>
 
 <style>
-  .anim-bucket {
-    animation: bucket forwards 2.5s 0.3s;
-  }
-
-  @keyframes bucket {
-    from {
-      transform: rotate(0px);
-    }
-
-    50% {
-      transform: rotate(-40deg);
-    }
-
-    to {
-      transform: rotate(40deg);
-    }
-  }
-
-  .anim-hand {
-    animation: hand forwards 2s 0.7s;
-  }
-
-  @keyframes hand {
-    from {
-      transform: rotate(0deg);
-    }
-
-    30% {
-      transform: rotate(-10deg);
-    }
-
-    to {
-      transform: rotate(20deg);
-    }
-  }
-
   .bounce-back {
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
