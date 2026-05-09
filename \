@@ -10,7 +10,6 @@ onMounted(async () => {
 
   let splitedText1 = new SplitText(".spt", { type: "lines" });
   let charssplit = new SplitText(".cpt", { type: "words,chars" });
-  gsap.set(".heroheader", { opacity: 1 })
   gsap.fromTo(charssplit.words,
     { opacity: 0, y: 20 },
     { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: "back.out" }
@@ -80,7 +79,7 @@ onMounted(async () => {
     </div>
 
     <div class="z-0 flex h-full w-full items-center justify-center">
-      <div class="heroheader opacity-0 pt-10/ flex flex-col items-center justify-center gap-6.5 p-6 text-black">
+      <div class="pt-10/ flex flex-col items-center justify-center gap-6.5 p-6 text-black">
         <div class="cutbwu">
           <ActionBtn
             class="group  flex cursor-pointer items-center gap-2.75 rounded-full border border-[#B0B0B0] bg-linear-to-r from-white/0 via-white to-[#D7D7D7]/85 px-3.75 py-1 hover:scale-101">
@@ -91,7 +90,7 @@ onMounted(async () => {
           </ActionBtn>
         </div>
         <div
-          class="spt w-full max-w-200 items-center justify-center text-center font-[Haas] font-black transition-all delay-300 duration-1000 max-lg:text-center" ">
+          class="spt opacity-0 w-full max-w-200 items-center justify-center text-center font-[Haas] font-black transition-all delay-300 duration-1000 max-lg:text-center" ">
           <span
             class=" inline bg-clip-text text-center leading-[105%] font-black text-black max-xl:text-4xl md:max-h-1/4/
           lg:text-[70px] xl:text-7xl 2xl:text-[90px]">
