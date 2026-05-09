@@ -12,7 +12,7 @@
     <HomeQuality />
     <!-- <HomeDetail /> -->
     <!-- <HomeReviews /> -->
-    <!-- <HomeOffer /> -->
-    <!-- <HomeFooter /> -->
+    <HomeOffer />
+    <HomePreFooter />
   </div>
 </template>
