@@ -14,5 +14,6 @@
     <!-- <HomeReviews /> -->
     <HomeOffer />
     <HomePreFooter />
+    <HomeFooter />
   </div>
 </template>

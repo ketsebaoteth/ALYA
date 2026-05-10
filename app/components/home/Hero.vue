@@ -100,7 +100,7 @@
           </NuxtLink>
         </div>
         <div
-          class="flex w-full min-w-200 flex-col items-center justify-center text-center font-[Haas] leading-[105%] font-black text-white max-xl:text-4xl max-lg:text-center lg:text-[70px] xl:w-[45%] xl:text-7xl 2xl:text-[90px]"
+          class="flex w-full min-w-200 flex-col items-center justify-center text-center font-[Haas,sans-serif] leading-[105%] font-black text-white max-xl:text-4xl max-lg:text-center lg:text-[70px] xl:w-[45%] xl:text-7xl 2xl:text-[90px]"
         >
           <!-- <span -->
           <!--   class="inline w-full bg-clip-text text-center" -->
@@ -129,37 +129,45 @@
       class="/hidden top-0/ absolute flex w-full flex-col items-center justify-center lg:h-max"
     >
       <div class="relative flex h-max w-full">
-        <img src="/back2.png" loading="eager" class="h-max w-full" />
+        <img src="/back-new.png" loading="eager" class="h-max w-full" />
 
         <!-- WARNING: Please don't touch this div, it is for the blur -->
-        <div
-          class="inset-0/ bg-black/ /translate-y-45 absolute bottom-0 h-[55%] w-full"
-        >
-          <div
-            class="absolute inset-0 mask-[linear-gradient(to_top,black_0%,transparent_12.5%)] backdrop-blur-md"
-          ></div>
-          <div
-            class="absolute inset-0 mask-[linear-gradient(to_top,black_12.5%,transparent_25%)] backdrop-blur-[9px]"
-          ></div>
-          <div
-            class="absolute inset-0 mask-[linear-gradient(to_top,black_25%,transparent_37.5%)] backdrop-blur-[6px]"
-          ></div>
-          <div
-            class="absolute inset-0 mask-[linear-gradient(to_top,black_37.5%,transparent_50%)] backdrop-blur-[5px]"
-          ></div>
-          <div
-            class="absolute inset-0 mask-[linear-gradient(to_top,black_50%,transparent_62.5%)] backdrop-blur-[3px]"
-          ></div>
-          <div
-            class="absolute inset-0 mask-[linear-gradient(to_top,black_62.5%,transparent_75%)] backdrop-blur-[1.5px]"
-          ></div>
-          <div
-            class="absolute inset-0 mask-[linear-gradient(to_top,black_75%,transparent_87.5%)] backdrop-blur-[1px]"
-          ></div>
-          <div
-            class="absolute inset-0 mask-[linear-gradient(to_top,black_87.5%,transparent_100%)] backdrop-blur-[0.5px]"
-          ></div>
-        </div>
+        <!-- <div -->
+        <!--   class="inset-0/ bg-black/ /translate-y-45 absolute bottom-0 h-[55%] w-full" -->
+        <!-- > -->
+        <!--   <div -->
+        <!--     class="absolute inset-0 mask-[linear-gradient(to_top,black_0%,transparent_12.5%)] backdrop-blur-md" -->
+        <!--   ></div> -->
+        <!--   <div -->
+        <!--     class="absolute inset-0 mask-[linear-gradient(to_top,black_12.5%,transparent_25%)] backdrop-blur-[9px]" -->
+        <!--   ></div> -->
+        <!--   <div -->
+        <!--     class="absolute inset-0 mask-[linear-gradient(to_top,black_25%,transparent_37.5%)] backdrop-blur-[6px]" -->
+        <!--   ></div> -->
+        <!--   <div -->
+        <!--     class="absolute inset-0 mask-[linear-gradient(to_top,black_37.5%,transparent_50%)] backdrop-blur-[5px]" -->
+        <!--   ></div> -->
+        <!--   <div -->
+        <!--     class="absolute inset-0 mask-[linear-gradient(to_top,black_50%,transparent_62.5%)] backdrop-blur-[3px]" -->
+        <!--   ></div> -->
+        <!--   <div -->
+        <!--     class="absolute inset-0 mask-[linear-gradient(to_top,black_62.5%,transparent_75%)] backdrop-blur-[1.5px]" -->
+        <!--   ></div> -->
+        <!--   <div -->
+        <!--     class="absolute inset-0 mask-[linear-gradient(to_top,black_75%,transparent_87.5%)] backdrop-blur-[1px]" -->
+        <!--   ></div> -->
+        <!--   <div -->
+        <!--     class="absolute inset-0 mask-[linear-gradient(to_top,black_87.5%,transparent_100%)] backdrop-blur-[0.5px]" -->
+        <!--   ></div> -->
+
+        <!-- INFO: Ketse's blur -->
+        <!-- <div -->
+        <!--   class="pointer-events-none absolute bottom-0 h-[55%] w-full overflow-hidden" -->
+        <!-- > -->
+        <!--   <div -->
+        <!--     class="absolute inset-0 [mask-image:linear-gradient(to_top,black_0%,black_20%,rgba(0,0,0,0.5)_50%,rgba(0,0,0,0.1)_80%,transparent_100%)] backdrop-blur-[80px]" -->
+        <!--   ></div> -->
+        <!-- </div> -->
       </div>
 
       <div
