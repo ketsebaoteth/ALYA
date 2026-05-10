@@ -166,7 +166,7 @@
           </NuxtLink>
         </div>
         <div
-          class="spt w-full max-w-[45%] items-center justify-center text-center font-[Haas] font-black transition-all delay-300 duration-1000 max-lg:text-center"
+          class="spt /w-full w-[45%] min-w-200 items-center justify-center text-center font-[Haas] font-black transition-all delay-300 duration-1000 max-lg:text-center"
         >
           <span
             class="inline bg-clip-text text-center leading-[105%] font-black text-white max-xl:text-4xl lg:text-[70px] xl:text-7xl 2xl:text-[90px]"
