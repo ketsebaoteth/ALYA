@@ -10,7 +10,7 @@
   >
     <HomeHero />
     <HomeQuality />
-    <!-- <HomeDetail /> -->
+    <HomeDetail />
     <!-- <HomeReviews /> -->
     <HomeOffer />
     <HomePreFooter />
