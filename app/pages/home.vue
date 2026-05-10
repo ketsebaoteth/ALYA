@@ -6,13 +6,13 @@
 
 <template>
   <div
-    class="flex h-max min-h-max w-full flex-col items-center justify-center gap-20 overflow-x-clip"
+    class="flex h-max min-h-max w-full flex-col items-center justify-center overflow-x-clip"
   >
     <HomeHero />
     <HomeQuality />
-    <HomeDetail />
-    <HomeReviews />
+    <!-- <HomeDetail /> -->
+    <!-- <HomeReviews /> -->
     <HomeOffer />
-    <HomeFooter />
+    <HomePreFooter />
   </div>
 </template>

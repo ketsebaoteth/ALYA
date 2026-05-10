@@ -1,9 +1,5 @@
-<script setup>
-
-</script>
+<script setup></script>
 
 <template>
-  <div class="w-full h-full bg-white">
-    work
-  </div>
+  <div class="h-svh w-full bg-black">work</div>
 </template>
