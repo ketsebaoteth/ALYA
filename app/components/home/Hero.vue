@@ -129,7 +129,7 @@
       class="/hidden top-0/ absolute flex w-full flex-col items-center justify-center lg:h-max"
     >
       <div class="relative flex h-max w-full">
-        <img src="/back2.png" class="h-max w-full" />
+        <img src="/back2.png" loading="eager" class="h-max w-full" />
 
         <!-- WARNING: Please don't touch this div, it is for the blur -->
         <div
