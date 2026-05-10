@@ -38,7 +38,7 @@
       split.chars,
       {
         yPercent: 120,
-        stagger: 0.03,
+        stagger: 0.02,
         duration: 0.4,
         ease: "back.inOut",
       },

@@ -56,7 +56,7 @@
         opacity: 1,
         y: 0,
         duration: 1.3,
-        stagger: 0.05,
+        stagger: 0.15,
         ease: "back",
       }
     );
@@ -105,7 +105,7 @@
           <!-- <span -->
           <!--   class="inline w-full bg-clip-text text-center" -->
           <!-- > -->
-          <span>Beyond the act of building lies the power of purpose</span>
+          Beyond the act of building lies the power of purpose
           <!-- </span> -->
         </span>
 
@@ -124,7 +124,7 @@
     </div>
 
     <div
-      class="/flex absolute top-0 hidden w-full flex-col items-center justify-center lg:h-max"
+      class="/hidden absolute top-0 flex w-full flex-col items-center justify-center lg:h-max"
     >
       <div class="relative flex h-max w-full">
         <img src="/back2.png" class="h-max w-full" />
