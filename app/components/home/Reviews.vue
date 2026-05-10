@@ -13,7 +13,7 @@
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".revtitle",
-        start: "top center",
+        start: "top 30%",
       },
     });
 
@@ -26,7 +26,7 @@
       {
         opacity: 1,
         y: 0,
-        duration: 0.6,
+        duration: 0.8,
         stagger: 0.15,
         ease: "back",
       },
@@ -37,13 +37,15 @@
         ".image1",
         {
           opacity: 0,
-          translateY: "-150px",
+          translateY: "-200px",
           rotateZ: "20px",
         },
         {
           opacity: 1,
           translateY: "0px",
           rotateZ: "0px",
+          ease: "back.inOut",
+          duration: 1,
         },
         "<"
       )
@@ -51,13 +53,15 @@
         ".image2",
         {
           opacity: 0,
-          translateY: "-150px",
+          translateY: "-200px",
           rotateZ: "-20px",
         },
         {
           opacity: 1,
           translateY: "0px",
           rotateZ: "0px",
+          ease: "back.inOut",
+          duration: 1,
         },
         "<"
       );

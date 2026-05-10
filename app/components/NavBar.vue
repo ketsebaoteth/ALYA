@@ -1,10 +1,15 @@
 <script setup lang="tsx">
+  import gsap from "gsap";
+
   const route = useRoute();
+  // WARN: This component is not refacoted please do not touch
   const animate = ref(false);
 
   const isHome = computed(() => {
     return route.path === "/" || route.path.includes("home");
   });
+
+  let tl: gsap.core.Timeline;
 
   const handleCopy = async (e: Event) => {
     const copyBtn = e.target as HTMLElement;
@@ -14,18 +19,48 @@
       await navigator.clipboard.writeText(textToCopy);
     }
 
+    tl.play();
+
     const id = setTimeout(() => {
+      tl.reverse();
       clearTimeout(id);
-    }, 800);
+    }, 2500);
   };
 
-  onMounted(() => (animate.value = true));
+  onMounted(() => {
+    animate.value = true;
+
+    tl = gsap.timeline({ paused: true });
+
+    tl.fromTo(
+      ".popup",
+      {
+        translateY: "300px",
+        opacity: 0,
+        duration: 0.7,
+      },
+      {
+        translateY: "-80px",
+        opacity: 1,
+        ease: "back.inOut",
+        duration: 0.7,
+      }
+    );
+  });
 </script>
 
 <template>
   <div
     class="absolute top-0 z-20 flex w-full items-center justify-center font-[Inter]"
   >
+    <div class="popup fixed bottom-0 flex w-full items-center justify-center">
+      <div
+        class="rounded-full bg-gray-800/70 px-5 py-3 text-sm text-white shadow-xl shadow-black/50 backdrop-blur-xl"
+      >
+        Copied Successfully
+      </div>
+    </div>
+
     <div
       class="flex h-full w-full max-w-467.5 items-center justify-between gap-18 p-3 md:p-5 md:px-8"
     >
