@@ -56,7 +56,7 @@
         opacity: 1,
         y: 0,
         duration: 1.3,
-        stagger: 0.15,
+        stagger: 0.05,
         ease: "back",
       }
     );
@@ -77,10 +77,10 @@
 
 <template>
   <div
-    class="relative flex w-full justify-center max-lg:max-h-100 lg:min-h-[150svh] lg:overflow-visible"
+    class="relative flex w-full justify-center bg-black max-lg:max-h-100 lg:min-h-[150svh] lg:overflow-visible"
   >
     <div
-      class="//bg-black absolute z-10 flex h-[40vh] min-w-full items-center justify-center lg:h-svh"
+      class="//bg-black /hidden absolute z-10 flex h-[40vh] min-w-full items-center justify-center lg:h-svh"
     >
       <div
         class="heroheader pt-10/ flex flex-col items-center justify-center gap-6.5 p-6 text-black opacity-0"
@@ -99,15 +99,15 @@
             />
           </NuxtLink>
         </div>
-        <div
-          class="spt /w-full /w-[45%] min-w-200 items-center justify-center text-center font-[Haas] font-black transition-all delay-300 duration-1000 max-lg:text-center xl:w-[45%]"
+        <span
+          class="spt min-w-200 items-center justify-center text-center font-[Haas] leading-[105%] font-black text-white max-xl:text-4xl max-lg:text-center lg:text-[70px] xl:w-[45%] xl:text-7xl 2xl:text-[90px]"
         >
-          <span
-            class="inline w-full bg-clip-text text-center leading-[105%] font-black text-white max-xl:text-4xl lg:text-[70px] xl:text-7xl 2xl:text-[90px]"
-          >
-            Beyond the act of building lies the power of purpose
-          </span>
-        </div>
+          <!-- <span -->
+          <!--   class="inline w-full bg-clip-text text-center" -->
+          <!-- > -->
+          <span>Beyond the act of building lies the power of purpose</span>
+          <!-- </span> -->
+        </span>
 
         <div
           class="cpt max-md:60 font-Geist text-center text-base font-medium text-[#E7E7E7] transition-all delay-200 duration-700 lg:max-w-160 lg:text-[30px]"
@@ -124,7 +124,7 @@
     </div>
 
     <div
-      class="absolute top-0 flex w-full flex-col items-center justify-center lg:h-max"
+      class="/flex absolute top-0 hidden w-full flex-col items-center justify-center lg:h-max"
     >
       <div class="relative flex h-max w-full">
         <img src="/back2.png" class="h-max w-full" />
@@ -196,7 +196,7 @@
     </div>
 
     <div
-      class="/max-h-350 /relative absolute -bottom-full z-10 flex h-svh w-full items-center justify-center"
+      class="/max-h-350 /relative /flex absolute -bottom-full z-10 hidden h-svh w-full items-center justify-center"
     ></div>
   </div>
 </template>
