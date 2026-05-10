@@ -70,6 +70,16 @@
 }
 
 @font-face {
+  font-family: "Haas55";
+  src: url("/fonts/haas/Haas55Roman.otf");
+}
+
+@font-face {
+  font-family: "Haas75";
+  src: url("/fonts/haas/Haas75Bold.otf");
+}
+
+@font-face {
   font-family: "FontSpring";
   src: url("/fonts/fontspring/FontSpring.otf");
 }

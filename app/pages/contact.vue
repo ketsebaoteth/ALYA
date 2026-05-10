@@ -1,7 +1,7 @@
 <script setup lang="ts">
-useHead({
-  title: "Contact",
-});
+  useHead({
+    title: "Contact",
+  });
 </script>
 
-<template><div class="bg-black"></div></template>
+<template><div class="h-svh w-full bg-black"></div></template>
