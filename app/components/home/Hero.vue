@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import gsap from "gsap";
   import { SplitText } from "gsap/all";
-import ExcavatorArms from "./ExcavatorArms.vue";
+  import ExcavatorArms from "./ExcavatorArms.vue";
 
   onMounted(async () => {
     gsap.registerPlugin(SplitText);
@@ -92,19 +92,19 @@ import ExcavatorArms from "./ExcavatorArms.vue";
           </ActionBtn>
         </div>
         <div
-          class="spt w-full max-w-200 items-center justify-center text-center font-[Haas] font-black transition-all delay-300 duration-1000 max-lg:text-center"
+          class="flex w-full max-w-200 flex-col items-center justify-center text-center font-[Haas] leading-[105%] font-black text-black transition-all delay-300 duration-1000 max-xl:text-4xl max-lg:text-center lg:text-[70px] xl:text-7xl 2xl:text-[90px]"
         >
-          <span
-            class="inline bg-clip-text text-center leading-[105%] font-black text-black max-xl:text-4xl lg:text-[70px] xl:text-7xl 2xl:text-[90px]"
-          >
-            We Build For A Better Future
+          <span class="spt text-nowrap">We Build For A Better</span>
+          <span class="spt text-nowrap">
+            Future
             <img
               ref="followerRef"
               src="/arrow-play2.svg"
               class="/ease-in-out inline px-3 transition-all duration-300 max-md:size-12"
             />
-            Not Just For The Sake Of Building
+            Not Just For
           </span>
+          <span class="spt">The Sake Of Building</span>
         </div>
 
         <div
