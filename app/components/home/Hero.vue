@@ -124,7 +124,7 @@
     </div>
 
     <div
-      class="/hidden absolute top-0 flex w-full flex-col items-center justify-center lg:h-max"
+      class="/hidden top-0/ absolute flex w-full flex-col items-center justify-center lg:h-max"
     >
       <div class="relative flex h-max w-full">
         <img src="/back2.png" class="h-max w-full" />
