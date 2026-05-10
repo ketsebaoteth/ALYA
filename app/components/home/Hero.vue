@@ -77,9 +77,11 @@
 
 <template>
   <div
-    class="relative flex lg:min-h-[150svh] max-lg:max-h-100 w-full justify-center lg:overflow-visible"
+    class="relative flex w-full justify-center max-lg:max-h-100 lg:min-h-[150svh] lg:overflow-visible"
   >
-    <div class="absolute z-20 flex lg:h-svh h-[40vh] w-full items-center justify-center">
+    <div
+      class="//bg-black absolute z-10 flex h-[40vh] min-w-full items-center justify-center lg:h-svh"
+    >
       <div
         class="heroheader pt-10/ flex flex-col items-center justify-center gap-6.5 p-6 text-black opacity-0"
       >
@@ -98,10 +100,10 @@
           </NuxtLink>
         </div>
         <div
-          class="spt /w-full xl:w-[45%] /w-[45%] min-w-200 items-center justify-center text-center font-[Haas] font-black transition-all delay-300 duration-1000 max-lg:text-center"
+          class="spt /w-full /w-[45%] min-w-200 items-center justify-center text-center font-[Haas] font-black transition-all delay-300 duration-1000 max-lg:text-center xl:w-[45%]"
         >
           <span
-            class="inline bg-clip-text text-center leading-[105%] font-black text-white max-xl:text-4xl lg:text-[70px] xl:text-7xl 2xl:text-[90px]"
+            class="inline w-full bg-clip-text text-center leading-[105%] font-black text-white max-xl:text-4xl lg:text-[70px] xl:text-7xl 2xl:text-[90px]"
           >
             Beyond the act of building lies the power of purpose
           </span>
@@ -122,7 +124,7 @@
     </div>
 
     <div
-      class="absolute top-0 flex lg:h-max w-full flex-col items-center justify-center"
+      class="absolute top-0 flex w-full flex-col items-center justify-center lg:h-max"
     >
       <div class="relative flex h-max w-full">
         <img src="/back2.png" class="h-max w-full" />
@@ -158,7 +160,10 @@
         </div>
       </div>
 
-      <div :class="loaded ? '' : 'hidden'" class="parent z-0 h-full w-full -translate-y-[16%]">
+      <div
+        :class="loaded ? '' : 'hidden'"
+        class="parent z-0 h-full w-full -translate-y-[16%]"
+      >
         <svg
           id="curve"
           class="h-max w-full"
@@ -189,7 +194,6 @@
         </svg>
       </div>
     </div>
-
 
     <div
       class="/max-h-350 /relative absolute -bottom-full z-10 flex h-svh w-full items-center justify-center"
