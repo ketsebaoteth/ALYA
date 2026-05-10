@@ -8,11 +8,9 @@
 
     gsap.registerPlugin(ScrollTrigger);
     gsap.registerPlugin(SplitText);
-    // const sptext = new SplitText(".focus", { type: "words,chars" });
     const splitedText1 = new SplitText(".sptext", { type: "lines" });
 
     const charssplit = new SplitText(".cptext", { type: "words,chars" });
-    // gsap.set(".focus", { opacity: 1 });
 
     const tl = gsap.timeline({
       scrollTrigger: {

@@ -11,7 +11,7 @@
     <HomeHero />
     <HomeQuality />
     <HomeDetail />
-    <!-- <HomeReviews /> -->
+    <HomeReviews />
     <HomeOffer />
     <HomePreFooter />
     <HomeFooter />
