@@ -99,15 +99,17 @@
             />
           </NuxtLink>
         </div>
-        <span
-          class="spt min-w-200 items-center justify-center text-center font-[Haas] leading-[105%] font-black text-white max-xl:text-4xl max-lg:text-center lg:text-[70px] xl:w-[45%] xl:text-7xl 2xl:text-[90px]"
+        <div
+          class="flex w-full min-w-200 flex-col items-center justify-center text-center font-[Haas] leading-[105%] font-black text-white max-xl:text-4xl max-lg:text-center lg:text-[70px] xl:w-[45%] xl:text-7xl 2xl:text-[90px]"
         >
           <!-- <span -->
           <!--   class="inline w-full bg-clip-text text-center" -->
           <!-- > -->
-          Beyond the act of building lies the power of purpose
+          <span class="spt text-nowrap">Beyond the act of</span>
+          <span class="spt text-nowrap">building lies the power</span>
+          <span class="spt text-nowrap">of purpose</span>
           <!-- </span> -->
-        </span>
+        </div>
 
         <div
           class="cpt max-md:60 font-Geist text-center text-base font-medium text-[#E7E7E7] transition-all delay-200 duration-700 lg:max-w-160 lg:text-[30px]"
