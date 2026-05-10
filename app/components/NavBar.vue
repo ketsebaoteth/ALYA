@@ -107,7 +107,7 @@
         <TopSliderSheet />
       </div>
 
-      <div class="flex flex-col gap-0">
+      <div class="flex cursor-pointer flex-col gap-0">
         <div @click="handleCopy">+251989954323</div>
         <div @click="handleCopy">+251989954324</div>
       </div>
