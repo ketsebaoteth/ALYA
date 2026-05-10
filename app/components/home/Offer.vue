@@ -50,7 +50,7 @@
 
 <template>
   <div
-    class="/max-w-415 z-0 flex max-h-350 min-h-150 w-full flex-col items-center justify-center gap-7 bg-white p-4 text-black lg:min-h-300 lg:p-12 xl:p-14"
+    class="/max-w-415 z-0 flex aspvi /max-h-350 /min-h-150 w-full flex-col items-center justify-center gap-7 bg-white p-4 text-black lg:min-h-300 lg:p-12 xl:p-14"
   >
     <div
       class="flex w-2/3 max-w-150 justify-center px-4 text-center font-[Switzer] leading-[1.15] font-bold max-xl:text-4xl xl:text-[78px] 2xl:w-1/2"

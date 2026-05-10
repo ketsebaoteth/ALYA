@@ -74,10 +74,10 @@
 
 <template>
   <div
-    class="relative flex min-h-[150svh] w-full justify-center overflow-visible"
+    class="relative flex lg:min-h-[150svh] max-lg:max-h-100 w-full justify-center lg:overflow-visible"
   >
     <div
-      class="absolute top-0 flex h-max w-full flex-col items-center justify-center"
+      class="absolute top-0 flex lg:h-max w-full flex-col items-center justify-center"
     >
       <div class="relative flex h-max w-full">
         <img src="/back2.png" class="h-max w-full" />
@@ -145,9 +145,9 @@
       </div>
     </div>
 
-    <div class="bottom-0 flex h-svh w-full flex-col p-90"></div>
+    <div class="bottom-0 flex lg:h-svh h-[40vh] w-full flex-col p-90"></div>
 
-    <div class="absolute z-0 flex h-svh w-full items-center justify-center">
+    <div class="absolute z-0 flex lg:h-svh h-[40vh] w-full items-center justify-center">
       <div
         class="heroheader pt-10/ flex flex-col items-center justify-center gap-6.5 p-6 text-black opacity-0"
       >
@@ -176,7 +176,7 @@
         </div>
 
         <div
-          class="cpt max-md:60 font-Geist text-center text-base font-medium text-white transition-all delay-200 duration-700 lg:max-w-160 lg:text-[30px]"
+          class="cpt max-md:60 font-Geist text-center text-base font-medium text-[#E7E7E7] transition-all delay-200 duration-700 lg:max-w-160 lg:text-[30px]"
         >
           We Build For A Better Future Not just For The Sake Of Doing So.
         </div>

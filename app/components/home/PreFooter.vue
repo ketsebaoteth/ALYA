@@ -2,7 +2,7 @@
 
 <template>
   <div
-    class="/max-h-max /min-h-100 /lg:min-h-350 relative z-0 flex w-full flex-col items-center justify-center gap-7 bg-white pt-90 pb-20 text-black"
+    class="/max-h-max /min-h-100 /lg:min-h-350 max-2xl:aspect-video relative z-0 flex w-full flex-col items-center justify-center gap-7 bg-white pt-90 pb-20 text-black"
   >
     <div
       class="flex w-full -translate-y-32 flex-col items-center gap-4 lg:gap-20"
@@ -20,7 +20,7 @@
       </div>
       <!-- <div class="w-full flex items-center justify-center overflow-scroll/"> -->
       <div
-        class="anim flex w-max -translate-x-935 items-center justify-center bg-black"
+        class="anim flex w-max max-lg:h-10 overflow-hidden -translate-x-935 items-center justify-center bg-black"
       >
         <img src="/partners.png" class="" />
         <img src="/partners.png" class="" />
