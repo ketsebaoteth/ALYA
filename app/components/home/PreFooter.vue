@@ -2,7 +2,7 @@
 
 <template>
   <div
-    class="relative z-0 bg-white flex max-h-max min-h-170 w-full flex-col items-center justify-center gap-7 text-black lg:min-h-350"
+    class="relative z-0 bg-white flex pt-90 pb-20 /max-h-max /min-h-100 w-full flex-col items-center justify-center gap-7 text-black /lg:min-h-350"
   >
     <div
       class="flex w-full -translate-y-32 flex-col items-center gap-4 lg:gap-20"
