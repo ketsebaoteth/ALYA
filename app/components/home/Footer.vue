@@ -1,9 +1,9 @@
 <script setup lang="tsx"></script>
 
 <template>
-  <div class="flex aspect-[2.11/1] w-full items-center justify-center p-5">
+  <div class="flex w-full items-center justify-center p-5">
     <div
-      class="flex aspect-[2.11/1] size-full max-w-467.5 flex-col justify-between rounded-[31px] bg-[#0F0F0F] px-15.5 py-9 pt-6"
+      class="flex aspect-[2.11/1] size-full h-[auto] max-w-467.5 flex-col justify-between rounded-[31px] bg-[#0F0F0F] px-15.5 py-9 pt-6"
     >
       <div class="flex w-full flex-col gap-3">
         <div
