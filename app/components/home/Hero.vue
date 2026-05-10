@@ -104,7 +104,7 @@
             />
             Not Just For
           </span>
-          <span class="spt">The Sake Of Building</span>
+          <span class="spt text-nowrap">The Sake Of Building</span>
         </div>
 
         <div
