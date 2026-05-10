@@ -172,7 +172,7 @@
 
       <div
         :class="loaded ? '' : 'hidden'"
-        class="parent z-0 h-full w-full -translate-y-[16%]"
+        class="parent z-0 h-full w-full -translate-y-[18%]"
       >
         <svg
           id="curve"
