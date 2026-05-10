@@ -106,13 +106,13 @@
 
     <div class="flex h-full w-full max-w-315 items-center gap-6.25 pt-14">
       <div
-        class="left-palette /-skew-y-8 /rounded-4xl h-80 w-full max-w-[35%] -translate-x-5 bg-black opacity-0 xl:h-140"
+        class="left-palette /-skew-y-8 h-80 w-full max-w-[35%] -translate-x-5 rounded-4xl bg-black opacity-0 xl:h-140"
       ></div>
       <div
-        class="center-palette -translate-y-7// /translate-y-63 /rounded-4xl h-80 w-full max-w-[35%] bg-black opacity-0 xl:h-140"
+        class="center-palette -translate-y-7// /translate-y-63 h-80 w-full max-w-[35%] rounded-4xl bg-black opacity-0 xl:h-140"
       ></div>
       <div
-        class="right-palette /skew-y-8 /rounded-4xl h-80 w-full max-w-[35%] translate-x-5 bg-black opacity-0 xl:h-140"
+        class="right-palette /skew-y-8 h-80 w-full max-w-[35%] translate-x-5 rounded-4xl bg-black opacity-0 xl:h-140"
       ></div>
     </div>
   </div>

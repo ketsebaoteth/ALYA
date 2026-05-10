@@ -31,7 +31,36 @@
         ease: "back",
       },
       "<"
-    );
+    )
+      // INFO: Here is the animation for the images change it if you want
+      .fromTo(
+        ".image1",
+        {
+          opacity: 0,
+          translateY: "-150px",
+          rotateZ: "20px",
+        },
+        {
+          opacity: 1,
+          translateY: "0px",
+          rotateZ: "0px",
+        },
+        "<"
+      )
+      .fromTo(
+        ".image2",
+        {
+          opacity: 0,
+          translateY: "-150px",
+          rotateZ: "-20px",
+        },
+        {
+          opacity: 1,
+          translateY: "0px",
+          rotateZ: "0px",
+        },
+        "<"
+      );
   });
 
   const REVIEWS = [
@@ -71,11 +100,11 @@
             >
               <img
                 src="/carousel-img1.png"
-                class="absolute z-0 h-full w-auto p-3"
+                class="image1 absolute z-0 h-full w-auto p-3"
               />
               <img
                 src="/carousel-img2.png"
-                class="absolute z-10 h-[93%] w-auto p-3"
+                class="image2 absolute z-10 h-[93%] w-auto p-3"
               />
             </div>
 
