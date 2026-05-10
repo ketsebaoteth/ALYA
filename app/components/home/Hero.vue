@@ -152,7 +152,8 @@
         class="heroheader pt-10/ flex flex-col items-center justify-center gap-6.5 p-6 text-black opacity-0"
       >
         <div class="cutbwu">
-          <ActionBtn
+          <NuxtLink
+            to="/contact"
             class="group flex cursor-pointer items-center gap-2.75 rounded-full border border-[#B0B0B0] bg-linear-to-r from-white via-white to-[#B0B0B0] px-3.75 py-1 hover:scale-101"
           >
             <div class="light font-[Switzer] text-lg font-light md:text-[22px]">
@@ -162,7 +163,7 @@
               src="/arrow.svg"
               class="bounce-back w-4 shrink-0 transition-all group-hover:ml-3.5"
             />
-          </ActionBtn>
+          </NuxtLink>
         </div>
         <div
           class="spt w-full max-w-200 items-center justify-center text-center font-[Haas] font-black transition-all delay-300 duration-1000 max-lg:text-center"
@@ -183,11 +184,7 @@
         <ActionBtn
           class="group flex font-[Switzer] font-semibold text-black transition-all delay-1500 duration-500 hover:scale-101"
         >
-          <div
-            class="rounded-full bg-white px-8.25 py-2.75 shadow-[0px_15px_35.6px_0px] shadow-black/5 transition-all"
-          >
-            Get Started
-          </div>
+          Get Started
         </ActionBtn>
       </div>
     </div>

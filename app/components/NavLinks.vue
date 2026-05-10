@@ -5,29 +5,27 @@
 
   let tl: gsap.core.Timeline;
 
-  // BUG: This has a bug fuck gsap
-  onMounted(() => {
-    gsap.set("svg", {
+  onMounted(async () => {
+    await nextTick();
+
+    gsap.set("#svg", {
       opacity: 1,
     });
 
-    tl = gsap
-      .timeline({
+    tl = gsap.fromTo(
+      "#svg",
+      {
+        opacity: 0,
+        width: "0px",
+        duration: 1,
+      },
+      {
+        opacity: 1,
+        width: "8px",
+        duration: 0.2,
         paused: true,
-      })
-      .fromTo(
-        "#svg",
-        {
-          opacity: 0,
-          width: "0px",
-          duration: 1,
-        },
-        {
-          opacity: 1,
-          width: "8px",
-          duration: 1,
-        }
-      );
+      }
+    );
   });
 </script>
 
@@ -35,11 +33,12 @@
   <div class="relative flex items-center justify-center max-md:hidden">
     <NuxtLink
       v-for="r in NAV_ROUTES"
+      id="main"
       :key="r.name"
       :to="r.path"
       class="z-30 flex items-center gap-2 px-2 py-2.5 text-xs transition-all hover:text-white md:px-7 md:text-sm"
       :class="route.path.includes(r.path) ? 'text-white' : 'text-white/70'"
-      @click="() => tl?.play()"
+      @click="() => tl?.restart()"
     >
       <svg
         id="svg"

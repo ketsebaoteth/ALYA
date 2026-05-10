@@ -14,7 +14,7 @@
       fontWeight: 900,
       stagger: 0.3,
       scrollTrigger: {
-        start: "center top",
+        start: "80% top",
         end: "+=500",
         scrub: 1,
         anticipatePin: 1,
@@ -24,23 +24,43 @@
 </script>
 
 <template>
-  <div class="flex flex-col font-[Haas55] w-full h-full bg-white">
-    <div class="relative z-10 text-white h-[60svh] flex items-center justify-center">
-      <div class="focus font-[Haas75] gap-[38px] text-8xl font-bold flex flex-col items-center justify-center">
-        <div class="max-w-335 font-thin text-center">OUR COMMITMENT TO QUALITY, SAFETY,</div>
-        <div class="font-thin font-[Haas55] max-w-[760px] leading-[120%] text-center text-[32px]">At the heart of every project we take on is a dedication to delivering reliability. We build results that stand the test of time. From selecting top-grade materials to partnering with experienced subcontractors,</div>
+  <div class="flex h-full w-full flex-col bg-white font-[Haas55]">
+    <div
+      class="relative z-10 flex h-[60svh] items-center justify-center text-white"
+    >
+      <div
+        class="focus flex flex-col items-center justify-center gap-9.5 font-[Haas75] text-8xl font-bold"
+      >
+        <div class="max-w-335 text-center font-thin">
+          OUR COMMITMENT TO QUALITY, SAFETY,
+        </div>
+        <div
+          class="max-w-190 text-center font-[Haas55] text-[32px] leading-[120%] font-thin"
+        >
+          At the heart of every project we take on is a dedication to delivering
+          reliability. We build results that stand the test of time. From
+          selecting top-grade materials to partnering with experienced
+          subcontractors,
+        </div>
       </div>
-
     </div>
-    <div class="z-20 w-full flex items-center justify-center pt-35">
-      <img
-        src="/back1.png"
-        class=" w-full"
-      />
+    <div class="z-20 flex w-full items-center justify-center pt-35">
+      <img src="/back1.png" class="w-full" />
 
-      <div class="absolute p-22 pb-30 px-36 w-full flex flex-col gap-10">
-        <div class="text-[128px] font-[Haas55] font-normal leading-[97%] max-w-[1177px]">Building Fast With Quality And speed</div>
-        <div class="font-[Switzer] text-[32px] font-normal leading-[105.2%] max-w-[731px]">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</div>
+      <div class="absolute flex w-full flex-col gap-10 p-22 px-36 pb-30">
+        <div
+          class="max-w-294.25 font-[Haas55] text-[128px] leading-[97%] font-normal"
+        >
+          Building Fast With Quality And speed
+        </div>
+        <div
+          class="max-w-182.75 font-[Switzer] text-[32px] leading-[105.2%] font-normal"
+        >
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book.
+        </div>
       </div>
     </div>
   </div>

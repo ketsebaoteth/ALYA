@@ -20,7 +20,7 @@
       {
         translateY: "0px",
         opacity: 1,
-        duration: 1.3,
+        duration: 0.6,
         ease: "power1.out",
       }
     )
@@ -29,8 +29,8 @@
         {
           translateX: "0px",
           opacity: 1,
-          duration: 0.9,
-          delay: 0.8,
+          duration: 0.7,
+          delay: 0.4,
           ease: "power3.out",
         },
         "<"
@@ -40,7 +40,7 @@
         {
           translateX: "0px",
           opacity: 1,
-          duration: 0.9,
+          duration: 0.7,
           ease: "power3.out",
         },
         "<"
@@ -50,7 +50,7 @@
 
 <template>
   <div
-    class="z-0 flex max-h-350 min-h-150 w-full /max-w-415 bg-white flex-col items-center justify-center gap-7 p-4 text-black lg:min-h-300 lg:p-12 xl:p-14"
+    class="/max-w-415 z-0 flex max-h-350 min-h-150 w-full flex-col items-center justify-center gap-7 bg-white p-4 text-black lg:min-h-300 lg:p-12 xl:p-14"
   >
     <div
       class="flex w-2/3 max-w-150 justify-center px-4 text-center font-[Switzer] leading-[1.15] font-bold max-xl:text-4xl xl:text-[78px] 2xl:w-1/2"
@@ -67,13 +67,13 @@
 
     <div class="flex h-full w-full max-w-315 items-center gap-6.25 pt-14">
       <div
-        class="left-palette h-80 w-full max-w-[35%] -translate-x-5 /-skew-y-8 /rounded-4xl bg-black opacity-0 xl:h-140"
+        class="left-palette /-skew-y-8 /rounded-4xl h-80 w-full max-w-[35%] -translate-x-5 bg-black opacity-0 xl:h-140"
       ></div>
       <div
-        class="center-palette -translate-y-7// h-80 w-full max-w-[35%] /translate-y-63 /rounded-4xl bg-black opacity-0 xl:h-140"
+        class="center-palette -translate-y-7// /translate-y-63 /rounded-4xl h-80 w-full max-w-[35%] bg-black opacity-0 xl:h-140"
       ></div>
       <div
-        class="right-palette h-80 w-full max-w-[35%] translate-x-5 /skew-y-8 /rounded-4xl bg-black opacity-0 xl:h-140"
+        class="right-palette /skew-y-8 /rounded-4xl h-80 w-full max-w-[35%] translate-x-5 bg-black opacity-0 xl:h-140"
       ></div>
     </div>
   </div>
