@@ -145,7 +145,7 @@
       </div>
     </div>
 
-    <div class="bottom-0 flex lg:h-svh h-[40vh] w-full flex-col p-90"></div>
+    <div class="bottom-0 flex lg:h-svh h-[40vh] w-full bg-black flex-col p-90"></div>
 
     <div class="absolute z-0 flex lg:h-svh h-[40vh] w-full items-center justify-center">
       <div
