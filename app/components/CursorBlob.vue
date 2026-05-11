@@ -41,9 +41,9 @@
     filterStdDeviation: 30,
     filterColorMatrixValues: "1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 35 -10",
     useFilter: true,
-    fastDuration: 0.2,
+    fastDuration: 0.4,
     slowDuration: 0.7,
-    fastEase: "power3.out",
+    fastEase: "power1.out",
     slowEase: "power1.out",
     zIndex: 100,
   });
@@ -94,8 +94,6 @@
     class="pointer-events-none fixed top-0 left-0 flex h-full w-full"
     :style="{ zIndex: props.zIndex }"
   >
-    <!-- @mousemove="handleMove" -->
-    <!-- @touchmove="handleMove" -->
     <svg v-if="props.useFilter" class="absolute h-0 w-0">
       <filter :id="props.filterId">
         <feGaussianBlur
@@ -106,43 +104,71 @@
         <feColorMatrix in="blur" :values="props.filterColorMatrixValues" />
       </filter>
     </svg>
-
     <div
-      class="pointer-events-none absolute inset-0 cursor-default overflow-hidden select-none"
+      v-for="(_, i) in 1"
+      :key="i"
+      :ref="
+        (el) => {
+          blobsRef[i] = el as HTMLElement | null;
+        }
+      "
+      class="absolute h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#3E5CE1] will-change-transform"
       :style="{
-        filter: props.useFilter ? `url(#${props.filterId})` : undefined,
+        borderRadius: props.blobType === 'circle' ? '50%' : '0',
+        backgroundColor: props.fillColor,
       }"
-    >
-      <div
-        v-for="(_, i) in props.trailCount"
-        :key="i"
-        :ref="
-          (el) => {
-            blobsRef[i] = el as HTMLElement | null;
-          }
-        "
-        class="absolute -translate-x-1/2 -translate-y-1/2 scale-50 transform will-change-transform"
-        :style="{
-          width: `${props.sizes[i]}px`,
-          height: `${props.sizes[i]}px`,
-          borderRadius: props.blobType === 'circle' ? '50%' : '0',
-          backgroundColor: props.fillColor,
-          opacity: props.opacities[i],
-          boxShadow: `${props.shadowOffsetX}px ${props.shadowOffsetY}px ${props.shadowBlur}px 0 ${props.shadowColor}`,
-        }"
-      >
-        <div
-          class="absolute"
-          :style="{
-            width: `${props.innerSizes[i]}px`,
-            height: `${props.innerSizes[i]}px`,
-            top: `${(props.sizes[i] - props.innerSizes[i]) / 2}px`,
-            left: `${(props.sizes[i] - props.innerSizes[i]) / 2}px`,
-            backgroundColor: props.innerColor,
-            borderRadius: props.blobType === 'circle' ? '50%' : '0',
-          }"
-        />
-      </div>
-    </div>
+    ></div>
+    <!-- @mousemove="handleMove" -->
+    <!-- boxShadow: `${props.shadowOffsetX}px ${props.shadowOffsetY}px ${props.shadowBlur}px 0 ${props.shadowColor}`, -->
+    <!-- boxShadow: `${props.shadowOffsetX}px ${props.shadowOffsetY}px ${props.shadowBlur}px 0 ${props.shadowColor}`, -->
+    <!-- @touchmove="handleMove" -->
+    <!-- <svg v-if="props.useFilter" class="absolute h-0 w-0"> -->
+    <!--   <filter :id="props.filterId"> -->
+    <!--     <feGaussianBlur -->
+    <!--       in="SourceGraphic" -->
+    <!--       result="blur" -->
+    <!--       :stdDeviation="props.filterStdDeviation" -->
+    <!--     /> -->
+    <!--     <feColorMatrix in="blur" :values="props.filterColorMatrixValues" /> -->
+    <!--   </filter> -->
+    <!-- </svg> -->
+    <!---->
+    <!-- <div -->
+    <!--   class="pointer-events-none absolute inset-0 cursor-default overflow-hidden select-none" -->
+    <!--   :style="{ -->
+    <!--     filter: props.useFilter ? `url(#${props.filterId})` : undefined, -->
+    <!--   }" -->
+    <!-- > -->
+    <!--   <div -->
+    <!--     v-for="(_, i) in props.trailCount" -->
+    <!--     :key="i" -->
+    <!--     :ref=" -->
+    <!--       (el) => { -->
+    <!--         blobsRef[i] = el as HTMLElement | null; -->
+    <!--       } -->
+    <!--     " -->
+    <!--     class="absolute -translate-x-1/2 -translate-y-1/2 scale-50 transform will-change-transform" -->
+    <!--     :style="{ -->
+    <!--       width: `${props.sizes[i]}px`, -->
+    <!--       height: `${props.sizes[i]}px`, -->
+    <!--       borderRadius: props.blobType === 'circle' ? '50%' : '0', -->
+    <!--       backgroundColor: props.fillColor, -->
+    <!--       opacity: props.opacities[i], -->
+    <!--       boxShadow: `${props.shadowOffsetX}px ${props.shadowOffsetY}px ${props.shadowBlur}px 0 ${props.shadowColor}`, -->
+    <!--     }" -->
+    <!--   > -->
+    <!--     <div -->
+    <!--       class="absolute" -->
+    <!--       :style="{ -->
+    <!--         width: `${props.innerSizes[i]}px`, -->
+    <!--         height: `${props.innerSizes[i]}px`, -->
+    <!--         top: `${(props.sizes[i] - props.innerSizes[i]) / 2}px`, -->
+    <!--         left: `${(props.sizes[i] - props.innerSizes[i]) / 2}px`, -->
+    <!--         backgroundColor: props.innerColor, -->
+    <!--         borderRadius: props.blobType === 'circle' ? '50%' : '0', -->
+    <!--       }" -->
+    <!--     /> -->
+    <!--   </div> -->
+    <!-- </div> -->
   </div>
 </template>

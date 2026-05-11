@@ -31,15 +31,25 @@
       type: "chars",
     });
 
-    tl.to(hover.value, {
-      yPercent: -100,
-      duration: 0.3,
-    }).from(
+    tl.fromTo(
+      hover.value,
+      {
+        yPercent: 0,
+        duration: 0.23,
+      },
+      {
+        yPercent: -105,
+        duration: 0.23,
+      },
+      "<"
+    ).from(
       split.chars,
       {
         yPercent: 120,
+        opacity: 0,
         stagger: 0.02,
-        duration: 0.4,
+        delay: 0.05,
+        duration: 0.34,
         ease: "back.inOut",
       },
       "<"
@@ -49,21 +59,21 @@
 
 <template>
   <button
-    class="relative z-10 cursor-pointer overflow-hidden rounded-full shadow-[0px_15px_35.6px_0px] shadow-black/5 transition-all"
+    class="relative z-10 cursor-pointer"
     :class="props.class"
     @click="props.callBack"
     @mouseenter="() => tl.restart()"
     @mouseleave="() => tl.reverse()"
   >
     <div class="base relative">
-      <div class="rounded-full bg-white px-8.25 py-2.75 transition-all">
+      <div class="bg-white/ rounded-full px-8.25 py-2.75 transition-all">
         <slot />
       </div>
     </div>
 
     <div
       ref="hover"
-      class="absolute inset-0 translate-y-full rounded-full bg-black"
+      class="absolute z-20 h-[105%] w-[105%] translate-y-[105%] rounded-full bg-black"
     >
       <div class="flex h-full w-full items-center justify-center">
         <div

@@ -102,7 +102,7 @@
       class="parentelm absolute flex w-full max-w-400 flex-col items-center justify-center pt-40 pl-15 text-black"
     >
       <div class="flex w-full">
-        <div class="flex w-2/3 flex-col gap-20">
+        <div class="flex w-max max-w-2/3 flex-col gap-20">
           <div class="title font-[Inter] text-[85px] leading-[97%]">
             Building Fast With Quality And speed
           </div>
