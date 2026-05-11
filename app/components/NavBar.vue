@@ -27,9 +27,15 @@
     }, 2500);
   };
 
+  const handleLanguageChange = (e: Event) => {
+    console.log(e);
+    alert("Language change currently not implemented");
+  };
+
   onMounted(() => {
     animate.value = true;
 
+    gsap.set(".popup", { opacity: 0 });
     tl = gsap.timeline({ paused: true });
 
     tl.fromTo(
@@ -53,7 +59,9 @@
   <div
     class="absolute top-0 z-20 flex w-full items-center justify-center font-[Inter]"
   >
-    <div class="popup fixed bottom-0 flex w-full items-center justify-center">
+    <div
+      class="popup fixed bottom-0 flex w-full items-center justify-center opacity-0"
+    >
       <div
         class="rounded-full bg-gray-800/70 px-5 py-3 text-sm text-white shadow-xl shadow-black/50 backdrop-blur-xl"
       >
@@ -107,9 +115,17 @@
         <TopSliderSheet />
       </div>
 
-      <div class="flex cursor-pointer flex-col gap-0">
-        <div @click="handleCopy">+251989954323</div>
-        <div @click="handleCopy">+251989954324</div>
+      <div class="flex items-center justify-center gap-5">
+        <div
+          class="flex items-center justify-center rounded-full p-2 transition-colors hover:bg-white/9"
+          @click="handleLanguageChange"
+        >
+          EN
+        </div>
+        <div class="flex cursor-pointer flex-col gap-0">
+          <div @click="handleCopy">+251989954323</div>
+          <div @click="handleCopy">+251989954324</div>
+        </div>
       </div>
     </div>
   </div>

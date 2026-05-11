@@ -1,5 +1,37 @@
 <script setup lang="tsx">
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import ActionBtn from "../ActionBtn.vue";
+
+  onMounted(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".animfooter",
+        start: "top 60%",
+      },
+    });
+
+    tl.fromTo(
+      ".animfooter",
+      {
+        opacity: 0,
+        y: 40,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.15,
+        ease: "back",
+      },
+      "<"
+    );
+  });
+
   const handleSubmission = async (e: Event) => {
+    // TODO: Handle doing whatever the button does
     console.log(e);
     return alert("um .............. okay");
   };
@@ -8,7 +40,7 @@
 <template>
   <div class="flex w-full items-center justify-center p-5">
     <div
-      class="flex aspect-[2.11/1] size-full h-auto max-w-467.5 flex-col justify-between rounded-[31px] bg-[#0F0F0F] px-15.5 py-9 pt-6"
+      class="animfooter flex aspect-[2.11/1] size-full h-auto max-w-467.5 flex-col justify-between rounded-[31px] bg-[#0F0F0F] px-15.5 py-9 pt-6"
     >
       <div class="flex w-full flex-col gap-3">
         <div
@@ -31,12 +63,12 @@
                 @keydown.enter="handleSubmission"
               />
             </div>
-            <button
+            <ActionBtn
               class="flex w-full cursor-pointer items-center justify-center rounded-full bg-white p-6 text-[24px] text-black"
-              @click="handleSubmission"
+              :call-back="handleSubmission"
             >
               Subscribe
-            </button>
+            </ActionBtn>
           </div>
         </div>
       </div>

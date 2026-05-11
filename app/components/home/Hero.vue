@@ -102,13 +102,9 @@
         <div
           class="flex w-full min-w-200 flex-col items-center justify-center text-center font-[Haas,sans-serif] leading-[105%] font-black text-white max-xl:text-4xl max-lg:text-center lg:text-[70px] xl:w-[45%] xl:text-7xl 2xl:text-[90px]"
         >
-          <!-- <span -->
-          <!--   class="inline w-full bg-clip-text text-center" -->
-          <!-- > -->
           <span class="spt text-nowrap">Beyond the act of</span>
           <span class="spt text-nowrap">building lies the power</span>
           <span class="spt text-nowrap">of purpose</span>
-          <!-- </span> -->
         </div>
 
         <div

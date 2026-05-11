@@ -53,7 +53,6 @@
     const spl = new SplitText(".sptext2", { type: "lines" });
 
     const cha = new SplitText(".cptext2", { type: "words,chars" });
-    // gsap.set(".focus", { opacity: 1 });
 
     const tl2 = gsap.timeline({
       scrollTrigger: {
@@ -120,7 +119,7 @@
       </div>
     </div>
     <div class="z-20 flex w-full items-center justify-center 2xl:pt-50">
-      <img src="/back1.png" class="w-full" />
+      <img src="/back1.png" class="fade w-full" />
 
       <div
         class="focus2 absolute flex w-full flex-col gap-10 xl:px-36 xl:pb-30 2xl:p-22"

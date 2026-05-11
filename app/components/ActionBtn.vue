@@ -8,7 +8,7 @@
 
   const props = defineProps({
     callBack: {
-      type: Function as PropType<() => void>,
+      type: Function as PropType<(e: Event) => void>,
       default: () => {},
     },
     class: {
@@ -49,16 +49,14 @@
 
 <template>
   <button
-    class="relative z-10 cursor-pointer overflow-hidden rounded-full transition-all"
+    class="relative z-10 cursor-pointer overflow-hidden rounded-full shadow-[0px_15px_35.6px_0px] shadow-black/5 transition-all"
     :class="props.class"
     @click="props.callBack"
     @mouseenter="() => tl.restart()"
     @mouseleave="() => tl.reverse()"
   >
     <div class="base relative">
-      <div
-        class="rounded-full bg-white px-8.25 py-2.75 shadow-[0px_15px_35.6px_0px] shadow-black/5 transition-all"
-      >
+      <div class="rounded-full bg-white px-8.25 py-2.75 transition-all">
         <slot />
       </div>
     </div>

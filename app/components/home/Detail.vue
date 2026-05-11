@@ -45,6 +45,18 @@
       { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: "back.out" }
     )
       .fromTo(
+        ".rotate",
+        {
+          opacity: 0,
+          rotateZ: "50px",
+        },
+        {
+          opacity: 1,
+          rotateZ: "0px",
+        },
+        "<"
+      )
+      .fromTo(
         charssplit.chars,
         { filter: "blur(20px)" },
         {
@@ -82,7 +94,7 @@
     >
       <img
         src="/back3.png"
-        class="/w-[30svw] /h-[120%] h-[150svh] w-auto overflow-visible"
+        class="/w-[30svw] /h-[120%] rotate h-[150svh] w-auto origin-bottom-right overflow-visible"
       />
     </div>
 
