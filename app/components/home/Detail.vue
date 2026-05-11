@@ -1,8 +1,4 @@
 <script setup lang="tsx">
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-  import { SplitText } from "gsap/SplitText";
-
   const PALETTES = [
     {
       title: "91",
@@ -21,68 +17,6 @@
       desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
     },
   ];
-
-  onMounted(async () => {
-    await nextTick();
-
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.registerPlugin(SplitText);
-
-    const splitedText1 = new SplitText(".title", { type: "lines" });
-
-    const charssplit = new SplitText(".content", { type: "words,chars" });
-    // gsap.set(".focus", { opacity: 1 });
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".parentelm",
-        start: "20% center",
-      },
-    });
-    tl.fromTo(
-      charssplit.words,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: "back.out" }
-    )
-      .fromTo(
-        ".rotate",
-        {
-          opacity: 0,
-          rotateZ: "50px",
-        },
-        {
-          opacity: 1,
-          rotateZ: "0px",
-        },
-        "<"
-      )
-      .fromTo(
-        charssplit.chars,
-        { filter: "blur(20px)" },
-        {
-          filter: "blur(0px)",
-          duration: 0.1,
-          stagger: 0.01,
-          ease: "power2.inOut",
-        },
-        "<"
-      )
-      .fromTo(
-        splitedText1.lines,
-        {
-          opacity: 0,
-          y: 40,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.15,
-          ease: "back",
-        },
-        "<"
-      );
-  });
 </script>
 
 <template>
