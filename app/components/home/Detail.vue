@@ -1,7 +1,4 @@
 <script setup lang="tsx">
-  import gsap from "gsap";
-  import ScrollTrigger from "gsap/ScrollTrigger";
-
   const PALETTES = [
     {
       title: "24/7",
@@ -16,71 +13,6 @@
       desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
     },
   ];
-
-  // FIX: It just doesn't work, still working on it
-  onMounted(async () => {
-    await nextTick();
-
-     gsap.registerPlugin(ScrollTrigger);
-     const tl = gsap.timeline({
-       scrollTrigger: {
-         trigger: ".image",
-         start: "top center",
-         end: "+=500",
-         scrub: 1,
-         //pin: true,
-         //pinSpacing: true,
-         invalidateOnRefresh: true,
-       },
-     })
-    // .eventCallback("onStart", () => document.body.style.overflow = "hidden").eventCallback("onComplete", document.body.style.overflow = "auto");
-
-      tl
-        .to(".image", {
-        //duration: 1,
-         // BUG: I am trying scaling it cuz width and height are not responding to the animation at all, I need to rewrite the layout for the whole component
-        scale: 3.5,
-        "border-radius": '0px',
-          //top: "50%",
-          //left: "50%",
-        //maxWidth: "none",
-         //maxHeight: "none",
-         //position: "absolute",
-        // opacity: 1,
-        //width: "100vw",
-        //height: "100vh",
-      });
-// tl.fromTo(".image",
-//   {
-//     // INITIAL STATE: Centered and small
-//     position: "relative",
-//     top: "50%",
-//     left: "50%",
-//     xPercent: -50, // This is the secret to perfect centering
-//     yPercent: -50,
-//     //width: "300px",  // Give it a real starting pixel value
-//     //height: "200px",
-//     borderRadius: "81px",
-//     objectFit: "cover"
-//   },
-//   {
-//     // FINAL STATE: Fill the screen
-// position: "absolute",
-//     duration: 1,
-//     width: "100vw",
-//     height: "100vh",
-//     borderRadius: "0px",
-// maxWidth: "none",
-// maxHeight: "none",
-//     ease: "none",
-//     // Keep it centered on the viewport
-//     //top: "50%",
-//     left: "50%",
-//     xPercent: -50,
-//     yPercent: -50
-//   }
-// );
-  });
 </script>
 
 <template>
