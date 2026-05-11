@@ -43,6 +43,7 @@
         filter: "blur(0px)",
         duration: 0.1,
         stagger: 0.01,
+	delay: 0.5,
         ease: "power2.inOut",
       }
     );
@@ -56,6 +57,7 @@
         opacity: 1,
         y: 0,
         duration: 1.3,
+	delay: 0.5,
         stagger: 0.15,
         ease: "back",
       }
