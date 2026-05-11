@@ -64,7 +64,7 @@
               />
             </div>
             <ActionBtn
-              class="flex w-full cursor-pointer items-center justify-center rounded-full bg-white p-6 text-[24px] text-black"
+              class="flex w-full items-center justify-center overflow-hidden rounded-full bg-white p-6 text-[24px] text-black shadow-[0px_15px_35.6px_0px] shadow-black/5"
               :call-back="handleSubmission"
             >
               Subscribe
