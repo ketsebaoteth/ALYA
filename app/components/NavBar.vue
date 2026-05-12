@@ -34,18 +34,17 @@
   onMounted(() => {
     animate.value = true;
 
-    gsap.set(".popup", { opacity: 0 });
     tl = gsap.timeline({ paused: true });
 
     tl.fromTo(
       ".popup",
       {
-        translateY: "300px",
+        y: "300px",
         opacity: 0,
         duration: 0.7,
       },
       {
-        translateY: "-80px",
+        y: "-80px",
         opacity: 1,
         ease: "back.inOut",
         duration: 0.7,
@@ -58,15 +57,9 @@
   <div
     class="fixed top-0 z-2 flex w-full items-center justify-center font-[Inter]"
   >
-    <div
-      class="popup fixed bottom-0 flex w-full items-center justify-center opacity-0"
-    >
-      <div
-        class="rounded-full bg-gray-800/70 px-5 py-3 text-sm text-white shadow-xl shadow-black/50 backdrop-blur-xl"
-      >
-        Copied Successfully
-      </div>
-    </div>
+    <Teleport to="body">
+      <Popup class="popup" />
+    </Teleport>
 
     <div
       class="flex h-full w-full max-w-467.5 items-center justify-between gap-18 p-3 md:p-5 md:px-8"
