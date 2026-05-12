@@ -78,13 +78,13 @@
 
 <template>
   <div
-    class="relative flex w-full justify-center bg-black max-lg:max-h-100 lg:min-h-[150svh] lg:overflow-visible"
+    class="relative flex aspect-16/14 h-auto w-full justify-center overflow-visible bg-black"
   >
     <div
-      class="//bg-black /hidden absolute z-10 flex h-[40vh] min-w-full items-center justify-center lg:h-svh"
+      class="absolute z-10 flex aspect-video min-w-full items-center justify-center"
     >
       <div
-        class="heroheader pt-10/ flex flex-col items-center justify-center gap-6.5 p-6 text-black opacity-0"
+        class="heroheader flex flex-col items-center justify-center gap-6.5 p-6 text-black opacity-0"
       >
         <div class="cutbwu">
           <NuxtLink
@@ -101,7 +101,7 @@
           </NuxtLink>
         </div>
         <div
-          class="flex w-full min-w-200 flex-col items-center justify-center text-center font-[Haas,sans-serif] leading-[105%] font-black text-white max-xl:text-4xl max-lg:text-center lg:text-[70px] xl:w-[45%] xl:text-7xl 2xl:text-[90px]"
+          class="flex w-full min-w-200 flex-col items-center justify-center text-center font-[Haas,sans-serif] text-[clamp(33px,5vw,90px)] leading-[105%] font-black text-white"
         >
           <span class="spt text-nowrap">Beyond the act of</span>
           <span class="spt text-nowrap">building lies the power</span>
@@ -109,7 +109,7 @@
         </div>
 
         <div
-          class="cpt max-md:60 font-Geist text-center text-base font-medium text-[#E7E7E7] transition-all delay-200 duration-700 lg:max-w-160 lg:text-[30px]"
+          class="cpt font-Geist text-center text-[clamp(13px,2vw,30px)] font-medium text-[#E7E7E7] lg:max-w-160"
         >
           We Build For A Better Future Not just For The Sake Of Doing So.
         </div>
@@ -123,7 +123,7 @@
     </div>
 
     <div
-      class="/hidden top-0/ absolute flex w-full flex-col items-center justify-center lg:h-max"
+      class="/hidden top-0/ /lg:h-max absolute flex aspect-video w-full flex-col items-center justify-center"
     >
       <div class="relative flex h-max w-full">
         <img src="/back-new.png" loading="eager" class="h-max w-full" />
@@ -131,7 +131,7 @@
 
       <div
         :class="loaded ? '' : 'hidden'"
-        class="parent z-0 h-full w-full -translate-y-[18%]"
+        class="parent z-0 h-full w-full -translate-y-[25%]"
       >
         <svg
           id="curve"
@@ -163,10 +163,6 @@
         </svg>
       </div>
     </div>
-
-    <div
-      class="/max-h-350 /relative /flex absolute -bottom-full z-10 hidden h-svh w-full items-center justify-center"
-    ></div>
   </div>
 </template>
 

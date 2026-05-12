@@ -47,7 +47,7 @@
         class="absolute right-0 -bottom-20 z-30 h-full w-1/9 bg-linear-to-r from-white/0 via-white to-white"
       ></div>
       <div
-        class="antext max-md-70 max-w-70 text-center font-[Switzer] leading-none font-bold max-xl:text-3xl lg:max-w-100 xl:text-[76px]"
+        class="antext max-w-70 text-center font-[Switzer] text-[clamp(30px,5vw,76px)] leading-none font-bold lg:max-w-100"
       >
         Our Trusted Partners
       </div>

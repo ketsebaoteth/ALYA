@@ -88,15 +88,15 @@
 
 <template>
   <div
-    class="/max-w-415 aspvi /max-h-350 /min-h-150 z-0 flex w-full flex-col items-center justify-center gap-7 bg-white p-4 text-black lg:min-h-300 lg:p-12 xl:p-14"
+    class="aspvi z-0 flex w-full flex-col items-center justify-center gap-7 bg-white p-4 text-black lg:min-h-300 lg:p-12 xl:p-14"
   >
     <div
-      class="titlet flex w-2/3 max-w-150 justify-center px-4 text-center font-[Switzer] leading-[1.15] font-bold max-xl:text-4xl xl:text-[78px] 2xl:w-1/2"
+      class="titlet flex w-2/3 max-w-150 justify-center px-4 text-center font-[Switzer] text-[clamp(32px,5vw,78px)] leading-[1.15] font-bold 2xl:w-1/2"
     >
       What we offer to your business
     </div>
     <div
-      class="desct /flex max-w-180 justify-center text-center text-[19px] leading-none text-black max-xl:max-w-130 max-xl:text-sm"
+      class="desct max-w-180 justify-center text-center text-[clamp(13px,2vw,19px)] leading-none text-black max-xl:max-w-130"
     >
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
       Lorem Ipsum has been the industry's standard dummy text ever since the

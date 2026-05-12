@@ -57,7 +57,7 @@
     const tl2 = gsap.timeline({
       scrollTrigger: {
         trigger: ".focus2",
-        start: "-10% center",
+        start: "-25% center",
       },
     });
 
@@ -97,14 +97,14 @@
         ".fade",
         {
           opacity: 1,
-          scale: 1.4,
+          scale: 1.1,
           rotateZ: "-7px",
         },
         {
           opacity: 1,
           scale: 1,
           rotateZ: "0px",
-          ease: "power1.in",
+          ease: "power1.inOut",
         },
         "<"
       );
@@ -113,19 +113,19 @@
 
 <template>
   <div
-    class="flex h-full w-full flex-col bg-[#22327B] font-[Haas55] 2xl:bg-white"
+    class="/2xl:aspect-16/18 z-70 flex h-auto w-full flex-col gap-54 overflow-visible font-[Haas55] max-2xl:aspect-16/19 2xl:h-full"
   >
-    <div
-      class="relative z-10 flex items-center justify-center text-white max-lg:aspect-square lg:h-[60svh]"
-    >
+    <div class="relative z-10 flex items-center justify-center text-white">
       <div
         class="focus flex flex-col items-center justify-center gap-9.5 font-[Haas75] text-2xl font-bold 2xl:text-8xl"
       >
-        <div class="sptext max-w-[75%] text-center font-thin 2xl:max-w-[65%]">
+        <div
+          class="sptext max-w-[75%] text-center text-[clamp(1.5rem,5vw,6rem)] font-thin 2xl:max-w-[65%]"
+        >
           OUR COMMITMENT TO QUALITY, SAFETY,
         </div>
         <div
-          class="cptext max-w-[75%] text-center font-[Haas55] text-base leading-[120%] font-thin 2xl:max-w-[45%] 2xl:text-[32px]"
+          class="cptext max-w-[65%] text-center font-[Haas55] text-[clamp(13px,2vw,30px)] leading-[120%] font-thin 2xl:max-w-[38%]"
         >
           At the heart of every project we take on is a dedication to delivering
           reliability. We build results that stand the test of time. From
@@ -134,19 +134,20 @@
         </div>
       </div>
     </div>
-    <div class="z-0 flex w-full items-center justify-center 2xl:pt-50">
+
+    <div class="2xl:/ /pt-70 z-0 flex w-full items-center justify-center">
       <img src="/back1.png" class="fade w-full" />
 
       <div
         class="focus2 absolute flex w-full flex-col gap-10 xl:px-36 xl:pb-30 2xl:p-22"
       >
         <div
-          class="sptext2 px-5 font-[Haas55] text-3xl leading-[97%] font-normal xl:max-w-294.25 xl:text-[128px]"
+          class="sptext2 w-1/2 px-5 font-[Haas55] text-[clamp(30px,5vw,128px)] leading-[97%] font-normal xl:max-w-294.25"
         >
           Building Fast With Quality And speed
         </div>
         <div
-          class="cptext2 px-5 font-[Switzer] text-base leading-[105.2%] font-normal xl:max-w-182.75 xl:text-[32px]"
+          class="cptext2 w-1/2 px-5 font-[Switzer] text-[clamp(13px,2vw,32px)] leading-[105.2%] font-normal xl:max-w-182.75"
         >
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever

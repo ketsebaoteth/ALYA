@@ -144,16 +144,18 @@
     <div class="max-467.5 w-full">
       <div class="flex flex-col items-center gap-25">
         <div
-          class="revhead flex w-full justify-center px-10 text-center font-[Haas] text-[48px]"
+          class="revhead flex w-full justify-center px-10 text-center font-[Haas] text-[clamp(30px,4vw,48px)]"
         >
           what others think about us
         </div>
 
-        <div class="aspect-[2.8/1] h-auto w-full max-w-467.5 px-17 py-10">
+        <div
+          class="aspect-[2.8/1] h-auto w-full max-w-467.5 px-10 py-5 lg:px-17 lg:py-10"
+        >
           <!-- v-for="review in REVIEWS" -->
-          <div class="flex h-full w-full gap-30 px-5">
+          <div class="flex h-full w-full gap-10 px-5 lg:gap-30">
             <div
-              class="test relative flex h-full flex-1 items-center justify-center"
+              class="test relative flex h-auto flex-1 items-center justify-center lg:h-full"
             >
               <img
                 :style="{ zIndex: review.z }"
@@ -167,15 +169,17 @@
               />
             </div>
 
-            <div class="/py-30 flex h-full w-[60%] flex-col justify-between">
+            <div
+              class="/py-30 flex h-full w-[60%] flex-col justify-between gap-10"
+            >
               <div class="flex flex-col gap-10.5">
                 <div
-                  class="review-title pr-10 font-[Haas] text-[58px] leading-[105.2%] font-thin"
+                  class="review-title pr-10 font-[Haas] text-[clamp(20px,3vw,58px)] leading-[105.2%] font-thin"
                 >
                   {{ review.title }}
                 </div>
                 <div
-                  class="review-description font-[Switzer] text-[22px] leading-[105.2%] text-[#3F3F3F]"
+                  class="review-description font-[Switzer] text-[clamp(13px,2vw,22px)] leading-[105.2%] text-[#3F3F3F]"
                 >
                   " {{ review.desc }} "
                 </div>
@@ -186,13 +190,13 @@
                   class="flex w-full items-center justify-center rounded-full border border-black p-6.5 transition-colors hover:bg-black/5"
                   @click="handleSlideLeft"
                 >
-                  <img src="/arrow-max-left.svg" />
+                  <img src="/arrow-max-left.svg" class="max-lg:size-5" />
                 </button>
                 <button
                   class="flex w-full items-center justify-center rounded-full border border-black p-6.5 transition-colors hover:bg-black/5"
                   @click="handleSlideRight"
                 >
-                  <img src="/arrow-max-right.svg" />
+                  <img src="/arrow-max-right.svg" class="max-lg:size-5" />
                 </button>
               </div>
             </div>
