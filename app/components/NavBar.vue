@@ -58,7 +58,7 @@
     class="fixed top-0 z-2 flex w-full items-center justify-center font-[Inter]"
   >
     <Teleport to="body">
-      <Popup class="popup" />
+      <PopUp />
     </Teleport>
 
     <div
