@@ -3,22 +3,42 @@
   import ScrollTrigger from "gsap/ScrollTrigger";
   import { SplitText } from "gsap/all";
 
+  let tl: gsap.core.Timeline;
+
   onMounted(async () => {
     await nextTick();
 
     gsap.registerPlugin(ScrollTrigger);
     gsap.registerPlugin(SplitText);
-    const splited = new SplitText(".revtitle", { type: "lines" });
 
-    const tl = gsap.timeline({
+    gsap.fromTo(
+      ".revhead",
+      {
+        opacity: 0,
+        y: 40,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "back",
+      }
+    );
+
+    const splrevtitle = new SplitText(".review-title", { type: "lines" });
+    const splrevdesc = new SplitText(".review-description", {
+      type: "words,chars",
+    });
+
+    tl = gsap.timeline({
       scrollTrigger: {
-        trigger: ".revtitle",
+        trigger: ".revhead",
         start: "top 30%",
       },
     });
 
     tl.fromTo(
-      splited.lines,
+      splrevtitle.lines,
       {
         opacity: 0,
         y: 40,
@@ -32,6 +52,21 @@
       },
       "<"
     )
+      .fromTo(
+        splrevdesc.words,
+        {
+          opacity: 0,
+          y: 20,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.3,
+          stagger: 0.04,
+          ease: "back",
+        },
+        "<"
+      )
       // INFO: Here is the animation for the images change it if you want
       .fromTo(
         ".image1",
@@ -67,20 +102,41 @@
       );
   });
 
-  const REVIEWS = [
+  const reviews = ref([
     {
       title:
         "Fast And Reliable Incredible Build Quality Their Quality Is Always Worth The Money",
       desc: "I've had the pleasure of collaborating with Dumeme on multiple projects, and his ability to turn id to stunning, functional designs is unmatched. His eye for detail and technical knowledge make t an incredible designer to work with.",
-      userName: "David Egyard",
-      role: "Project Manager",
-      image: "",
-      profileImage: "",
+      image: "/carousel-img1.png",
+      z: 0,
     },
-  ];
+    {
+      title:
+        "Unmatched Reliability And Incredible Build Quality That Never Disappoints",
+      desc: "I’ve worked alongside Dumeme on different projects, and he consistently brings ideas to life through impressive and functional designs. His keen attention to detail and technical understanding make him incredibly great to work with.",
+      image: "/carousel-img2.png",
+      z: 0,
+    },
+  ]);
 
-  const handleSlideLeft = () => {};
-  const handleSlideRight = () => {};
+  let counter = 0;
+  const review = ref(reviews.value[counter]);
+
+  const handleSlideLeft = (e: Event) => {
+    counter = counter === 1 ? 0 : counter + 1;
+    reviews.value = reviews.value.map((each) => ({ ...each, z: -90 }));
+    review.value = reviews.value[counter];
+    review.value.z = 90;
+    tl.restart();
+  };
+
+  const handleSlideRight = (e: Event) => {
+    reviews.value = reviews.value.map((each) => ({ ...each, z: -90 }));
+    counter = counter === 1 ? 0 : counter + 1;
+    review.value = reviews.value[counter];
+    review.value.z = 90;
+    tl.restart();
+  };
 </script>
 
 <template>
@@ -88,39 +144,38 @@
     <div class="max-467.5 w-full">
       <div class="flex flex-col items-center gap-25">
         <div
-          class="revtitle flex w-full justify-center px-10 text-center font-[Haas] text-[48px]"
+          class="revhead flex w-full justify-center px-10 text-center font-[Haas] text-[48px]"
         >
           what others think about us
         </div>
 
         <div class="aspect-[2.8/1] h-auto w-full max-w-467.5 px-17 py-10">
-          <div
-            v-for="review in REVIEWS"
-            :key="review.title"
-            class="flex h-full w-full gap-30 px-5"
-          >
+          <!-- v-for="review in REVIEWS" -->
+          <div class="flex h-full w-full gap-30 px-5">
             <div
               class="test relative flex h-full flex-1 items-center justify-center"
             >
               <img
+                :style="{ zIndex: review.z }"
                 src="/carousel-img1.png"
-                class="image1 absolute z-0 h-full w-auto p-3"
+                class="image1 absolute h-full w-auto p-3"
               />
               <img
+                :style="{ zIndex: review.z }"
                 src="/carousel-img2.png"
-                class="image2 absolute z-10 h-[93%] w-auto p-3"
+                class="image2 absolute h-[93%] w-auto p-3"
               />
             </div>
 
             <div class="/py-30 flex h-full w-[60%] flex-col justify-between">
               <div class="flex flex-col gap-10.5">
                 <div
-                  class="pr-10 font-[Haas] text-[58px] leading-[105.2%] font-thin"
+                  class="review-title pr-10 font-[Haas] text-[58px] leading-[105.2%] font-thin"
                 >
                   {{ review.title }}
                 </div>
                 <div
-                  class="font-[Switzer] text-[22px] leading-[105.2%] text-[#3F3F3F]"
+                  class="review-description font-[Switzer] text-[22px] leading-[105.2%] text-[#3F3F3F]"
                 >
                   " {{ review.desc }} "
                 </div>
@@ -149,6 +204,7 @@
 </template>
 
 <style>
+  /* INFO: The dashed border */
   .test {
     --dash-length: 32px;
     --dash-thickness: 2px;

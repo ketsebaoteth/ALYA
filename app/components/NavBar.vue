@@ -84,20 +84,10 @@
         >
           <div>
             ALYA
-            <svg
+            <div
               v-show="isHome"
-              width="16"
-              height="16"
-              class="/-translate-y-1.5 absolute right-[calc(50%-6px)] -bottom-3 size-3"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8 0C8 4.41828 11.5817 8 16 8C11.5817 8 8 11.5817 8 16C8 11.5817 4.41828 8 0 8C4.41828 8 8 4.41828 8 0Z"
-                fill="white"
-              />
-            </svg>
+              class="/-translate-y-1.5 absolute right-[calc(50%-6px)] -bottom-3 size-1.5 rounded-full bg-white"
+            />
           </div>
         </div>
       </NuxtLink>

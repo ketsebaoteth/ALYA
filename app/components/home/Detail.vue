@@ -53,6 +53,7 @@
         {
           opacity: 1,
           rotateZ: "0px",
+          ease: "power1.out",
         },
         "<"
       )

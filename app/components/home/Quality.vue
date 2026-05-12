@@ -8,7 +8,7 @@
 
     gsap.registerPlugin(ScrollTrigger);
     gsap.registerPlugin(SplitText);
-    const splitedText1 = new SplitText(".sptext", { type: "lines" });
+    const splitedText1 = new SplitText(".sptext", { type: "words,chars" });
 
     const charssplit = new SplitText(".cptext", { type: "words,chars" });
 
@@ -18,6 +18,7 @@
         start: "top 70%",
       },
     });
+
     tl.fromTo(
       charssplit.words,
       { opacity: 0, y: 20 },
@@ -35,17 +36,16 @@
         "<"
       )
       .fromTo(
-        splitedText1.lines,
+        splitedText1.chars,
         {
           opacity: 0,
-          y: 40,
+          y: 65,
         },
         {
           opacity: 1,
           y: 0,
-          duration: 0.6,
-          stagger: 0.15,
-          ease: "back",
+          stagger: 0.05,
+          ease: "back.inOut",
         },
         "<"
       );
@@ -57,9 +57,10 @@
     const tl2 = gsap.timeline({
       scrollTrigger: {
         trigger: ".focus2",
-        start: "top center",
+        start: "-10% center",
       },
     });
+
     tl2
       .fromTo(
         cha.words,
@@ -91,6 +92,21 @@
           ease: "back",
         },
         "<"
+      )
+      .fromTo(
+        ".fade",
+        {
+          opacity: 1,
+          scale: 1.4,
+          rotateZ: "-7px",
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          rotateZ: "0px",
+          ease: "power1.in",
+        },
+        "<"
       );
   });
 </script>
@@ -118,7 +134,7 @@
         </div>
       </div>
     </div>
-    <div class="z-20 flex w-full items-center justify-center 2xl:pt-50">
+    <div class="z-0 flex w-full items-center justify-center 2xl:pt-50">
       <img src="/back1.png" class="fade w-full" />
 
       <div
