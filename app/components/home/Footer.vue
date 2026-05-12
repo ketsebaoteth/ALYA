@@ -38,7 +38,7 @@
 </script>
 
 <template>
-  <div class="flex w-full items-center justify-center p-5">
+  <div class="z-0 flex w-full items-center justify-center bg-white p-5">
     <div
       class="animfooter flex aspect-[2.11/1] size-full h-auto max-w-467.5 flex-col justify-between rounded-[31px] bg-[#0F0F0F] px-15.5 py-9 pt-6"
     >

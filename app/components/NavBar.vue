@@ -57,7 +57,7 @@
 
 <template>
   <div
-    class="absolute top-0 z-20 flex w-full items-center justify-center font-[Inter]"
+    class="fixed top-0 z-2 flex w-full items-center justify-center font-[Inter]"
   >
     <div
       class="popup fixed bottom-0 flex w-full items-center justify-center opacity-0"

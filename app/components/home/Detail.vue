@@ -88,7 +88,7 @@
 
 <template>
   <div
-    class="/items-center relative flex h-max w-svw justify-center overflow-visible"
+    class="relative flex h-max w-svw justify-center overflow-visible bg-white"
   >
     <div
       class="z-10 flex h-max w-full -translate-y-12 justify-end overflow-visible"

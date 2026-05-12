@@ -2,12 +2,20 @@
   import gsap from "gsap";
   import ScrollTrigger from "gsap/ScrollTrigger";
   import { SplitText } from "gsap/all";
+  import { MorphSVGPlugin } from "gsap/MorphSVGPlugin";
+
+  const endSVG =
+    "M-359 327 L397.71 109.629 C780.086 -0.211 1185.74 0.397 1567.78 111.383 L2310 327 V1940 H-359 V327Z";
+
+  const loaded = ref(false);
 
   onMounted(async () => {
     await nextTick();
+    loaded.value = true;
 
     gsap.registerPlugin(ScrollTrigger);
     gsap.registerPlugin(SplitText);
+    gsap.registerPlugin(MorphSVGPlugin);
     const splitedText1 = new SplitText(".sptext", { type: "words,chars" });
 
     const charssplit = new SplitText(".cptext", { type: "words,chars" });
@@ -17,6 +25,17 @@
         trigger: ".focus",
         start: "top 70%",
       },
+    });
+
+    gsap.to("#curve path", {
+      scrollTrigger: {
+        trigger: ".parent",
+        start: "-98% top",
+        end: "+=2000",
+        scrub: 1,
+      },
+      morphSVG: endSVG,
+      // ease: "power3.inOut",
     });
 
     tl.fromTo(
@@ -96,7 +115,7 @@
       .fromTo(
         ".fade",
         {
-          scale: 1.1,
+          scale: 1.2,
           rotateZ: "-7px",
         },
         {
@@ -112,8 +131,42 @@
 
 <template>
   <div
-    class="/2xl:aspect-16/18 z-70 flex h-auto w-full flex-col gap-54 overflow-visible font-[Haas55] max-2xl:aspect-16/19 2xl:h-full"
+    class="parent relative z-0 flex h-auto w-full flex-col gap-54 overflow-visible font-[Haas55] max-2xl:aspect-16/19 2xl:h-full"
   >
+    <div
+      class="absolute flex aspect-video w-full -translate-y-1/2 flex-col items-center justify-center"
+    >
+      <div :class="loaded ? '' : 'hidden'" class="lparent z-0 h-full w-full">
+        <svg
+          id="curve"
+          class="h-max w-full"
+          width="1920"
+          height="1940"
+          viewBox="0 0 1920 1940"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <!-- stroke="black" -->
+          <path
+            d="M397.571 217.852C780.038 327.718 1185.79 327.11 1567.92 216.098L2309.5 0.666016V1939.5H-358.5V0.663086L397.571 217.852Z"
+            fill="url(#paint0_linear_614_189)"
+          />
+          <defs>
+            <linearGradient
+              id="paint0_linear_614_189"
+              x1="975.5"
+              y1="354.106"
+              x2="975.5"
+              y2="1940"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#3E5CE1" />
+              <stop offset="0.729563" stop-color="#22327B" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
     <div class="relative z-10 flex items-center justify-center text-white">
       <div
         class="focus flex flex-col items-center justify-center gap-9.5 font-[Haas75] text-2xl font-bold 2xl:text-8xl"
@@ -134,7 +187,9 @@
       </div>
     </div>
 
-    <div class="2xl:/ /pt-70 z-0 flex w-full items-center justify-center">
+    <div
+      class="z-0 flex w-full items-center justify-center max-md:-translate-y-[40%]"
+    >
       <img src="/back1.png" class="fade w-full" />
 
       <div

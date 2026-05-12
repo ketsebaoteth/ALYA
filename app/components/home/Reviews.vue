@@ -140,7 +140,7 @@
 </script>
 
 <template>
-  <div class="aspect-video/ /h-svh bg-black/ w-svw -translate-y-20 text-black">
+  <div class="w-svw -translate-y-20 bg-white text-black">
     <div class="max-467.5 w-full">
       <div class="flex flex-col items-center gap-25">
         <div
