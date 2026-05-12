@@ -196,12 +196,12 @@
         class="focus2 absolute flex w-full flex-col gap-10 xl:px-36 xl:pb-30 2xl:p-22"
       >
         <div
-          class="sptext2 w-1/2 px-5 font-[Haas55] text-[clamp(30px,5vw,128px)] leading-[97%] font-normal xl:max-w-294.25"
+          class="sptext2 /xl:max-w-294.25 w-[67%] px-5 font-[Haas55] text-[clamp(30px,6vw,138px)] leading-[97%] font-normal"
         >
           Building Fast With Quality And speed
         </div>
         <div
-          class="cptext2 w-1/2 px-5 font-[Switzer] text-[clamp(13px,2vw,32px)] leading-[105.2%] font-normal xl:max-w-182.75"
+          class="cptext2 w-[40%] px-5 font-[Switzer] text-[clamp(13px,1.4vw,32px)] leading-[105.2%] font-normal xl:max-w-182.75"
         >
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever

@@ -2,7 +2,6 @@
   import gsap from "gsap";
 
   const route = useRoute();
-  // WARN: This component is not refacoted please do not touch
   const animate = ref(false);
 
   const isHome = computed(() => {
