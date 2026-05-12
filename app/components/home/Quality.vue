@@ -96,12 +96,11 @@
       .fromTo(
         ".fade",
         {
-          opacity: 1,
           scale: 1.1,
           rotateZ: "-7px",
         },
         {
-          opacity: 1,
+          duration: 0.5,
           scale: 1,
           rotateZ: "0px",
           ease: "power1.inOut",
