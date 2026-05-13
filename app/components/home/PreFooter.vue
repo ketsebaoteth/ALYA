@@ -47,9 +47,10 @@
         class="absolute right-0 -bottom-20 z-30 h-full w-1/9 bg-linear-to-r from-white/0 via-white to-white"
       ></div>
       <div
-        class="antext max-w-70 text-center font-[Switzer] text-[clamp(30px,5vw,76px)] leading-none font-bold lg:max-w-100"
+        class="antext flex max-w-70 flex-col text-center font-[Switzer] text-[clamp(30px,5vw,76px)] leading-none font-bold lg:max-w-100"
       >
-        Our Trusted Partners
+        <span class="antext text-nowrap">Our Trusted</span>
+        <span class="antext text-nowrap">Partners</span>
       </div>
       <!-- <div class="w-full flex items-center justify-center overflow-scroll/"> -->
       <div
