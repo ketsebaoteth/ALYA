@@ -44,7 +44,7 @@
 <template>
   <div class="flex items-center justify-end">
     <div
-      class="overlay fixed top-0 left-0 -z-50 h-svh w-svw bg-transparent opacity-0 backdrop-blur-md transition-all"
+      class="overlay fixed top-0 left-0 -z-50 h-svh w-svw bg-transparent text-black/70 opacity-0 backdrop-blur-md transition-all"
       @click="() => (expanded = false)"
     >
       <div
@@ -59,8 +59,8 @@
               v-for="r in NAV_ROUTES"
               :key="r.name"
               :to="r.path"
-              :class="{ 'text-black bg-black/5': route.path.includes(r.path) }"
-              class="z-30 px-12 py-2.5 transition-all text-center hover:text-black hover:bg-black/5 rounded-xl w-full text-sm"
+              :class="{ 'bg-black/5 text-black': route.path.includes(r.path) }"
+              class="z-30 w-full rounded-xl px-12 py-2.5 text-center text-sm transition-all hover:bg-black/5 hover:text-black"
             >
               {{ r.name }}
             </NuxtLink>

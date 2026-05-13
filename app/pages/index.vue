@@ -3,54 +3,56 @@
 
   const router = useRouter();
   const animate = ref(false);
-  const resourcesLoaded = ref(false);
-  const resourcesTimedOut = ref(false);
+  // const resourcesLoaded = ref(false);
+  // const resourcesTimedOut = ref(false);
 
   let redirectTimeoutId: number;
 
-  const loadOtherResources = async () => {
-    // TODO: Handle loading any other page resources before setting 'resourcesLoaded' to true
-    await preloadRouteComponents("/home");
-
-    const homePreloadImages = ["/back2.png"];
-
-    const preloadImages = async (srcs: string[]) => {
-      const promises = srcs.map((src) => {
-        return new Promise((resolve) => {
-          const img = new Image();
-          img.src = src;
-          img.onload = resolve;
-          img.onerror = resolve;
-        });
-      });
-
-      return Promise.all(promises);
-    };
-
-    await Promise.all([
-      preloadImages(homePreloadImages),
-      document.fonts.ready,
-      //new Promise((resolve) => window.addEventListener("load", resolve)),
-    ]);
-
-    console.log("loaded");
-    resourcesLoaded.value = true;
-
-    // INFO: redirect if route is still root after 4s (timeout has passed)
-    if (resourcesTimedOut.value) router.replace("/home");
-  };
+  // const loadOtherResources = async () => {
+  //   // TODO: Handle loading any other page resources before setting 'resourcesLoaded' to true
+  //   await preloadRouteComponents("/home");
+  //
+  //   const homePreloadImages = ["/back2.png"];
+  //
+  //   const preloadImages = async (srcs: string[]) => {
+  //     const promises = srcs.map((src) => {
+  //       return new Promise((resolve) => {
+  //         const img = new Image();
+  //         img.src = src;
+  //         img.onload = resolve;
+  //         img.onerror = resolve;
+  //       });
+  //     });
+  //
+  //     return Promise.all(promises);
+  //   };
+  //
+  //   await Promise.all([
+  //     preloadImages(homePreloadImages),
+  //     document.fonts.ready,
+  //     //new Promise((resolve) => window.addEventListener("load", resolve)),
+  //   ]);
+  //
+  //   console.log("loaded");
+  //   resourcesLoaded.value = true;
+  //
+  //   // INFO: redirect if route is still root after 4s (timeout has passed)
+  //   if (resourcesTimedOut.value) router.replace("/home");
+  // };
 
   onMounted(async () => {
     await nextTick();
 
     animate.value = true;
 
-    loadOtherResources();
+    // BUG: Loading resources in advance is confusing gsap
+    // loadOtherResources();
 
     redirectTimeoutId = setTimeout(() => {
       // INFO: redirect after 4s if other resources got loaded before 4s
-      if (resourcesLoaded.value) router.replace("/home");
-      else resourcesTimedOut.value = true;
+      // if (resourcesLoaded.value)
+      router.replace("/home");
+      // else resourcesTimedOut.value = true;
     }, 4000);
   });
 
