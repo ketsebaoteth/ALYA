@@ -17,3 +17,11 @@ export const fAddUser = async ({ fullName, phoneNumber, email }: UserType) => {
 
   return res;
 };
+
+export const fGetUsers = async () => {
+  console.log("fetching..........");
+  const users = await (await fetch("/api/getUsers")).json();
+
+  console.log(users);
+  return users.data;
+};
