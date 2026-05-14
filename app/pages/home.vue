@@ -10,7 +10,7 @@ useHead({
     <div class="/bg-black/5 /p-140 aspect-8/7 h-auto w-full"></div>
     <div class="z-5 flex h-max w-full flex-col items-center justify-center bg-[#f4f0ea]">
       <HomeQuality />
-      <HomeDetail />
+      <HomeFaq />
       <HomeReviews />
       <HomeOffer />
       <HomePreFooter />
