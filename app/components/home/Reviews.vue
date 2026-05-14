@@ -131,7 +131,7 @@ const handleShuffle = async () => {
 </script>
 
 <template>
-  <div class="w-svw -translate-y-20 bg-transparent text-black overflow-hidden">
+  <div class="w-svw my-40 bg-transparent text-black overflow-hidden">
     <div class="max-467.5 w-full mx-auto">
       <div class="flex flex-col items-center gap-25">
 
@@ -144,8 +144,10 @@ const handleShuffle = async () => {
 
             <div class="test relative flex h-auto flex-1 items-center justify-center lg:h-full overflow-visible">
               <!-- Inline styles ensure initial z-index is defined for GSAP -->
-              <img src="/carousel-img1.png" class="image1 absolute h-full w-auto p-3" style="z-index: 10;" />
-              <img src="/carousel-img2.png" class="image2 absolute h-[93%] w-auto p-3" style="z-index: 0;" />
+              <img src="/testi1.jpg" class="image1 absolute h-130 object-contain w-120 rounded-[100px] p-3"
+                style="z-index: 10;" />
+              <img src="/testi2.jpg" class="image2 absolute h-130 object-contain mt-10 w-120 rounded-[100px] p-3"
+                style="z-index: 0;" />
             </div>
 
             <div class="flex h-full w-[60%] flex-col justify-between gap-10">
