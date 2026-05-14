@@ -1,201 +1,171 @@
 <script setup lang="tsx">
-  import gsap from "gsap";
-  import ScrollTrigger from "gsap/ScrollTrigger";
-  import { SplitText } from "gsap/all";
+import gsap from "gsap";
+import { SplitText } from "gsap/all";
+import { ref, onMounted, nextTick } from "vue";
 
-  let tl: gsap.core.Timeline;
+gsap.registerPlugin(SplitText);
 
-  onMounted(async () => {
-    await nextTick();
+let titleSplit: SplitText;
+let descSplit: SplitText;
+const isAnimating = ref(false);
+const isFirstImageFront = ref(true);
 
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.registerPlugin(SplitText);
+const reviews = [
+  {
+    title: "Fast And Reliable Incredible Build Quality Their Quality Is Always Worth The Money",
+    desc: "I've had the pleasure of collaborating with Dumeme on multiple projects, and his ability to turn ideas into stunning, functional designs is unmatched.",
+    image1: "/carousel-img1.png",
+    image2: "/carousel-img2.png",
+  },
+  {
+    title: "Unmatched Reliability And Incredible Build Quality That Never Disappoints",
+    desc: "I’ve worked alongside Dumeme on different projects, and he consistently brings ideas to life through impressive and functional designs.",
+    image1: "/carousel-img2.png",
+    image2: "/carousel-img1.png",
+  },
+];
 
-    gsap.fromTo(
-      ".revhead",
-      {
-        opacity: 0,
-        y: 40,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "back",
-      }
-    );
+const counter = ref(0);
+const review = ref(reviews[0]);
 
-    const splrevtitle = new SplitText(".review-title", { type: "lines" });
-    const splrevdesc = new SplitText(".review-description", {
-      type: "words,chars",
-    });
+const splitElements = () => {
+  if (titleSplit) titleSplit.revert();
+  if (descSplit) descSplit.revert();
+  titleSplit = new SplitText(".review-title", { type: "lines" });
+  descSplit = new SplitText(".review-description", { type: "words,chars" });
+};
 
-    tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".revhead",
-        start: "top 30%",
-      },
-    });
+onMounted(async () => {
+  await nextTick();
+  splitElements();
+});
 
-    tl.fromTo(
-      splrevtitle.lines,
-      {
-        opacity: 0,
-        y: 40,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "back",
-      },
-      "<"
-    )
-      .fromTo(
-        splrevdesc.words,
-        {
-          opacity: 0,
-          y: 20,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.3,
-          stagger: 0.04,
-          ease: "back",
-        },
-        "<"
-      )
-      // INFO: Here is the animation for the images change it if you want
-      .fromTo(
-        ".image1",
-        {
-          opacity: 0,
-          translateY: "-200px",
-          rotateZ: "20px",
-        },
-        {
-          opacity: 1,
-          translateY: "0px",
-          rotateZ: "0px",
-          ease: "back.inOut",
-          duration: 1,
-        },
-        "<"
-      )
-      .fromTo(
-        ".image2",
-        {
-          opacity: 0,
-          translateY: "-200px",
-          rotateZ: "-20px",
-        },
-        {
-          opacity: 1,
-          translateY: "0px",
-          rotateZ: "0px",
-          ease: "back.inOut",
-          duration: 1,
-        },
-        "<"
-      );
+const handleShuffle = async () => {
+  if (isAnimating.value) return;
+  isAnimating.value = true;
+
+  const topImg = isFirstImageFront.value ? ".image1" : ".image2";
+  const bottomImg = isFirstImageFront.value ? ".image2" : ".image1";
+
+  const tl = gsap.timeline({
+    onComplete: () => {
+      isAnimating.value = false;
+      isFirstImageFront.value = !isFirstImageFront.value;
+    }
   });
 
-  const reviews = ref([
-    {
-      title:
-        "Fast And Reliable Incredible Build Quality Their Quality Is Always Worth The Money",
-      desc: "I've had the pleasure of collaborating with Dumeme on multiple projects, and his ability to turn id to stunning, functional designs is unmatched. His eye for detail and technical knowledge make t an incredible designer to work with.",
-      image: "/carousel-img1.png",
-      z: 0,
-    },
-    {
-      title:
-        "Unmatched Reliability And Incredible Build Quality That Never Disappoints",
-      desc: "I’ve worked alongside Dumeme on different projects, and he consistently brings ideas to life through impressive and functional designs. His keen attention to detail and technical understanding make him incredibly great to work with.",
-      image: "/carousel-img2.png",
-      z: 0,
-    },
-  ]);
+  // 1. Text & Layout Out
+  tl.to([".review-title", ".review-description"], {
+    opacity: 0,
+    filter: "blur(4px)",
+    y: 15,
+    duration: 0.4,
+    ease: "power2.inOut",
+    onComplete: () => {
+      counter.value = (counter.value + 1) % reviews.length;
+      review.value = reviews[counter.value];
+    }
+  });
 
-  let counter = 0;
-  const review = ref(reviews.value[counter]);
+  // 2. THE REFINED SHUFFLE
+  // Top Image: Move Right, Rotate, and Drop
+  tl.to(topImg, {
+    x: 100,
+    y: 40,
+    rotate: 8,
+    opacity: 0.5,
+    scale: 0.85,
+    duration: 0.5,
+    ease: "expo.inOut",
+  }, "-=0.3")
 
-  const handleSlideLeft = (e: Event) => {
-    counter = counter === 1 ? 0 : counter + 1;
-    reviews.value = reviews.value.map((each) => ({ ...each, z: -90 }));
-    review.value = reviews.value[counter];
-    review.value.z = 90;
-    tl.restart();
-  };
+    // Bottom Image: Swing out Left and Come Forward
+    .fromTo(bottomImg, {
+      x: 0,
+      scale: 0.9,
+      zIndex: 0
+    }, {
+      x: -120,
+      scale: 1.05,
+      rotate: -5,
+      zIndex: 20,
+      duration: 0.5,
+      ease: "expo.inOut"
+    }, "<")
 
-  const handleSlideRight = (e: Event) => {
-    reviews.value = reviews.value.map((each) => ({ ...each, z: -90 }));
-    counter = counter === 1 ? 0 : counter + 1;
-    review.value = reviews.value[counter];
-    review.value.z = 90;
-    tl.restart();
-  };
+    // Switch Depths at the peak of the movement
+    .set(topImg, { zIndex: 0 })
+    .set(bottomImg, { zIndex: 10 })
+
+    // Return both to center
+    .to([topImg, bottomImg], {
+      x: 0,
+      y: 0,
+      rotate: 0,
+      opacity: 1,
+      scale: (i) => i === 0 ? 1 : 0.93, // Keep back image slightly smaller
+      duration: 0.6,
+      stagger: 0.05,
+      ease: "elastic.out(1, 0.8)"
+    })
+
+    // 3. Text Re-Split and Entrance
+    .add(async () => {
+      await nextTick();
+      splitElements();
+
+      gsap.set(".review-title, .review-description", { opacity: 1, filter: "blur(0px)" });
+
+      gsap.fromTo(titleSplit.lines,
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, stagger: 0.1, ease: "expo.out", duration: 0.8 }
+      );
+
+      gsap.fromTo(descSplit.words,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, stagger: 0.015, ease: "expo.out", duration: 0.8 },
+        "-=0.6"
+      );
+    }, "-=0.4");
+};
 </script>
 
 <template>
-  <div class="w-svw -translate-y-20 bg-white text-black">
-    <div class="max-467.5 w-full">
+  <div class="w-svw -translate-y-20 bg-transparent text-black overflow-hidden">
+    <div class="max-467.5 w-full mx-auto">
       <div class="flex flex-col items-center gap-25">
-        <div
-          class="revhead flex w-full justify-center px-10 text-center font-[Haas] text-[clamp(30px,4vw,48px)]"
-        >
+
+        <div class="revhead flex w-full justify-center px-10 text-center font-[Haas] text-[clamp(30px,4vw,48px)]">
           what others think about us
         </div>
 
-        <div
-          class="aspect-[2.8/1] h-auto w-full max-w-467.5 px-10 py-5 lg:px-17 lg:py-10"
-        >
-          <!-- v-for="review in REVIEWS" -->
+        <div class="aspect-[2.8/1] h-auto w-full max-w-467.5 px-10 py-5 lg:px-17 lg:py-10">
           <div class="flex h-full w-full gap-10 px-5 lg:gap-30">
-            <div
-              class="test relative flex h-auto flex-1 items-center justify-center lg:h-full"
-            >
-              <img
-                :style="{ zIndex: review.z }"
-                src="/carousel-img1.png"
-                class="image1 absolute h-full w-auto p-3"
-              />
-              <img
-                :style="{ zIndex: review.z }"
-                src="/carousel-img2.png"
-                class="image2 absolute h-[93%] w-auto p-3"
-              />
+
+            <div class="test relative flex h-auto flex-1 items-center justify-center lg:h-full overflow-visible">
+              <!-- Inline styles ensure initial z-index is defined for GSAP -->
+              <img src="/carousel-img1.png" class="image1 absolute h-full w-auto p-3" style="z-index: 10;" />
+              <img src="/carousel-img2.png" class="image2 absolute h-[93%] w-auto p-3" style="z-index: 0;" />
             </div>
 
-            <div
-              class="/py-30 flex h-full w-[60%] flex-col justify-between gap-10"
-            >
+            <div class="flex h-full w-[60%] flex-col justify-between gap-10">
               <div class="flex flex-col gap-10.5">
                 <div
-                  class="review-title pr-10 font-[Haas] text-[clamp(20px,3vw,58px)] leading-[105.2%] font-thin"
-                >
+                  class="review-title pr-10 font-[Haas] text-[clamp(20px,3vw,58px)] leading-[105.2%] font-thin uppercase italic">
                   {{ review.title }}
                 </div>
-                <div
-                  class="review-description font-[Switzer] text-[clamp(13px,2vw,22px)] leading-[105.2%] text-[#3F3F3F]"
-                >
+                <div class="review-description font-[Switzer] text-[clamp(13px,2vw,22px)] leading-[1.4] text-[#3F3F3F]">
                   " {{ review.desc }} "
                 </div>
               </div>
 
               <div class="flex w-full gap-3.75">
-                <button
-                  class="flex w-full items-center justify-center rounded-full border border-black p-6.5 transition-colors hover:bg-black/5"
-                  @click="handleSlideLeft"
-                >
+                <button @click="handleShuffle"
+                  class="flex w-full items-center justify-center rounded-full border border-black p-6.5 transition-all hover:bg-black/5 active:scale-95">
                   <img src="/arrow-max-left.svg" class="max-lg:size-5" />
                 </button>
-                <button
-                  class="flex w-full items-center justify-center rounded-full border border-black p-6.5 transition-colors hover:bg-black/5"
-                  @click="handleSlideRight"
-                >
+                <button @click="handleShuffle"
+                  class="flex w-full items-center justify-center rounded-full border border-black p-6.5 transition-all hover:bg-black/5 active:scale-95">
                   <img src="/arrow-max-right.svg" class="max-lg:size-5" />
                 </button>
               </div>
@@ -207,26 +177,32 @@
   </div>
 </template>
 
-<style>
-  /* INFO: The dashed border */
-  .test {
-    --dash-length: 32px;
-    --dash-thickness: 2px;
-    --dash-color: #3f3f3f80;
+<style scoped>
+.test {
+  --dash-length: 32px;
+  --dash-thickness: 2px;
+  --dash-color: #3f3f3f30;
+  background-image:
+    linear-gradient(to right, var(--dash-color) 50%, transparent 50%),
+    linear-gradient(to right, var(--dash-color) 50%, transparent 50%),
+    linear-gradient(to bottom, var(--dash-color) 50%, transparent 50%),
+    linear-gradient(to bottom, var(--dash-color) 50%, transparent 50%);
+  background-position: top, bottom, left, right;
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  background-size:
+    var(--dash-length) var(--dash-thickness),
+    var(--dash-length) var(--dash-thickness),
+    var(--dash-thickness) var(--dash-length),
+    var(--dash-thickness) var(--dash-length);
+}
 
-    background-image:
-      linear-gradient(to right, var(--dash-color) 50%, transparent 50%),
-      linear-gradient(to right, var(--dash-color) 50%, transparent 50%),
-      linear-gradient(to bottom, var(--dash-color) 50%, transparent 50%),
-      linear-gradient(to bottom, var(--dash-color) 50%, transparent 50%); /* Right */
+img {
+  will-change: transform, opacity, z-index;
+}
 
-    background-position: top, bottom, left, right;
-    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
-
-    background-size:
-      var(--dash-length) var(--dash-thickness),
-      var(--dash-length) var(--dash-thickness),
-      var(--dash-thickness) var(--dash-length),
-      var(--dash-thickness) var(--dash-length);
-  }
+/* Optional: add a slight shadow to the front image during shuffle */
+.image1,
+.image2 {
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.05));
+}
 </style>

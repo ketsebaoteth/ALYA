@@ -1,174 +1,93 @@
 <script setup lang="ts">
-  import gsap from "gsap";
-  import { onMounted, onUnmounted, ref, useTemplateRef } from "vue";
+import gsap from "gsap";
+import { onMounted, onUnmounted, ref } from "vue";
 
-  interface BlobCursorProps {
-    blobType?: "circle" | "square";
-    fillColor?: string;
-    trailCount?: number;
-    sizes?: number[];
-    innerSizes?: number[];
-    innerColor?: string;
-    opacities?: number[];
-    shadowColor?: string;
-    shadowBlur?: number;
-    shadowOffsetX?: number;
-    shadowOffsetY?: number;
-    filterId?: string;
-    filterStdDeviation?: number;
-    filterColorMatrixValues?: string;
-    useFilter?: boolean;
-    fastDuration?: number;
-    slowDuration?: number;
-    fastEase?: string;
-    slowEase?: string;
-    zIndex?: number;
+const props = defineProps({
+  size: { type: Number, default: 20 },
+  color: { type: String, default: "#ffffff" },
+  zIndex: { type: Number, default: 9999 }
+});
+
+// Refs for the two distinct elements
+const dotRef = ref<HTMLElement | null>(null);
+const ringRef = ref<HTMLElement | null>(null);
+
+// Storage for GSAP setters
+let dotX: any, dotY: any;
+let ringX: any, ringY: any;
+
+const handleMove = (e: MouseEvent) => {
+  if (dotX && dotY && ringX && ringY) {
+    dotX(e.clientX);
+    dotY(e.clientY);
+    ringX(e.clientX);
+    ringY(e.clientY);
   }
+};
 
-  const props = withDefaults(defineProps<BlobCursorProps>(), {
-    blobType: "circle",
-    fillColor: "#00F",
-    trailCount: 3,
-    sizes: () => [60, 125, 75],
-    innerSizes: () => [10, 35, 25],
-    innerColor: "rgba(255,255,255,0.8)",
-    opacities: () => [0.6, 0.6, 0.6],
-    shadowColor: "rgba(0,0,0,0.75)",
-    shadowBlur: 5,
-    shadowOffsetX: 10,
-    shadowOffsetY: 10,
-    filterId: "blob",
-    filterStdDeviation: 30,
-    filterColorMatrixValues: "1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 35 -10",
-    useFilter: true,
-    fastDuration: 0.4,
-    slowDuration: 0.7,
-    fastEase: "power1.out",
-    slowEase: "power1.out",
-    zIndex: 100,
-  });
+onMounted(() => {
+  // Dot: Fast and snappy
+  dotX = gsap.quickTo(dotRef.value, "x", { duration: 0.1, ease: "power3" });
+  dotY = gsap.quickTo(dotRef.value, "y", { duration: 0.1, ease: "power3" });
 
-  const containerRef = useTemplateRef<HTMLDivElement>("containerRef");
-  const blobsRef = ref<(HTMLElement | null)[]>([]);
+  // Ring: Slower with more lag
+  ringX = gsap.quickTo(ringRef.value, "x", { duration: 0.4, ease: "power2.out" });
+  ringY = gsap.quickTo(ringRef.value, "y", { duration: 0.4, ease: "power2.out" });
 
-  const updateOffset = () => {
-    if (!containerRef.value) return { left: 0, top: 0 };
-    const rect = containerRef.value.getBoundingClientRect();
-    return { left: rect.left, top: rect.top };
-  };
+  window.addEventListener("mousemove", handleMove);
+});
 
-  const handleMove = (e: MouseEvent | TouchEvent) => {
-    const { left, top } = updateOffset();
-    const x = "clientX" in e ? e.clientX : e.touches[0]?.clientX;
-    const y = "clientY" in e ? e.clientY : e.touches[0]?.clientY;
-
-    if (!x || !y) return;
-
-    blobsRef.value.forEach((el, i) => {
-      if (!el) return;
-
-      const isLead = i === 0;
-      gsap.to(el, {
-        left: `${x - left}px`,
-        top: `${y - top}px`,
-        duration: isLead ? props.fastDuration : props.slowDuration,
-        ease: isLead ? props.fastEase : props.slowEase,
-      });
-    });
-  };
-
-  onMounted(() => {
-    if (!updateOffset) return;
-    window.addEventListener("resize", updateOffset);
-    window.addEventListener("mousemove", handleMove);
-  });
-
-  onUnmounted(() => {
-    window.removeEventListener("resize", updateOffset);
-  });
+onUnmounted(() => {
+  window.removeEventListener("mousemove", handleMove);
+});
 </script>
 
 <template>
-  <div
-    ref="containerRef"
-    class="pointer-events-none fixed top-0 left-0 flex h-full w-full"
-    :style="{ zIndex: props.zIndex }"
-  >
-    <svg v-if="props.useFilter" class="absolute h-0 w-0">
-      <filter :id="props.filterId">
-        <feGaussianBlur
-          in="SourceGraphic"
-          result="blur"
-          :stdDeviation="props.filterStdDeviation"
-        />
-        <feColorMatrix in="blur" :values="props.filterColorMatrixValues" />
-      </filter>
-    </svg>
-    <div
-      v-for="(_, i) in 1"
-      :key="i"
-      :ref="
-        (el) => {
-          blobsRef[i] = el as HTMLElement | null;
-        }
-      "
-      class="absolute h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#3E5CE1] will-change-transform"
-      :style="{
-        borderRadius: props.blobType === 'circle' ? '50%' : '0',
-        backgroundColor: props.fillColor,
-      }"
-    ></div>
-    <!-- @mousemove="handleMove" -->
-    <!-- boxShadow: `${props.shadowOffsetX}px ${props.shadowOffsetY}px ${props.shadowBlur}px 0 ${props.shadowColor}`, -->
-    <!-- boxShadow: `${props.shadowOffsetX}px ${props.shadowOffsetY}px ${props.shadowBlur}px 0 ${props.shadowColor}`, -->
-    <!-- @touchmove="handleMove" -->
-    <!-- <svg v-if="props.useFilter" class="absolute h-0 w-0"> -->
-    <!--   <filter :id="props.filterId"> -->
-    <!--     <feGaussianBlur -->
-    <!--       in="SourceGraphic" -->
-    <!--       result="blur" -->
-    <!--       :stdDeviation="props.filterStdDeviation" -->
-    <!--     /> -->
-    <!--     <feColorMatrix in="blur" :values="props.filterColorMatrixValues" /> -->
-    <!--   </filter> -->
-    <!-- </svg> -->
-    <!---->
-    <!-- <div -->
-    <!--   class="pointer-events-none absolute inset-0 cursor-default overflow-hidden select-none" -->
-    <!--   :style="{ -->
-    <!--     filter: props.useFilter ? `url(#${props.filterId})` : undefined, -->
-    <!--   }" -->
-    <!-- > -->
-    <!--   <div -->
-    <!--     v-for="(_, i) in props.trailCount" -->
-    <!--     :key="i" -->
-    <!--     :ref=" -->
-    <!--       (el) => { -->
-    <!--         blobsRef[i] = el as HTMLElement | null; -->
-    <!--       } -->
-    <!--     " -->
-    <!--     class="absolute -translate-x-1/2 -translate-y-1/2 scale-50 transform will-change-transform" -->
-    <!--     :style="{ -->
-    <!--       width: `${props.sizes[i]}px`, -->
-    <!--       height: `${props.sizes[i]}px`, -->
-    <!--       borderRadius: props.blobType === 'circle' ? '50%' : '0', -->
-    <!--       backgroundColor: props.fillColor, -->
-    <!--       opacity: props.opacities[i], -->
-    <!--       boxShadow: `${props.shadowOffsetX}px ${props.shadowOffsetY}px ${props.shadowBlur}px 0 ${props.shadowColor}`, -->
-    <!--     }" -->
-    <!--   > -->
-    <!--     <div -->
-    <!--       class="absolute" -->
-    <!--       :style="{ -->
-    <!--         width: `${props.innerSizes[i]}px`, -->
-    <!--         height: `${props.innerSizes[i]}px`, -->
-    <!--         top: `${(props.sizes[i] - props.innerSizes[i]) / 2}px`, -->
-    <!--         left: `${(props.sizes[i] - props.innerSizes[i]) / 2}px`, -->
-    <!--         backgroundColor: props.innerColor, -->
-    <!--         borderRadius: props.blobType === 'circle' ? '50%' : '0', -->
-    <!--       }" -->
-    <!--     /> -->
-    <!--   </div> -->
-    <!-- </div> -->
+  <div class="cursor-wrapper" :style="{ zIndex: zIndex }">
+    <!-- The Outer Ring - Now only 30% larger than base size -->
+    <div ref="ringRef" class="cursor-element ring" :style="{
+      width: `${size * 1.3}px`,
+      height: `${size * 1.3}px`,
+      borderColor: color,
+      /* Offset: -(Size * 1.3 / 2) to keep it centered */
+      marginLeft: `-${(size * 1.3) / 2}px`,
+      marginTop: `-${(size * 1.3) / 2}px`,
+    }" />
+
+    <!-- The Inner Small Circle -->
+    <div ref="dotRef" class="cursor-element dot" :style="{
+      width: `${size / 2}px`,
+      height: `${size / 2}px`,
+      backgroundColor: color,
+      marginLeft: `-${size / 4}px`,
+      marginTop: `-${size / 4}px`,
+    }" />
   </div>
 </template>
+
+<style scoped>
+.cursor-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.cursor-element {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+.ring {
+  border: 1.5px solid;
+  transition: opacity 0.3s ease;
+}
+
+.dot {
+  /* No border, solid fill */
+}
+</style>
