@@ -104,15 +104,15 @@
       make a type specimen book.
     </div>
 
-    <div class="flex h-full w-full max-w-385 items-center gap-6.25 pt-14">
+    <div class="flex h-full w-full max-w-425 items-center gap-6.25 pt-14">
       <div
-        class="left-palette h-200 w-full -translate-x-5 rounded-4xl bg-black opacity-0 xl:h-140"
+        class="left-palette h-180 w-full -translate-x-5 rounded-4xl bg-black opacity-0"
       ></div>
       <div
-        class="center-palette h-200 w-full rounded-4xl bg-black opacity-0 xl:h-140"
+        class="center-palette h-180 w-full rounded-4xl bg-black opacity-0"
       ></div>
       <div
-        class="right-palette h-200 w-full translate-x-5 rounded-4xl bg-black opacity-0 xl:h-140"
+        class="right-palette h-180 w-full translate-x-5 rounded-4xl bg-black opacity-0"
       ></div>
     </div>
   </div>
