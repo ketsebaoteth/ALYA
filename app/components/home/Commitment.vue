@@ -11,12 +11,10 @@ const endSVG =
 const loaded = ref(false);
 const btnRef = ref<HTMLElement | null>(null);
 
-// --- CURSOR LOGIC ---
 const dotRef = ref<HTMLElement | null>(null);
 const ringRef = ref<HTMLElement | null>(null);
 let dotX: any, dotY: any, ringX: any, ringY: any;
 
-// --- MAGNETIC BUTTON LOGIC ---
 let btnMoveX: any, btnMoveY: any;
 
 const handleMouseMove = (e: MouseEvent) => {
@@ -140,7 +138,6 @@ onUnmounted(() => {
       </div>
     </div>
 
-    <!-- SECTION 1 -->
     <div class="relative z-10 flex min-h-screen items-center justify-center text-white">
       <div
         class="focus relative flex flex-col items-center justify-center gap-12 font-[Haas75] text-2xl font-bold 2xl:text-8xl">
@@ -171,7 +168,6 @@ onUnmounted(() => {
       </div>
     </div>
 
-    <!-- SECTION 2 -->
     <div class="z-0 flex w-full items-center justify-center -mt-43 relative min-h-screen">
       <div class="absolute inset-0 w-full h-full overflow-hidden">
         <img src="/back1.png" class="fade w-full h-full object-cover" />
@@ -210,6 +206,5 @@ onUnmounted(() => {
 .magnetic-wrap {
   will-change: transform;
   pointer-events: auto;
-  /* Ensures button is clickable even if overlapping text */
 }
 </style>

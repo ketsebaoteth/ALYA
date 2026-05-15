@@ -14,12 +14,11 @@ onMounted(() => {
     defaults: { ease: "power4.out", duration: 1.6 }
   });
 
-  // LEFT PILL: Simple, clean slide from off-screen left
   navTl.fromTo(".nav-left",
     {
       x: -200,
       opacity: 0,
-      rotateY: 15 // Slight 3D tilt as it enters
+      rotateY: 15
     },
     {
       x: 0,
@@ -28,7 +27,6 @@ onMounted(() => {
       delay: 0.5
     }
   )
-    // RIGHT PILL: Slide from off-screen right
     .fromTo(".nav-right",
       {
         x: 200,
@@ -40,11 +38,10 @@ onMounted(() => {
         opacity: 1,
         rotateY: 0
       },
-      "<" // Start together
+      "<"
     );
 });
 
-// Copy Feedback Logic
 let copyTl: any;
 onMounted(() => {
   copyTl = gsap.timeline({ paused: true });
@@ -95,9 +92,7 @@ const handleCopy = async (num: string) => {
           COPIED
         </div>
       </div>
-      <div class="md:hidden">
-        <TopSliderSheet />
-      </div>
+
     </div>
   </nav>
 </template>
@@ -112,7 +107,6 @@ const handleCopy = async (num: string) => {
   will-change: transform, opacity;
 }
 
-/* Initial CSS states for zero layout shift */
 .nav-left {
   transform: translateX(-200px) rotateY(15deg);
 }

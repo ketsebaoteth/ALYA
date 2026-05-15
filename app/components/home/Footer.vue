@@ -1,7 +1,6 @@
 <script setup lang="tsx">
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import ActionBtn from "../ActionBtn.vue";
 
 const SOCIALS = [
   {
@@ -37,7 +36,7 @@ onMounted(() => {
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: ".animfooter",
-      start: "top 80%", // Adjusted to trigger slightly later
+      start: "top 80%",
     },
   });
 
@@ -82,11 +81,11 @@ const handleSubmission = async (e: Event) => {
                 class="w-full border-b border-gray-600 bg-transparent py-4 outline-none focus:border-white transition-colors"
                 @keydown.enter="handleSubmission" />
             </div>
-            <ActionBtn
+            <button
               class="flex w-full items-center justify-center overflow-hidden rounded-full bg-white p-5 text-[20px] font-bold text-black shadow-lg"
               :call-back="handleSubmission">
               Subscribe for Updates
-            </ActionBtn>
+            </button>
           </div>
         </div>
       </div>
@@ -108,7 +107,6 @@ const handleSubmission = async (e: Event) => {
 </template>
 
 <style scoped>
-/* Ensure inputs don't have weird browser styling */
 input::placeholder {
   color: #4b5563;
 }
