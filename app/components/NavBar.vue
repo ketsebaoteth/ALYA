@@ -70,7 +70,7 @@ const handleCopy = async (num: string) => {
       <NuxtLink to="/home" class="flex items-center gap-2 group no-underline">
         <span
           class="font-[FontSpring] text-2xl font-bold tracking-tighter text-white transition-transform group-hover:scale-105">
-          ALYA
+          ALYIA
         </span>
         <div v-if="isHome" class="ml-1 size-1.5 rounded-full bg-blue-500 shadow-[0_0_15px_#3b82f6]" />
       </NuxtLink>
