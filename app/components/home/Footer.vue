@@ -1,144 +1,115 @@
 <script setup lang="tsx">
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-  import ActionBtn from "../ActionBtn.vue";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ActionBtn from "../ActionBtn.vue";
 
-  const SOCIALS = [
-    {
-      name: "Instagram",
-      icon: "i-ph-instagram-logo",
-      link: "https://www.instagram.com/",
-    },
-    {
-      name: "X",
-      icon: "i-ph-x-logo",
-      link: "https://x.com/",
-    },
-    {
-      name: "Facebook",
-      icon: "i-ph-facebook-logo",
-      link: "https://www.facebook.com/",
-    },
-    {
-      name: "YouTube",
-      icon: "i-ph-youtube-logo",
-      link: "https://www.youtube.com/",
-    },
-    {
-      name: "TikTok",
-      icon: "i-ph-tiktok-logo",
-      link: "https://www.tiktok.com/",
-    },
-    {
-      name: "Whatsapp",
-      icon: "i-ph-whatsapp-logo",
-      link: "https://wa.me/",
-    },
-    {
-      name: "Telegram",
-      icon: "i-ph-telegram-logo",
-      link: "https://t.me/",
-    },
-    {
-      name: "Email",
-      icon: "i-ph-envelope-simple",
-      link: "mailto:",
-    },
-  ];
+const SOCIALS = [
+  {
+    name: "Instagram",
+    icon: "i-ph-instagram-logo",
+    link: "https://www.instagram.com/",
+  },
+  {
+    name: "Facebook",
+    icon: "i-ph-facebook-logo",
+    link: "https://www.facebook.com/",
+  },
+  {
+    name: "LinkedIn",
+    icon: "i-ph-linkedin-logo",
+    link: "https://www.linkedin.com/",
+  },
+  {
+    name: "Whatsapp",
+    icon: "i-ph-whatsapp-logo",
+    link: "https://wa.me/",
+  },
+  {
+    name: "Email",
+    icon: "i-ph-envelope-simple",
+    link: "mailto:hello@alya.co",
+  },
+];
 
-  onMounted(() => {
-    gsap.registerPlugin(ScrollTrigger);
+onMounted(() => {
+  gsap.registerPlugin(ScrollTrigger);
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".animfooter",
-        start: "top 60%",
-      },
-    });
-
-    tl.fromTo(
-      ".animfooter",
-      {
-        opacity: 0,
-        y: 40,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.15,
-        ease: "back",
-      },
-      "<"
-    );
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".animfooter",
+      start: "top 80%", // Adjusted to trigger slightly later
+    },
   });
 
-  const handleSubmission = async (e: Event) => {
-    // TODO: Handle doing whatever the button does
-    console.log(e);
-    return alert("um .............. okay");
-  };
+  tl.fromTo(
+    ".animfooter",
+    { opacity: 0, y: 40 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power3.out",
+    }
+  );
+});
+
+const handleSubmission = async (e: Event) => {
+  console.log("Newsletter Sub:", e);
+  return alert("Thank you for subscribing!");
+};
 </script>
 
 <template>
   <div class="z-0 flex w-full items-center justify-center bg-transparent p-5">
     <div
-      class="animfooter flex aspect-[2.11/1] size-full h-auto max-w-467.5 flex-col justify-between rounded-[31px] bg-[#0F0F0F] px-15.5 py-9 pt-6"
-    >
-      <div class="flex w-full flex-col gap-3">
-        <div
-          class="flex w-full justify-center text-center font-[Switzer] text-[48px] font-bold"
-        >
+      class="animfooter flex aspect-[2.11/1] min-h-[500px] size-full h-auto max-w-467.5 flex-col justify-between rounded-[31px] bg-[#0F0F0F] px-10 py-9 text-white lg:px-15.5">
+      <div class="flex w-full flex-col gap-8">
+        <div class="flex w-full justify-center text-center font-[Switzer] text-[48px] font-bold">
           ALYA.co
         </div>
 
-        <div class="flex justify-between gap-5">
+        <div class="flex flex-col justify-between gap-10 lg:flex-row">
           <div class="flex max-w-125 flex-col gap-6">
-            <div class="font-[Haas75] text-[38px]">BUILDING TOGETHER</div>
-            <div class="max-w-115 font-[Switzer] text-[22px]">
-              Optimize your health with guidance that meets you where you are.
-            </div>
-            <div class="flex w-full flex-col gap-5">
-              <div class="w-full font-[Switzer] text-[24px]">
-                <input
-                  placeholder="ENTER YOUR EMAIL"
-                  type="text"
-                  class="w-full border-b-2 border-gray-600 px-5.75 py-7 outline-none"
-                  @keydown.enter="handleSubmission"
-                />
-              </div>
-              <ActionBtn
-                class="flex w-full items-center justify-center overflow-hidden rounded-full bg-white p-6 text-[24px] text-black shadow-[0px_15px_35.6px_0px] shadow-black/5"
-                :call-back="handleSubmission"
-              >
-                Subscribe
-              </ActionBtn>
+            <div class="font-[Haas75] text-[38px] leading-tight">BUILDING TOGETHER</div>
+            <div class="max-w-115 font-[Switzer] text-[20px] text-gray-400">
+              Transforming visions into structural reality with precision engineering and sustainable design.
             </div>
           </div>
 
-          <div
-            class="flex flex-col items-end justify-center gap-3 p-20 pt-5 text-3xl"
-          >
-            <NuxtLink
-              v-for="social in SOCIALS"
-              :key="social.name"
-              :to="social.link"
-              target="_blank"
-              class="group flex cursor-pointer items-center gap-2 p-2"
-            >
-              <div class="text-base text-gray-400 group-hover:text-white">
-                {{ social.name }}
-              </div>
-              <Icon :name="social.icon" />
-            </NuxtLink>
+          <div class="flex w-full max-w-125 flex-col gap-5">
+            <div class="w-full font-[Switzer] text-[20px]">
+              <input placeholder="ENTER YOUR EMAIL" type="text"
+                class="w-full border-b border-gray-600 bg-transparent py-4 outline-none focus:border-white transition-colors"
+                @keydown.enter="handleSubmission" />
+            </div>
+            <ActionBtn
+              class="flex w-full items-center justify-center overflow-hidden rounded-full bg-white p-5 text-[20px] font-bold text-black shadow-lg"
+              :call-back="handleSubmission">
+              Subscribe for Updates
+            </ActionBtn>
           </div>
         </div>
       </div>
 
-      <div class="font-[Switzer] text-[20px]">
-        @ 2026 WeNatal Inc. WENATAL BETTER TOGETHER is a trademark of WeNatal
-        Inc.
+      <div class="mt-12 flex flex-col items-center justify-between border-t border-gray-800 pt-8 lg:flex-row">
+        <div class="order-2 mt-6 font-[Switzer] text-[14px] text-gray-500 lg:order-1 lg:mt-0">
+          © 2026 ALYA Construction Group. All rights reserved.
+        </div>
+
+        <div class="order-1 flex items-center gap-4 lg:order-2">
+          <NuxtLink v-for="social in SOCIALS" :key="social.name" :to="social.link" target="_blank"
+            class="flex size-12 cursor-pointer items-center justify-center rounded-full border border-gray-600 text-2xl transition-all hover:bg-white hover:text-black">
+            <Icon :name="social.icon" />
+          </NuxtLink>
+        </div>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+/* Ensure inputs don't have weird browser styling */
+input::placeholder {
+  color: #4b5563;
+}
+</style>

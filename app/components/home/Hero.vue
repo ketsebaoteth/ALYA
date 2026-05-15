@@ -2,7 +2,6 @@
 import gsap from "gsap";
 import { SplitText } from "gsap/all";
 
-// Define your image paths here
 const imageSources = [
   "/hero1.jpg",
   "/hero2.jpg",
@@ -25,6 +24,7 @@ onMounted(async () => {
   });
 
   // 1. SPLIT BACKGROUND ANIMATION
+  // Using .fromTo to ensure we take control from the CSS initial state
   tl.fromTo(".bg-slice",
     {
       scaleY: 1.6,
@@ -36,19 +36,15 @@ onMounted(async () => {
       opacity: 1,
       y: 0,
       duration: 1.5,
-      stagger: 0.08, // Slightly increased stagger for more "pop"
+      stagger: 0.08,
       ease: "power4.out"
     }
   )
-
-    // 2. The Contact Pill
     .fromTo(".cutbwu",
       { scale: 0.8, opacity: 0 },
       { scale: 1, opacity: 1, duration: 0.8, ease: "back.out(1.7)" },
       "-=1.2"
     )
-
-    // 3. MAIN HEADER
     .from(splitedText1.chars, {
       opacity: 0,
       y: 80,
@@ -57,8 +53,6 @@ onMounted(async () => {
       duration: 1.2,
       transformOrigin: "50% 50% -50",
     }, "-=0.8")
-
-    // 4. SUBTEXT
     .from(charssplit.lines, {
       opacity: 0,
       y: 20,
@@ -66,8 +60,6 @@ onMounted(async () => {
       stagger: 0.1,
       duration: 1,
     }, "-=0.6")
-
-    // 5. CTA BUTTON
     .from(".heroheader .animated-cta", {
       opacity: 0,
       y: 20,
@@ -107,7 +99,7 @@ onMounted(async () => {
 
     <div class="absolute inset-0 z-0 flex h-full w-full gap-2 p-4 lg:p-5">
       <div v-for="(img, index) in imageSources" :key="index"
-        class="bg-slice h-full flex-1 overflow-hidden brightness-75 rounded-xl bg-cover bg-center"
+        class="bg-slice h-full flex-1 overflow-hidden brightness-75 rounded-xl bg-cover bg-center transition-all duration-700 ease-out hover:flex-[1.1] hover:brightness-100 hover:-translate-y-2"
         :style="{ backgroundImage: `url(${img})` }">
       </div>
     </div>
@@ -124,10 +116,44 @@ onMounted(async () => {
   transform-style: preserve-3d;
 }
 
+/* INITIAL STATE: 
+   Matches GSAP { scaleY: 1.6, opacity: 0, y: 100 } 
+   This prevents the "flash" of images before the animation starts.
+*/
+/* Update the base class */
 .bg-slice {
-  will-change: transform, opacity;
-  /* Darker overlay so text remains readable over mixed images */
-  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.4), inset 0 0 0 1000px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(100px) scaleY(1.6);
+  /* Added flex for smoother transition */
+  flex: 1;
+  transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+    transform 0.6s ease-out,
+    opacity 0.6s ease-out,
+    filter 0.4s ease;
+  will-change: transform, opacity, flex;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.4);
+}
+
+/* The Hover Effect */
+.bg-slice:hover {
+  /* This controls the width expansion */
+  flex: 3;
+  transform: translateY(-10px) scaleY(1);
+  /* Slightly lift it */
+  z-index: 10;
+}
+
+/* Dim the others when one is hovered */
+.absolute:hover .bg-slice:not(:hover) {
+  flex: 0.7;
+  /* Shrink the siblings slightly */
+  opacity: 0.5;
+  filter: brightness(0.4) grayscale(0.5);
+}
+
+.absolute:hover .bg-slice:not(:hover) {
+  opacity: 0.6;
+  filter: brightness(0.5) grayscale(0.2);
 }
 
 :deep(.spt) {
