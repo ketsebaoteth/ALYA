@@ -30,29 +30,29 @@
   --color-gray-950: #000;
 
   /* Brand Colors */
-  --color-brand-50: oklch(94.42% 0.03 238.83deg);
-  --color-brand-100: oklch(88.11% 0.064 241.48deg);
-  --color-brand-200: oklch(77.72% 0.123 243.32deg);
-  --color-brand-300: oklch(68.28% 0.176 248.35deg);
-  --color-brand-400: oklch(57.13% 0.168 251.38deg);
-  --color-brand-500: oklch(41.73% 0.118 249.88deg);
-  --color-brand-600: oklch(36.42% 0.1 248.97deg);
-  --color-brand-700: oklch(29.46% 0.08 248.4deg);
-  --color-brand-800: oklch(23.54% 0.059 245.1deg);
-  --color-brand-900: oklch(15.54% 0.034 237.76deg);
-  --color-brand-950: oklch(13.04% 0.025 227.1deg);
+  --color-brand-50: oklch(97.1% 0.013 17.38deg);
+  --color-brand-100: oklch(93.6% 0.032 17.717deg);
+  --color-brand-200: oklch(88.5% 0.062 18.334deg);
+  --color-brand-300: oklch(80.8% 0.114 19.571deg);
+  --color-brand-400: oklch(70.4% 0.191 22.216deg);
+  --color-brand-500: oklch(60.6% 0.25 22.75deg);
+  --color-brand-600: oklch(53.1% 0.231 23.953deg);
+  --color-brand-700: oklch(44.6% 0.2 24.363deg);
+  --color-brand-800: oklch(37.3% 0.16 26.657deg);
+  --color-brand-900: oklch(32.3% 0.129 27.279deg);
+  --color-brand-950: oklch(20.7% 0.076 25.861deg);
 
   /* Brand Gradients */
   --background-image-hero-grad: linear-gradient(
     to top,
-    black 70%,
-    #dcdcdc 100%
+    var(--color-gray-950) 60%,
+    var(--color-gray-800) 100%
   );
   --background-image-accent-grad: linear-gradient(
     to bottom right,
-    #ffc290,
-    #ffa250,
-    #df7210
+    var(--color-brand-400),
+    var(--color-brand-600),
+    var(--color-brand-800)
   );
 
   /* Shared Hero Spacing */
@@ -82,6 +82,26 @@
 @font-face {
   font-family: "FontSpring";
   src: url("/fonts/fontspring/FontSpring.otf");
+}
+
+@font-face {
+  font-family: "Twentieth";
+  src: url("/fonts/twentieth/Twentieth.ttf");
+}
+
+@font-face {
+  font-family: "Century";
+  src: url("/fonts/century/Century.otf");
+}
+
+@font-face {
+  font-family: "Futura";
+  src: url("/fonts/futura/Futura.ttf");
+}
+
+@font-face {
+  font-family: "FuturaExtraBold";
+  src: url("/fonts/futura/FuturaExtraBold.ttf");
 }
 
 @font-face {

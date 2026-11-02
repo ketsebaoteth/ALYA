@@ -1,75 +1,299 @@
 <script setup lang="tsx">
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/SplitText";
+  import { onMounted } from "vue";
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { SplitText } from "gsap/SplitText";
 
-onMounted(() => {
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.registerPlugin(SplitText);
+  onMounted(() => {
+    gsap.registerPlugin(ScrollTrigger, SplitText);
 
-  const spl = new SplitText(".antext", { type: "lines" });
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".antext",
-      start: "top 70%",
-    },
+    const spl = new SplitText(".antext", { type: "lines" });
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".antext",
+        start: "top 70%",
+      },
+    });
+
+    tl.fromTo(
+      spl.lines,
+      {
+        opacity: 0,
+        y: 40,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.15,
+        ease: "back",
+      },
+      "<"
+    );
   });
-
-  tl.fromTo(
-    spl.lines,
-    {
-      opacity: 0,
-      y: 40,
-    },
-    {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      stagger: 0.15,
-      ease: "back",
-    },
-    "<"
-  );
-});
 </script>
 
 <template>
   <div
-    class="/max-h-max /min-h-100 /lg:min-h-350 relative z-0 flex w-full flex-col items-center justify-center gap-7 bg-transparent pt-90 pb-20 text-black max-2xl:aspect-video">
-    <div class="flex w-full -translate-y-32 flex-col items-center gap-4 lg:gap-20">
-      <div class="absolute -bottom-20 left-0 z-30 h-full w-1/9 bg-linear-to-l from-white/0 via-[#f4f0ea] to-[#f4f0ea]">
-      </div>
-      <div class="absolute right-0 -bottom-20 z-30 h-full w-1/9 bg-linear-to-r from-white/0 via-[#f4f0ea] to-[#f4f0ea]">
-      </div>
+    class="relative z-0 flex w-full flex-col items-center justify-center gap-7 bg-transparent pt-32 pb-20 text-black"
+  >
+    <div class="flex w-full flex-col items-center gap-4 lg:gap-20">
       <div
-        class="antext flex max-w-70 flex-col text-center font-[Switzer] text-[clamp(30px,5vw,76px)] leading-none font-bold lg:max-w-100">
-        <span class="antext text-nowrap">Our Trusted</span>
-        <span class="antext text-nowrap">Partners</span>
+        class="pointer-events-none absolute top-0 bottom-0 left-0 z-30 w-1/6 bg-linear-to-l from-transparent to-white"
+      ></div>
+      <div
+        class="pointer-events-none absolute top-0 right-0 bottom-0 z-30 w-1/6 bg-linear-to-r from-transparent to-white"
+      ></div>
+
+      <div
+        class="antext flex max-w-70 flex-col text-center text-[clamp(30px,5vw,76px)] font-bold lg:max-w-100"
+      >
+        <span class="text-nowrap">Our Trusted</span>
+        <span class="text-nowrap text-blue-400">Partners</span>
       </div>
-      <!-- <div class="w-full flex items-center justify-center overflow-scroll/"> -->
-      <div class="anim flex w-max -translate-x-935 items-center justify-center overflow-hidden bg-black max-lg:h-10">
-        <img src="/partners.png" class="" />
-        <img src="/partners.png" class="" />
-        <img src="/partners.png" class="" />
-        <img src="/partners.png" class="" />
+
+      <div
+        class="marquee-container flex w-full overflow-hidden whitespace-nowrap"
+      >
+        <div class="marquee-track flex shrink-0 items-center gap-16 pr-16">
+          <img
+            src="/part1.png"
+            alt="Partner 1"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part2.png"
+            alt="Partner 2"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part3.png"
+            alt="Partner 3"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part4.png"
+            alt="Partner 4"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part5.jpg"
+            alt="Partner 5"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part1.png"
+            alt="Partner 1"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part2.png"
+            alt="Partner 2"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part3.png"
+            alt="Partner 3"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part4.png"
+            alt="Partner 4"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part5.jpg"
+            alt="Partner 5"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part1.png"
+            alt="Partner 1"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part2.png"
+            alt="Partner 2"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part3.png"
+            alt="Partner 3"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part4.png"
+            alt="Partner 4"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part5.jpg"
+            alt="Partner 5"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part1.png"
+            alt="Partner 1"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part2.png"
+            alt="Partner 2"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part3.png"
+            alt="Partner 3"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part4.png"
+            alt="Partner 4"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part5.jpg"
+            alt="Partner 5"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+        </div>
+
+        <div
+          class="marquee-track flex shrink-0 items-center gap-16 pr-16"
+          aria-hidden="true"
+        >
+          <img
+            src="/part1.png"
+            alt="Partner 1"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part2.png"
+            alt="Partner 2"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part3.png"
+            alt="Partner 3"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part4.png"
+            alt="Partner 4"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part5.jpg"
+            alt="Partner 5"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part1.png"
+            alt="Partner 1"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part2.png"
+            alt="Partner 2"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part3.png"
+            alt="Partner 3"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part4.png"
+            alt="Partner 4"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part5.jpg"
+            alt="Partner 5"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part1.png"
+            alt="Partner 1"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part2.png"
+            alt="Partner 2"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part3.png"
+            alt="Partner 3"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part4.png"
+            alt="Partner 4"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part5.jpg"
+            alt="Partner 5"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part1.png"
+            alt="Partner 1"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part2.png"
+            alt="Partner 2"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part3.png"
+            alt="Partner 3"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part4.png"
+            alt="Partner 4"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+          <img
+            src="/part5.jpg"
+            alt="Partner 5"
+            class="mx-4 h-12 object-contain lg:h-20"
+          />
+        </div>
       </div>
-      <!-- </div> -->
     </div>
   </div>
 </template>
 
-<style>
-.anim {
-  animation: scroll 50s linear infinite;
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(1870px);
+<style scoped>
+  .marquee-container {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
   }
 
-  100% {
-    transform: translateX(3740px);
+  .marquee-track {
+    animation: scrollMarquee 35s linear infinite;
   }
-}
+
+  /* Pause animation on hover so users can look closer */
+  .marquee-container:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes scrollMarquee {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
 </style>

@@ -1,174 +1,301 @@
 <script setup lang="tsx">
-import gsap from "gsap";
-import { SplitText } from "gsap/all";
-import { ref, onMounted, nextTick } from "vue";
+  import gsap from "gsap";
+  import { SplitText } from "gsap/all";
+  import { ref, onMounted, nextTick, computed } from "vue";
 
-gsap.registerPlugin(SplitText);
+  gsap.registerPlugin(SplitText);
 
-let titleSplit: SplitText;
-let descSplit: SplitText;
-const isAnimating = ref(false);
-const isFirstImageFront = ref(true);
+  let titleSplit: SplitText;
+  let descSplit: SplitText;
+  const isAnimating = ref(false);
+  const isFirstImageFront = ref(true);
 
-const reviews = [
-  {
-    title: "Fast And Reliable Incredible Build Quality Their Quality Is Always Worth The Money",
-    desc: "I've had the pleasure of collaborating with Dumeme on multiple projects, and his ability to turn ideas into stunning, functional designs is unmatched.",
-    image1: "/carousel-img1.png",
-    image2: "/carousel-img2.png",
-  },
-  {
-    title: "Unmatched Reliability And Incredible Build Quality That Never Disappoints",
-    desc: "I’ve worked alongside Dumeme on different projects, and he consistently brings ideas to life through impressive and functional designs.",
-    image1: "/carousel-img2.png",
-    image2: "/carousel-img1.png",
-  },
-];
+  const reviews = [
+    {
+      name: "Art. Ephrem Tamiru",
+      title:
+        "Meticulous Attention to Complex Multi-Level Residential Architecture",
+      desc: "Building a complex 2+B+G+3 residence requires careful multi-level structural balancing. Their seasoned site engineers maintained stringent oversight, making the final building layout feel premium.",
+      image1: "/test3.jpg",
+      image2: "/test2.jpg",
+    },
+    {
+      name: "Ato Girma Amare & W/ro Martha Negash",
+      title:
+        "Flawless Execution from Structural Shell to Fine Structural Finishing",
+      desc: "They flawlessly handled both the core concrete structural work and intricate finishing phases for our B+G+6 Mixed Use Building. Professional project management that kept clear communication lines open throughout.",
+      image1: "/test1.jpg",
+      image2: "/place.webp",
+    },
+    {
+      name: "W/Ro Senait G/Gziabher",
+      title:
+        "Premium Craftsmanship and High-End Residential Layout Architecture",
+      desc: "Our 2+B+G+3 residential construction was handled with incredible attention to detail. Every square meter reflects high-end craftsmanship, bringing our architectural vision to life seamlessly.",
+      image1: "/place.webp",
+      image2: "/place.webp",
+    },
+    {
+      name: "Ene Wro Belay Tesfaye",
+      title: "Outstanding Structural Integrity and Prompt Component Handover",
+      desc: "Entrusting our high-density B+G+6 Mixed Use development to them for both structural foundation setups and final finishing was the right move. Speed and safety metrics were outstanding.",
+      image1: "/place.webp",
+      image2: "/place.webp",
+    },
+    {
+      name: "Ethiopia Catholic Church Society of Jesus",
+      title: "Exceptional Execution on Large Scale Educational Infrastructure",
+      desc: "Managing multiple construction phases for our Learning Institute required top-tier logistical coordination. Their execution on both the G+1 Residence and institutional blocks showcased absolute structural reliability.",
 
-const counter = ref(0);
-const review = ref(reviews[0]);
+      image1: "/place.webp",
+      image2: "/place.webp",
+    },
+    {
+      name: "Wro Etenesh Haile",
+      title: "Highly Dependable Multipurpose Real Estate Development Services",
+      desc: "Delivered our B+G+5 Mixed Use Building strictly within the expected timeframe. Their technical expertise eliminated typical construction friction and ensured a clean, functional final architecture.",
+      image1: "/place.webp",
+      image2: "/place.webp",
+    },
+    {
+      name: "Dr. Atnafu Tola",
+      title: "Efficient and Streamlined B+G+2 Private Residential Construction",
+      desc: "The construction workflow for our multi-story residential building was highly intuitive and transparent. Highly recommended for premium residential blocks requiring rigorous quality control.",
+      image1: "/place.webp",
+      image2: "/place.webp",
+    },
+    {
+      name: "Wro Misrak Elias",
+      title: "Impeccable Material Logistics and Robust Commercial Finishing",
+      desc: "Their structural crew optimized the layout planning for our B+G+5 Mixed Use structure perfectly. The attention to concrete casting standards and site safety metrics saved us weeks of engineering oversight.",
+      image1: "/place.webp",
+      image2: "/place.webp",
+    },
+    {
+      name: "Tigist Asefa",
+      title: "Excellent G+5 Apartment Complex Architecture and Civil Work",
+      desc: "Our G+5 multi-family housing project required a contractor capable of managing dense city requirements. They delivered highly secure, sturdy, and aesthetic structural results.",
+      image1: "/place.webp",
+      image2: "/place.webp",
+    },
+    {
+      name: "BGI Ethiopia PLC",
+      title: "Rapid and Safe Structural Overhaul for Vital Storage Logistics",
+      desc: "The Kera Store maintenance work was carried out with minimum disruption to operations. They demonstrated top-tier safety conditions and rapid completion for our commercial storage space.",
+      image1: "/place.webp",
+      image2: "/place.webp",
+    },
+  ];
 
-const splitElements = () => {
-  if (titleSplit) titleSplit.revert();
-  if (descSplit) descSplit.revert();
-  titleSplit = new SplitText(".review-title", { type: "lines" });
-  descSplit = new SplitText(".review-description", { type: "words,chars" });
-};
+  const counter = ref(0);
+  const currentReview = computed(() => reviews[counter.value]);
 
-onMounted(async () => {
-  await nextTick();
-  splitElements();
-});
+  // Predict next index to gracefully pre-load images onto the background container
+  // const nextCounter = computed(() => (counter.value + 1) % reviews.length);
+  // const nextReview = computed(() => reviews[nextCounter.value]);
 
-const handleShuffle = async () => {
-  if (isAnimating.value) return;
-  isAnimating.value = true;
+  // Dynamically map resources to prevent swapping artifacts
+  // const image1Source = computed(() =>
+  //   isFirstImageFront.value
+  //     ? currentReview.value?.image1
+  //     : nextReview.value?.image1
+  // );
+  // const image2Source = computed(() =>
+  //   isFirstImageFront.value
+  //     ? nextReview.value?.image2
+  //     : currentReview.value?.image2
+  // );
 
-  const topImg = isFirstImageFront.value ? ".image1" : ".image2";
-  const bottomImg = isFirstImageFront.value ? ".image2" : ".image1";
+  const splitElements = () => {
+    if (titleSplit) titleSplit.revert();
+    if (descSplit) descSplit.revert();
+    titleSplit = new SplitText(".review-title", { type: "lines" });
+    descSplit = new SplitText(".review-description", { type: "words,chars" });
+  };
 
-  const tl = gsap.timeline({
-    onComplete: () => {
-      isAnimating.value = false;
-      isFirstImageFront.value = !isFirstImageFront.value;
-    }
+  onMounted(async () => {
+    await nextTick();
+    splitElements();
   });
 
-  // 1. Text & Layout Out
-  tl.to([".review-title", ".review-description"], {
-    opacity: 0,
-    filter: "blur(4px)",
-    y: 15,
-    duration: 0.4,
-    ease: "power2.inOut",
-    onComplete: () => {
-      counter.value = (counter.value + 1) % reviews.length;
-      review.value = reviews[counter.value];
-    }
-  });
+  const handleShuffle = async () => {
+    if (isAnimating.value) return;
+    isAnimating.value = true;
 
-  // 2. THE REFINED SHUFFLE
-  // Top Image: Move Right, Rotate, and Drop
-  tl.to(topImg, {
-    x: 100,
-    y: 40,
-    rotate: 8,
-    opacity: 0.5,
-    scale: 0.85,
-    duration: 0.5,
-    ease: "expo.inOut",
-  }, "-=0.3")
+    const topImg = isFirstImageFront.value ? ".image1" : ".image2";
+    const bottomImg = isFirstImageFront.value ? ".image2" : ".image1";
 
-    // Bottom Image: Swing out Left and Come Forward
-    .fromTo(bottomImg, {
-      x: 0,
-      scale: 0.9,
-      zIndex: 0
-    }, {
-      x: -120,
-      scale: 1.05,
-      rotate: -5,
-      zIndex: 20,
-      duration: 0.5,
-      ease: "expo.inOut"
-    }, "<")
+    const tl = gsap.timeline({
+      onComplete: () => {
+        counter.value = (counter.value + 1) % reviews.length;
+        isFirstImageFront.value = !isFirstImageFront.value;
+        isAnimating.value = false;
+      },
+    });
 
-    // Switch Depths at the peak of the movement
-    .set(topImg, { zIndex: 0 })
-    .set(bottomImg, { zIndex: 10 })
+    // 1. Text Out
+    tl.to([".review-title", ".review-description", ".review-author"], {
+      opacity: 0,
+      filter: "blur(4px)",
+      y: 15,
+      duration: 0.4,
+      ease: "power2.inOut",
+    });
 
-    // Return both to center
-    .to([topImg, bottomImg], {
-      x: 0,
-      y: 0,
-      rotate: 0,
-      opacity: 1,
-      scale: (i) => i === 0 ? 1 : 0.93, // Keep back image slightly smaller
-      duration: 0.6,
-      stagger: 0.05,
-      ease: "elastic.out(1, 0.8)"
-    })
+    // 2. The Shuffle Palette Animation
+    tl.to(
+      topImg,
+      {
+        x: 100,
+        y: 40,
+        rotate: 8,
+        opacity: 0.5,
+        scale: 0.85,
+        duration: 0.5,
+        ease: "expo.inOut",
+      },
+      "-=0.3"
+    )
+      .fromTo(
+        bottomImg,
+        {
+          x: 0,
+          scale: 0.9,
+          zIndex: 0,
+          opacity: 0.5,
+        },
+        {
+          x: -120,
+          scale: 1.05,
+          opacity: 1,
+          rotate: -5,
+          zIndex: 20,
+          duration: 0.5,
+          ease: "expo.inOut",
+        },
+        "<"
+      )
+      // Synchronize layered ordering heights mid-flight
+      .set(topImg, { zIndex: 0 })
+      .set(bottomImg, { zIndex: 10 })
+      // Re-center system sets smoothly
+      .to([topImg, bottomImg], {
+        x: 0,
+        y: 0,
+        rotate: 0,
+        opacity: (i) => (i === 0 ? 0.5 : 1),
+        scale: (i) => (i === 0 ? 0.6 : 1),
+        duration: 0.6,
+        stagger: 0.05,
+        ease: "elastic.out(1, 0.8)",
+      })
+      // 3. Re-split and text entrance
+      .add(async () => {
+        await nextTick();
+        splitElements();
 
-    // 3. Text Re-Split and Entrance
-    .add(async () => {
-      await nextTick();
-      splitElements();
+        gsap.set(".review-title, .review-description, .review-author", {
+          opacity: 1,
+          filter: "blur(0px)",
+        });
 
-      gsap.set(".review-title, .review-description", { opacity: 1, filter: "blur(0px)" });
+        gsap.fromTo(
+          titleSplit.lines,
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, stagger: 0.1, ease: "expo.out", duration: 0.8 }
+        );
 
-      gsap.fromTo(titleSplit.lines,
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, stagger: 0.1, ease: "expo.out", duration: 0.8 }
-      );
+        gsap.fromTo(
+          descSplit.words,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, stagger: 0.015, ease: "expo.out", duration: 0.8 },
+          "-=0.6"
+        );
 
-      gsap.fromTo(descSplit.words,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, stagger: 0.015, ease: "expo.out", duration: 0.8 },
-        "-=0.6"
-      );
-    }, "-=0.4");
-};
+        gsap.fromTo(
+          ".review-author",
+          { opacity: 0, y: 15 },
+          { opacity: 1, y: 0, ease: "power2.out", duration: 0.6 },
+          "-=0.4"
+        );
+      }, "-=0.4");
+  };
 </script>
 
 <template>
-  <div class="w-svw my-40 bg-transparent text-black overflow-hidden">
-    <div class="max-467.5 w-full mx-auto">
+  <div
+    class="w-svw overflow-hidden bg-transparent py-20 text-white lg:my-40 lg:py-40"
+  >
+    <div class="max-467.5 mx-auto w-full">
       <div class="flex flex-col items-center gap-25">
-
-        <div class="revhead flex w-full justify-center px-10 text-center font-[Haas] text-[clamp(30px,4vw,48px)]">
+        <div
+          class="revhead /font-[Haas] flex w-full justify-center px-10 text-center text-[clamp(30px,4vw,48px)] uppercase"
+        >
           what others think about us
         </div>
 
-        <div class="aspect-[2.8/1] h-auto w-full max-w-467.5 px-10 py-5 lg:px-17 lg:py-10">
-          <div class="flex h-full w-full gap-10 px-5 lg:gap-30">
-
-            <div class="test relative flex h-auto flex-1 items-center justify-center lg:h-full overflow-visible">
-              <!-- Inline styles ensure initial z-index is defined for GSAP -->
-              <img src="/testi1.jpg" class="image1 absolute h-130 object-contain w-120 rounded-[100px] p-3"
-                style="z-index: 10;" />
-              <img src="/testi2.jpg" class="image2 absolute h-130 object-contain mt-10 w-120 rounded-[100px] p-3"
-                style="z-index: 0;" />
+        <div
+          class="flex h-auto w-full max-w-467.5 px-5 py-5 lg:aspect-[2.8/1] lg:px-17 lg:py-10"
+        >
+          <div
+            class="flex h-full w-full flex-col gap-10 px-0 lg:flex-row lg:gap-30 lg:px-5"
+          >
+            <!-- Dynamic Image Swapping Stack -->
+            <div
+              class="test relative flex h-95 w-full flex-1 items-center justify-center overflow-visible max-lg:my-40 lg:h-full"
+            >
+              <img
+                src="/test3.jpg"
+                class="/image1 absolute h-70 w-60 rounded-[40px] object-cover lg:h-130 lg:w-120 lg:rounded-[100px]"
+              />
+              <!-- img
+                :src="image2Source"
+                class="image2 absolute mt-10 h-[280px] w-[240px] lg:h-130 lg:w-120 rounded-[40px] lg:rounded-[100px] object-cover"
+                :style="{
+                  zIndex: isFirstImageFront ? 0 : 10,
+                  opacity: isFirstImageFront ? 0.5 : 1,
+                }"
+              / -->
             </div>
 
-            <div class="flex h-full w-[60%] flex-col justify-between gap-10">
-              <div class="flex flex-col gap-10.5">
+            <!-- Content Area -->
+            <div
+              class="flex h-full w-full flex-col justify-between gap-10 lg:w-[60%]"
+            >
+              <div class="flex flex-col gap-6 lg:gap-10.5">
                 <div
-                  class="review-title pr-10 font-[Haas] text-[clamp(20px,3vw,58px)] leading-[105.2%] font-thin uppercase italic">
-                  {{ review.title }}
+                  class="review-title /font-[Haas] pr-0 text-[clamp(24px,3vw,58px)] font-thin uppercase italic lg:pr-10"
+                >
+                  {{ currentReview?.title }}
                 </div>
-                <div class="review-description font-[Switzer] text-[clamp(13px,2vw,22px)] leading-[1.4] text-[#3F3F3F]">
-                  " {{ review.desc }} "
+                <div
+                  class="review-description /font-[Switzer] text-[clamp(13px,2vw,22px)] text-gray-400"
+                >
+                  " {{ currentReview?.desc }} "
+                </div>
+                <div
+                  class="review-author mt-2 text-[clamp(12px,1.5vw,18px)] font-semibold tracking-wider text-white uppercase"
+                >
+                  — {{ currentReview?.name }}
                 </div>
               </div>
 
+              <!-- Controls -->
               <div class="flex w-full gap-3.75">
-                <button @click="handleShuffle"
-                  class="flex w-full items-center justify-center rounded-full border border-black p-6.5 transition-all hover:bg-black/5 active:scale-95">
-                  <img src="/arrow-max-left.svg" class="max-lg:size-5" />
+                <button
+                  class="flex w-full items-center justify-center rounded-full border border-white p-6.5 transition-all hover:bg-white/10 active:scale-95"
+                  @click="handleShuffle"
+                >
+                  <img src="/arrow-max-left.svg" class="invert max-lg:size-5" />
                 </button>
-                <button @click="handleShuffle"
-                  class="flex w-full items-center justify-center rounded-full border border-black p-6.5 transition-all hover:bg-black/5 active:scale-95">
-                  <img src="/arrow-max-right.svg" class="max-lg:size-5" />
+                <button
+                  class="flex w-full items-center justify-center rounded-full border border-white p-6.5 transition-all hover:bg-white/10 active:scale-95"
+                  @click="handleShuffle"
+                >
+                  <img
+                    src="/arrow-max-right.svg"
+                    class="invert max-lg:size-5"
+                  />
                 </button>
               </div>
             </div>
@@ -180,31 +307,30 @@ const handleShuffle = async () => {
 </template>
 
 <style scoped>
-.test {
-  --dash-length: 32px;
-  --dash-thickness: 2px;
-  --dash-color: #3f3f3f30;
-  background-image:
-    linear-gradient(to right, var(--dash-color) 50%, transparent 50%),
-    linear-gradient(to right, var(--dash-color) 50%, transparent 50%),
-    linear-gradient(to bottom, var(--dash-color) 50%, transparent 50%),
-    linear-gradient(to bottom, var(--dash-color) 50%, transparent 50%);
-  background-position: top, bottom, left, right;
-  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
-  background-size:
-    var(--dash-length) var(--dash-thickness),
-    var(--dash-length) var(--dash-thickness),
-    var(--dash-thickness) var(--dash-length),
-    var(--dash-thickness) var(--dash-length);
-}
+  .test {
+    --dash-length: 32px;
+    --dash-thickness: 2px;
+    --dash-color: #3f3f3f30;
+    background-image:
+      linear-gradient(to right, var(--dash-color) 50%, transparent 50%),
+      linear-gradient(to right, var(--dash-color) 50%, transparent 50%),
+      linear-gradient(to bottom, var(--dash-color) 50%, transparent 50%),
+      linear-gradient(to bottom, var(--dash-color) 50%, transparent 50%);
+    background-position: top, bottom, left, right;
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+    background-size:
+      var(--dash-length) var(--dash-thickness),
+      var(--dash-length) var(--dash-thickness),
+      var(--dash-thickness) var(--dash-length),
+      var(--dash-thickness) var(--dash-length);
+  }
 
-img {
-  will-change: transform, opacity, z-index;
-}
+  img {
+    will-change: transform, opacity, z-index;
+  }
 
-/* Optional: add a slight shadow to the front image during shuffle */
-.image1,
-.image2 {
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.05));
-}
+  .image1,
+  .image2 {
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.05));
+  }
 </style>

@@ -1,15 +1,15 @@
 <script setup lang="tsx">
-const props = defineProps({
-  image: {type: String, default: ""},
-  callBack: {type: Function as PropType<() => void>, default: () => {}}
-})
+  const props = defineProps({
+    image: { type: String, default: "" },
+    callBack: { type: Function as PropType<() => void>, default: () => {} },
+  });
 </script>
 
 <template>
-  <div @click="props.callBack" class="border border-[#FF8811] lg:p-5 p-3 hover:bg-black/8 transition-all rounded-full flex items-center justify-center">
-    <img
-      :src="props.image"
-      class="lg:size-9.5 size-6"
-    />
+  <div
+    class="flex items-center justify-center rounded-full border border-[#FF8811] p-3 transition-all hover:bg-black/8 lg:p-5"
+    @click="props.callBack"
+  >
+    <img :src="props.image" class="size-6 lg:size-9.5" />
   </div>
 </template>

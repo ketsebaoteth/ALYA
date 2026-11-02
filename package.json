@@ -37,10 +37,13 @@
     "three": "^0.184.0",
     "vaul-vue": "^0.4.1",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "vue-zustand": "^1.1.0",
+    "zustand": "^5.0.13"
   },
   "devDependencies": {
     "@nuxt/devtools": "^3.2.1",
+    "@types/node": "^25.9.1",
     "cssnano": "^7.1.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",

@@ -1,119 +1,91 @@
 <script setup lang="ts">
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-  import { SplitText } from "gsap/SplitText";
+  import { onMounted } from "vue";
 
-  onMounted(async () => {
+  const services = [
+    {
+      title: "Mixed Use Building",
+      desc: "Private homes to multi-story apartment developments with finishing works.",
+      img: "/hero55.jpg",
+    },
+    {
+      title: "Commercial Buildings",
+      desc: "Delivering dynamic commercial projects designed to support advanced business operations.",
+      img: "/palette.jpg",
+    },
+    {
+      title: "Institutional & Industrial",
+      desc: "Providing construction services for public facilities, mixed-use infrastructure, and warehouses.",
+      img: "/palettesecond.jpg",
+    },
+  ];
+
+  onMounted(() => {
     gsap.registerPlugin(ScrollTrigger);
-    gsap.registerPlugin(SplitText);
-
-    const splitedText1 = new SplitText(".titlet", { type: "lines" });
-
-    const charssplit = new SplitText(".desct", { type: "words,chars" });
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".left-palette",
-        start: "top 70%",
-      },
-    });
-
-    tl.fromTo(
-      charssplit.words,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: "back.out" }
-    )
-      .fromTo(
-        charssplit.chars,
-        { filter: "blur(20px)" },
-        {
-          filter: "blur(0px)",
-          duration: 0.1,
-          stagger: 0.01,
-          ease: "power2.inOut",
-        },
-        "<"
-      )
-      .fromTo(
-        splitedText1.lines,
-        {
-          opacity: 0,
-          y: 40,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.15,
-          ease: "back",
-        },
-        "<"
-      )
-      .fromTo(
-        ".center-palette",
-        {
-          translateY: "20px",
-        },
-        {
-          translateY: "0px",
-          opacity: 1,
-          duration: 0.6,
-          ease: "power1.out",
-        },
-        "<"
-      )
-      .to(
-        ".left-palette",
-        {
-          translateX: "0px",
-          opacity: 1,
-          duration: 0.7,
-          delay: 0.4,
-          ease: "power3.out",
-        },
-        "<"
-      )
-      .to(
-        ".right-palette",
-        {
-          translateX: "0px",
-          opacity: 1,
-          duration: 0.7,
-          ease: "power3.out",
-        },
-        "<"
-      );
+    gsap.fromTo(
+      ".svc-card",
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".offer-section", start: "top 70%" },
+      }
+    );
   });
 </script>
 
 <template>
   <div
-    class="aspvi z-0 flex w-full flex-col items-center justify-center gap-7 bg-transparent p-4 text-black lg:min-h-300 lg:p-12 xl:p-14"
+    class="offer-section flex w-full flex-col items-center justify-center bg-[#f8f8f8] p-5 py-30 text-black"
   >
-    <div
-      class="titlet flex w-2/3 max-w-150 justify-center px-4 text-center font-[Switzer] text-[clamp(32px,5vw,78px)] leading-[1.15] font-bold 2xl:w-1/2"
-    >
-      What we offer to your business
-    </div>
-    <div
-      class="desct max-w-180 justify-center text-center text-[clamp(13px,2vw,19px)] leading-none text-black max-xl:max-w-130"
-    >
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-      Lorem Ipsum has been the industry's standard dummy text ever since the
-      1500s, when an unknown printer took a galley of type and scrambled it to
-      make a type specimen book.
-    </div>
+    <div class="flex w-full max-w-7xl flex-col items-center gap-15">
+      <div class="flex max-w-3xl flex-col items-center gap-4 text-center">
+        <div class="text-brand-600 /font-[Switzer] text-sm font-bold uppercase">
+          What We Offer
+        </div>
+        <div class="/font-[Haas] text-[clamp(40px,5vw,70px)] font-bold">
+          Enterprise Solutions
+        </div>
+        <div class="/font-[Switzer] mt-2 text-xl text-gray-600">
+          From sourcing through to last-mile delivery, we manage complex supply
+          chains with precision and reliability.
+        </div>
+      </div>
 
-    <div class="flex h-full w-full max-w-425 items-center gap-6.25 pt-14">
-      <div
-        class="left-palette h-180 w-full -translate-x-5 rounded-4xl bg-black opacity-0"
-      ></div>
-      <div
-        class="center-palette h-180 w-full rounded-4xl bg-black opacity-0"
-      ></div>
-      <div
-        class="right-palette h-180 w-full translate-x-5 rounded-4xl bg-black opacity-0"
-      ></div>
+      <div class="mt-10 grid w-full grid-cols-1 gap-8 md:grid-cols-3">
+        <NuxtLink
+          v-for="(svc, i) in services"
+          :key="i"
+          to="/services"
+          class="svc-card group relative block h-125 cursor-pointer overflow-hidden rounded-3xl border border-gray-200 shadow-xl"
+        >
+          <img
+            :src="svc.img"
+            class="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div
+            class="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent"
+          ></div>
+          <div
+            class="absolute bottom-0 left-0 flex w-full translate-y-4 flex-col gap-2 p-8 transition-transform duration-500 group-hover:translate-y-0"
+          >
+            <div
+              class="/font-[Haas55] text-2xl font-bold text-white drop-shadow-md"
+            >
+              {{ svc.title }}
+            </div>
+            <div
+              class="/font-[Switzer] text-sm text-gray-300 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            >
+              {{ svc.desc }}
+            </div>
+          </div>
+        </NuxtLink>
+      </div>
     </div>
   </div>
 </template>

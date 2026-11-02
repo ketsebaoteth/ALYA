@@ -11,9 +11,9 @@
 </script>
 
 <template>
-  <div class="min-h-screen bg-white text-white">
+  <div class="min-h-screen bg-white font-[Futura]! text-white">
     <NavBar />
-    <CursorBlob class="loaded ? '' : 'hidden'" />
+    <CursorBlob :class="loaded ? '' : 'hidden'" />
 
     <main class="flex flex-col items-center justify-center">
       <slot />

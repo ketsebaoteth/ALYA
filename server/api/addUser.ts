@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
 
   const user = await readBody(event);
 
-  await addUser(JSON.parse(user));
+  await addUser(user);
 
   return { status: true };
 });

@@ -42,7 +42,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: "Home",
-      titleTemplate: "%s - ALYA",
+      titleTemplate: "%s - ALIYA",
       link: [
         { rel: "icon", type: "image/png", href: "/favicon.png" },
         {

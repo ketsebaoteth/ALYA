@@ -1,5 +1,5 @@
 import { User } from "./model";
-import type { UserType } from "../lib/types";
+import type { UserType } from "~~/shared/types/types";
 
 export const addUser = async (user: UserType) => {
   const userObj = new User(user);

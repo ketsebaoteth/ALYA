@@ -1,0 +1,75 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var vite_1 = require("@tailwindcss/vite");
+// https://nuxt.com/docs/api/configuration/nuxt-config
+exports.default = defineNuxtConfig({
+    devtools: {
+        enabled: true,
+    },
+    // INFO: For CORS
+    security: {
+        enabled: false,
+    },
+    compatibilityDate: "2025-07-15",
+    modules: [
+        "@nuxt/eslint",
+        "reka-ui/nuxt",
+        "@nuxt/icon",
+        "@nuxt/image",
+        "@nuxt/fonts",
+        "nuxt-security",
+        "@vueuse/nuxt",
+    ],
+    css: ["~/assets/css/main.css"],
+    vite: {
+        plugins: [(0, vite_1.default)()],
+    },
+    fonts: {
+        experimental: {
+            processCSSVariables: true,
+        },
+    },
+    postcss: {
+        plugins: {
+            cssnano: {
+                preset: "default",
+            },
+        },
+    },
+    image: {
+        quality: 80,
+        format: ["webp"],
+    },
+    app: {
+        head: {
+            title: "Home",
+            titleTemplate: "%s - ALIYA",
+            link: [
+                { rel: "icon", type: "image/png", href: "/favicon.png" },
+                {
+                    rel: "stylesheet",
+                    href: "https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap",
+                },
+                {
+                    rel: "stylesheet",
+                    href: "https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap",
+                },
+            ],
+        },
+        rootAttrs: {
+            "data-vaul-drawer-wrapper": "",
+        },
+    },
+    runtimeConfig: {
+        public: {
+            buildAt: new Date().toLocaleString("nb-US", {
+                timeZone: "Europe/Helsinki",
+            }),
+            environment: "production",
+        },
+    },
+    typescript: {
+        strict: true,
+    },
+    telemetry: false,
+});

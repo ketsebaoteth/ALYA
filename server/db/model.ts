@@ -1,9 +1,15 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-  fullName: String,
-  phoneNumber: String,
+  fullName: {
+    type: String,
+    default: "",
+  },
   email: {
+    type: String,
+    default: "",
+  },
+  details: {
     type: String,
     default: "",
   },
